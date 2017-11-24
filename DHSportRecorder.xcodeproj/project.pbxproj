@@ -1,0 +1,731 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D057F8AC1FB2DFC0001AE86C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057F8AB1FB2DFC0001AE86C /* MapViewController.swift */; };
+		D057F8B21FB2E15D001AE86C /* DHMap.m in Sources */ = {isa = PBXBuildFile; fileRef = D057F8AE1FB2E15D001AE86C /* DHMap.m */; };
+		D057F8B31FB2E15D001AE86C /* DHLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D057F8AF1FB2E15D001AE86C /* DHLocation.m */; };
+		D057F8B81FB2F939001AE86C /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057F8B71FB2F939001AE86C /* HistoryViewController.swift */; };
+		D057F8BA1FB2F943001AE86C /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057F8B91FB2F943001AE86C /* OtherViewController.swift */; };
+		D057F8BC1FB2F951001AE86C /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057F8BB1FB2F951001AE86C /* RecordViewController.swift */; };
+		D057F8BD1FB3098E001AE86C /* Pods_DHSportRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EB5A111C52C8E01AD5C69C4 /* Pods_DHSportRecorder.framework */; };
+		D057F8BE1FB3098E001AE86C /* Pods_DHSportRecorder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7EB5A111C52C8E01AD5C69C4 /* Pods_DHSportRecorder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D08717A81FB2B55400A7784A /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08717A51FB2B55400A7784A /* LiveViewController.swift */; };
+		D08717A91FB2B55400A7784A /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08717A61FB2B55400A7784A /* PlayViewController.swift */; };
+		D08717AC1FB2B56B00A7784A /* StreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08717AB1FB2B56B00A7784A /* StreamViewController.swift */; };
+		D08E26631FB424C60065C19B /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08E26621FB424C60065C19B /* UIImageExtension.swift */; };
+		D09339AF1FB29AC200EC0700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339AE1FB29AC200EC0700 /* AppDelegate.swift */; };
+		D09339B41FB29AC200EC0700 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09339B21FB29AC200EC0700 /* Main.storyboard */; };
+		D09339B61FB29AC200EC0700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D09339B51FB29AC200EC0700 /* Assets.xcassets */; };
+		D09339B91FB29AC200EC0700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09339B71FB29AC200EC0700 /* LaunchScreen.storyboard */; };
+		D09339E81FB29B7400EC0700 /* CircleLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339C41FB29B7300EC0700 /* CircleLoading.swift */; };
+		D09339E91FB29B7400EC0700 /* BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339C71FB29B7300EC0700 /* BaseObject.swift */; };
+		D09339EA1FB29B7400EC0700 /* LiveBroadcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339C81FB29B7300EC0700 /* LiveBroadcast.swift */; };
+		D09339EB1FB29B7400EC0700 /* LiveStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339C91FB29B7300EC0700 /* LiveStream.swift */; };
+		D09339EC1FB29B7400EC0700 /* YTLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339CA1FB29B7300EC0700 /* YTLive.swift */; };
+		D09339ED1FB29B7400EC0700 /* YTLiveBroadcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339CB1FB29B7300EC0700 /* YTLiveBroadcast.swift */; };
+		D09339EE1FB29B7400EC0700 /* YTLiveStreams.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339CC1FB29B7300EC0700 /* YTLiveStreams.swift */; };
+		D09339EF1FB29B7400EC0700 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D09339CD1FB29B7400EC0700 /* GoogleService-Info.plist */; };
+		D09339F01FB29B7400EC0700 /* UIControl+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = D09339D11FB29B7400EC0700 /* UIControl+YYAdd.m */; };
+		D09339F11FB29B7400EC0700 /* UIView+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = D09339D31FB29B7400EC0700 /* UIView+YYAdd.m */; };
+		D09339F21FB29B7400EC0700 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339D51FB29B7400EC0700 /* DateExtension.swift */; };
+		D09339F31FB29B7400EC0700 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339D61FB29B7400EC0700 /* StringExtension.swift */; };
+		D09339F51FB29B7400EC0700 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339D91FB29B7400EC0700 /* Helpers.swift */; };
+		D09339F71FB29B7400EC0700 /* GIDSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339DC1FB29B7400EC0700 /* GIDSignInManager.swift */; };
+		D09339F81FB29B7400EC0700 /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339DD1FB29B7400EC0700 /* LogManager.swift */; };
+		D09339F91FB29B7400EC0700 /* UIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339DE1FB29B7400EC0700 /* UIManager.swift */; };
+		D09339FA1FB29B7400EC0700 /* LFLivePreview.m in Sources */ = {isa = PBXBuildFile; fileRef = D09339E11FB29B7400EC0700 /* LFLivePreview.m */; };
+		D09339FB1FB29B7400EC0700 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339E31FB29B7400EC0700 /* BaseViewController.swift */; };
+		D0933A001FB29B9100EC0700 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D09339FF1FB29B9100EC0700 /* Localizable.strings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D057F8BF1FB3098F001AE86C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D057F8BE1FB3098E001AE86C /* Pods_DHSportRecorder.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1D6F1741CC2376DF8945D33A /* Pods-DHSportRecorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.release.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.release.xcconfig"; sourceTree = "<group>"; };
+		7EB5A111C52C8E01AD5C69C4 /* Pods_DHSportRecorder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DHSportRecorder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D057F8AB1FB2DFC0001AE86C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		D057F8AE1FB2E15D001AE86C /* DHMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHMap.m; sourceTree = "<group>"; };
+		D057F8AF1FB2E15D001AE86C /* DHLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHLocation.m; sourceTree = "<group>"; };
+		D057F8B01FB2E15D001AE86C /* DHMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHMap.h; sourceTree = "<group>"; };
+		D057F8B11FB2E15D001AE86C /* DHLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHLocation.h; sourceTree = "<group>"; };
+		D057F8B71FB2F939001AE86C /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		D057F8B91FB2F943001AE86C /* OtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
+		D057F8BB1FB2F951001AE86C /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		D08717A51FB2B55400A7784A /* LiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
+		D08717A61FB2B55400A7784A /* PlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
+		D08717AB1FB2B56B00A7784A /* StreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamViewController.swift; sourceTree = "<group>"; };
+		D08E26621FB424C60065C19B /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		D09339AB1FB29AC200EC0700 /* DHSportRecorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DHSportRecorder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D09339AE1FB29AC200EC0700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D09339B31FB29AC200EC0700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D09339B51FB29AC200EC0700 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D09339B81FB29AC200EC0700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D09339BA1FB29AC200EC0700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D09339C41FB29B7300EC0700 /* CircleLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleLoading.swift; sourceTree = "<group>"; };
+		D09339C71FB29B7300EC0700 /* BaseObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseObject.swift; sourceTree = "<group>"; };
+		D09339C81FB29B7300EC0700 /* LiveBroadcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveBroadcast.swift; sourceTree = "<group>"; };
+		D09339C91FB29B7300EC0700 /* LiveStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveStream.swift; sourceTree = "<group>"; };
+		D09339CA1FB29B7300EC0700 /* YTLive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YTLive.swift; sourceTree = "<group>"; };
+		D09339CB1FB29B7300EC0700 /* YTLiveBroadcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YTLiveBroadcast.swift; sourceTree = "<group>"; };
+		D09339CC1FB29B7300EC0700 /* YTLiveStreams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YTLiveStreams.swift; sourceTree = "<group>"; };
+		D09339CD1FB29B7400EC0700 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D09339D01FB29B7400EC0700 /* UIControl+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+YYAdd.h"; sourceTree = "<group>"; };
+		D09339D11FB29B7400EC0700 /* UIControl+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+YYAdd.m"; sourceTree = "<group>"; };
+		D09339D21FB29B7400EC0700 /* UIView+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YYAdd.h"; sourceTree = "<group>"; };
+		D09339D31FB29B7400EC0700 /* UIView+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YYAdd.m"; sourceTree = "<group>"; };
+		D09339D51FB29B7400EC0700 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		D09339D61FB29B7400EC0700 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		D09339D91FB29B7400EC0700 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		D09339DC1FB29B7400EC0700 /* GIDSignInManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIDSignInManager.swift; sourceTree = "<group>"; };
+		D09339DD1FB29B7400EC0700 /* LogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogManager.swift; sourceTree = "<group>"; };
+		D09339DE1FB29B7400EC0700 /* UIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIManager.swift; sourceTree = "<group>"; };
+		D09339E01FB29B7400EC0700 /* LFLivePreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFLivePreview.h; sourceTree = "<group>"; };
+		D09339E11FB29B7400EC0700 /* LFLivePreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFLivePreview.m; sourceTree = "<group>"; };
+		D09339E31FB29B7400EC0700 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		D09339E41FB29B7400EC0700 /* DHSportRecorder-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DHSportRecorder-Bridging-Header.h"; sourceTree = "<group>"; };
+		D09339FF1FB29B9100EC0700 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		F03F419780B43425DF462D40 /* Pods-DHSportRecorder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D09339A81FB29AC200EC0700 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D057F8BD1FB3098E001AE86C /* Pods_DHSportRecorder.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		066634AAA384DA7341745153 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F03F419780B43425DF462D40 /* Pods-DHSportRecorder.debug.xcconfig */,
+				1D6F1741CC2376DF8945D33A /* Pods-DHSportRecorder.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5A1849E8C02D40781DB92344 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7EB5A111C52C8E01AD5C69C4 /* Pods_DHSportRecorder.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D057F8AA1FB2DFB7001AE86C /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				D057F8AB1FB2DFC0001AE86C /* MapViewController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		D057F8AD1FB2E15D001AE86C /* DHLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				D057F8B01FB2E15D001AE86C /* DHMap.h */,
+				D057F8AE1FB2E15D001AE86C /* DHMap.m */,
+				D057F8B11FB2E15D001AE86C /* DHLocation.h */,
+				D057F8AF1FB2E15D001AE86C /* DHLocation.m */,
+			);
+			path = DHLibrary;
+			sourceTree = "<group>";
+		};
+		D057F8B41FB2F92D001AE86C /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				D057F8BB1FB2F951001AE86C /* RecordViewController.swift */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
+		D057F8B51FB2F92D001AE86C /* History */ = {
+			isa = PBXGroup;
+			children = (
+				D057F8B71FB2F939001AE86C /* HistoryViewController.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		D057F8B61FB2F92D001AE86C /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				D057F8B91FB2F943001AE86C /* OtherViewController.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		D08717A41FB2B55400A7784A /* Live */ = {
+			isa = PBXGroup;
+			children = (
+				D08717A51FB2B55400A7784A /* LiveViewController.swift */,
+				D08717A61FB2B55400A7784A /* PlayViewController.swift */,
+				D08717AB1FB2B56B00A7784A /* StreamViewController.swift */,
+			);
+			path = Live;
+			sourceTree = "<group>";
+		};
+		D09339A21FB29AC200EC0700 = {
+			isa = PBXGroup;
+			children = (
+				D09339AD1FB29AC200EC0700 /* DHSportRecorder */,
+				D09339AC1FB29AC200EC0700 /* Products */,
+				066634AAA384DA7341745153 /* Pods */,
+				5A1849E8C02D40781DB92344 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D09339AC1FB29AC200EC0700 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D09339AB1FB29AC200EC0700 /* DHSportRecorder.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D09339AD1FB29AC200EC0700 /* DHSportRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				D09339C01FB29B7300EC0700 /* Library */,
+				D09339CE1FB29B7400EC0700 /* Class */,
+				D09339AE1FB29AC200EC0700 /* AppDelegate.swift */,
+				D09339B21FB29AC200EC0700 /* Main.storyboard */,
+				D09339B51FB29AC200EC0700 /* Assets.xcassets */,
+				D09339B71FB29AC200EC0700 /* LaunchScreen.storyboard */,
+				D09339CD1FB29B7400EC0700 /* GoogleService-Info.plist */,
+				D09339BA1FB29AC200EC0700 /* Info.plist */,
+				D09339FF1FB29B9100EC0700 /* Localizable.strings */,
+			);
+			path = DHSportRecorder;
+			sourceTree = "<group>";
+		};
+		D09339C01FB29B7300EC0700 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				D057F8AD1FB2E15D001AE86C /* DHLibrary */,
+				D09339C11FB29B7300EC0700 /* CircleLoading */,
+				D09339C51FB29B7300EC0700 /* YTLive */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		D09339C11FB29B7300EC0700 /* CircleLoading */ = {
+			isa = PBXGroup;
+			children = (
+				D09339C21FB29B7300EC0700 /* Assets */,
+				D09339C31FB29B7300EC0700 /* Classes */,
+			);
+			path = CircleLoading;
+			sourceTree = "<group>";
+		};
+		D09339C21FB29B7300EC0700 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		D09339C31FB29B7300EC0700 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D09339C41FB29B7300EC0700 /* CircleLoading.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		D09339C51FB29B7300EC0700 /* YTLive */ = {
+			isa = PBXGroup;
+			children = (
+				D09339C61FB29B7300EC0700 /* Model */,
+				D09339CA1FB29B7300EC0700 /* YTLive.swift */,
+				D09339CB1FB29B7300EC0700 /* YTLiveBroadcast.swift */,
+				D09339CC1FB29B7300EC0700 /* YTLiveStreams.swift */,
+			);
+			path = YTLive;
+			sourceTree = "<group>";
+		};
+		D09339C61FB29B7300EC0700 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D09339C71FB29B7300EC0700 /* BaseObject.swift */,
+				D09339C81FB29B7300EC0700 /* LiveBroadcast.swift */,
+				D09339C91FB29B7300EC0700 /* LiveStream.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D09339CE1FB29B7400EC0700 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				D09339CF1FB29B7400EC0700 /* category */,
+				D09339D41FB29B7400EC0700 /* Extension */,
+				D09339D71FB29B7400EC0700 /* Helpers */,
+				D09339DB1FB29B7400EC0700 /* Manager */,
+				D09339DF1FB29B7400EC0700 /* View */,
+				D09339E21FB29B7400EC0700 /* ViewController */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		D09339CF1FB29B7400EC0700 /* category */ = {
+			isa = PBXGroup;
+			children = (
+				D09339D01FB29B7400EC0700 /* UIControl+YYAdd.h */,
+				D09339D11FB29B7400EC0700 /* UIControl+YYAdd.m */,
+				D09339D21FB29B7400EC0700 /* UIView+YYAdd.h */,
+				D09339D31FB29B7400EC0700 /* UIView+YYAdd.m */,
+			);
+			path = category;
+			sourceTree = "<group>";
+		};
+		D09339D41FB29B7400EC0700 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D09339D51FB29B7400EC0700 /* DateExtension.swift */,
+				D09339D61FB29B7400EC0700 /* StringExtension.swift */,
+				D08E26621FB424C60065C19B /* UIImageExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		D09339D71FB29B7400EC0700 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D09339D91FB29B7400EC0700 /* Helpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D09339DB1FB29B7400EC0700 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D09339DC1FB29B7400EC0700 /* GIDSignInManager.swift */,
+				D09339DD1FB29B7400EC0700 /* LogManager.swift */,
+				D09339DE1FB29B7400EC0700 /* UIManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		D09339DF1FB29B7400EC0700 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D09339E01FB29B7400EC0700 /* LFLivePreview.h */,
+				D09339E11FB29B7400EC0700 /* LFLivePreview.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D09339E21FB29B7400EC0700 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D057F8B51FB2F92D001AE86C /* History */,
+				D057F8B61FB2F92D001AE86C /* Other */,
+				D057F8B41FB2F92D001AE86C /* Record */,
+				D057F8AA1FB2DFB7001AE86C /* Map */,
+				D08717A41FB2B55400A7784A /* Live */,
+				D09339E31FB29B7400EC0700 /* BaseViewController.swift */,
+				D09339E41FB29B7400EC0700 /* DHSportRecorder-Bridging-Header.h */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D09339AA1FB29AC200EC0700 /* DHSportRecorder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D09339BD1FB29AC200EC0700 /* Build configuration list for PBXNativeTarget "DHSportRecorder" */;
+			buildPhases = (
+				3F8BD967328892BFADDB938D /* [CP] Check Pods Manifest.lock */,
+				D09339A71FB29AC200EC0700 /* Sources */,
+				D09339A81FB29AC200EC0700 /* Frameworks */,
+				D09339A91FB29AC200EC0700 /* Resources */,
+				56EB19C5B96742E445427972 /* [CP] Embed Pods Frameworks */,
+				A61F3ADC330D1C1AF44B48F7 /* [CP] Copy Pods Resources */,
+				D057F8BF1FB3098F001AE86C /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DHSportRecorder;
+			productName = DHSportRecorder;
+			productReference = D09339AB1FB29AC200EC0700 /* DHSportRecorder.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D09339A31FB29AC200EC0700 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0910;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = D.H.;
+				TargetAttributes = {
+					D09339AA1FB29AC200EC0700 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = D09339A61FB29AC200EC0700 /* Build configuration list for PBXProject "DHSportRecorder" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D09339A21FB29AC200EC0700;
+			productRefGroup = D09339AC1FB29AC200EC0700 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D09339AA1FB29AC200EC0700 /* DHSportRecorder */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D09339A91FB29AC200EC0700 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0933A001FB29B9100EC0700 /* Localizable.strings in Resources */,
+				D09339B91FB29AC200EC0700 /* LaunchScreen.storyboard in Resources */,
+				D09339EF1FB29B7400EC0700 /* GoogleService-Info.plist in Resources */,
+				D09339B61FB29AC200EC0700 /* Assets.xcassets in Resources */,
+				D09339B41FB29AC200EC0700 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3F8BD967328892BFADDB938D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DHSportRecorder-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		56EB19C5B96742E445427972 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/LFLiveKit/LFLiveKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/XCDYouTubeKit/XCDYouTubeKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LFLiveKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCDYouTubeKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A61F3ADC330D1C1AF44B48F7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D09339A71FB29AC200EC0700 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D09339F81FB29B7400EC0700 /* LogManager.swift in Sources */,
+				D09339F91FB29B7400EC0700 /* UIManager.swift in Sources */,
+				D09339F71FB29B7400EC0700 /* GIDSignInManager.swift in Sources */,
+				D057F8BC1FB2F951001AE86C /* RecordViewController.swift in Sources */,
+				D09339ED1FB29B7400EC0700 /* YTLiveBroadcast.swift in Sources */,
+				D08717A91FB2B55400A7784A /* PlayViewController.swift in Sources */,
+				D09339F21FB29B7400EC0700 /* DateExtension.swift in Sources */,
+				D09339FB1FB29B7400EC0700 /* BaseViewController.swift in Sources */,
+				D057F8AC1FB2DFC0001AE86C /* MapViewController.swift in Sources */,
+				D09339FA1FB29B7400EC0700 /* LFLivePreview.m in Sources */,
+				D08717AC1FB2B56B00A7784A /* StreamViewController.swift in Sources */,
+				D09339F11FB29B7400EC0700 /* UIView+YYAdd.m in Sources */,
+				D09339E91FB29B7400EC0700 /* BaseObject.swift in Sources */,
+				D09339EA1FB29B7400EC0700 /* LiveBroadcast.swift in Sources */,
+				D057F8B81FB2F939001AE86C /* HistoryViewController.swift in Sources */,
+				D09339EE1FB29B7400EC0700 /* YTLiveStreams.swift in Sources */,
+				D09339F01FB29B7400EC0700 /* UIControl+YYAdd.m in Sources */,
+				D09339EC1FB29B7400EC0700 /* YTLive.swift in Sources */,
+				D09339E81FB29B7400EC0700 /* CircleLoading.swift in Sources */,
+				D08717A81FB2B55400A7784A /* LiveViewController.swift in Sources */,
+				D057F8BA1FB2F943001AE86C /* OtherViewController.swift in Sources */,
+				D09339AF1FB29AC200EC0700 /* AppDelegate.swift in Sources */,
+				D09339F31FB29B7400EC0700 /* StringExtension.swift in Sources */,
+				D08E26631FB424C60065C19B /* UIImageExtension.swift in Sources */,
+				D057F8B31FB2E15D001AE86C /* DHLocation.m in Sources */,
+				D09339F51FB29B7400EC0700 /* Helpers.swift in Sources */,
+				D09339EB1FB29B7400EC0700 /* LiveStream.swift in Sources */,
+				D057F8B21FB2E15D001AE86C /* DHMap.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D09339B21FB29AC200EC0700 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D09339B31FB29AC200EC0700 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D09339B71FB29AC200EC0700 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D09339B81FB29AC200EC0700 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D09339BB1FB29AC200EC0700 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D09339BC1FB29AC200EC0700 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D09339BE1FB29AC200EC0700 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F03F419780B43425DF462D40 /* Pods-DHSportRecorder.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 796PUW3YDR;
+				INFOPLIST_FILE = DHSportRecorder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tw.com.dh.sportrecorder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b226036e-9e24-4d19-ab3c-5aa39f67743d";
+				PROVISIONING_PROFILE_SPECIFIER = "iOS Development";
+				SWIFT_OBJC_BRIDGING_HEADER = "DHSportRecorder/Class/ViewController/DHSportRecorder-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		D09339BF1FB29AC200EC0700 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D6F1741CC2376DF8945D33A /* Pods-DHSportRecorder.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 796PUW3YDR;
+				INFOPLIST_FILE = DHSportRecorder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tw.com.dh.sportrecorder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b226036e-9e24-4d19-ab3c-5aa39f67743d";
+				PROVISIONING_PROFILE_SPECIFIER = "iOS Development";
+				SWIFT_OBJC_BRIDGING_HEADER = "DHSportRecorder/Class/ViewController/DHSportRecorder-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D09339A61FB29AC200EC0700 /* Build configuration list for PBXProject "DHSportRecorder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D09339BB1FB29AC200EC0700 /* Debug */,
+				D09339BC1FB29AC200EC0700 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D09339BD1FB29AC200EC0700 /* Build configuration list for PBXNativeTarget "DHSportRecorder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D09339BE1FB29AC200EC0700 /* Debug */,
+				D09339BF1FB29AC200EC0700 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D09339A31FB29AC200EC0700 /* Project object */;
+}

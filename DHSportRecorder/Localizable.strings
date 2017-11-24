@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  DHYoutube
+
+  Created by Darren Hsu on 17/10/2017.
+  Copyright © 2017 D.H. All rights reserved.
+*/
+
+
+"Alert:Loading" = "Loading...";
+
+"Message:Google Auth Success" = "Google登入成功";
+"Message:Add Broadcast Success" = "新增 youtube broadcast 成功";
+"Message:Add Broadcast Failure" = "建立 youtube broadcast 失敗";
+"Message:Add Stream Failure" = "建立 youtube stream 失敗";
+"Message:Bind Stream Failure" = "組合 youtube broadcast 和 stream 失敗";
+"Message:List Broadcast Failure" = "取得 youtube broadcast list 失敗";
+"Message:Play faild" = "影片播放失敗!";

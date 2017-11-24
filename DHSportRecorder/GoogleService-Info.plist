@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>184550440954-bbevoj38uodc00kb32st5qevrvf0l8f9.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.184550440954-bbevoj38uodc00kb32st5qevrvf0l8f9</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDi1xclqPOsoGv7rHph7Yp6boqRqTWb6Ck</string>
+	<key>BUNDLE_ID</key>
+	<string>tw.com.dh.sportrecorder</string>
+</dict>
+</plist>
