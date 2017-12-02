@@ -56,7 +56,7 @@ class ContentDetails: BaseObject {
     var enableLowLatency: NSNumber?
     var boundStreamId: String?
     var boundStreamLastUpdateTimeMs: String?
-    
+    var enableAutoStart: NSNumber?
     
     static func conver(dict: [String: Any]) -> ContentDetails {
         let obj = ContentDetails()
