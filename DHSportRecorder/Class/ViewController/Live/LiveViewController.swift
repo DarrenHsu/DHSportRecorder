@@ -17,7 +17,6 @@ class LiveViewController: BaseViewController, GIDSignInUIDelegate {
     
     @IBOutlet var tableView: UITableView?
     
-    let signInButton = GIDSignInButton()
     var broadcasts: [LiveBroadcast] = []
     var isLoading = false
     
@@ -59,20 +58,15 @@ class LiveViewController: BaseViewController, GIDSignInUIDelegate {
         super.viewDidLoad()
         
         tableView?.isHidden = true
-        view.addSubview(signInButton)
-        signInButton.center = view.center
         
         self.ui.startLoading(self.view)
         gi.authorization(controller: self) { (success) in
             self.ui.stopLoading()
-            self.signInButton.isHidden = success
             self.tableView?.isHidden = !success
             
             if success {
                 YTLive.shard().clientId = self.gi.getClientID()
-                self.ui.showAlert(LString("Message:Google Auth Success"), controller: self, submit: {
-                    self.reloadBroadcast()
-                })
+                self.reloadBroadcast()
             } else {
                 self.ui.showAlert(LString("Message:Google Auth Failure"), controller: self)
             }

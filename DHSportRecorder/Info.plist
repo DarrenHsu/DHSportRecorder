@@ -36,11 +36,39 @@
 				<string>dhsportrecorder</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.184550440954-bhiaudg60v9rt61mi7u0uda7j205phgn</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>lineauth</string>
+		<string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>LineSDKConfig</key>
+	<dict>
+		<key>ChannelID</key>
+		<string>1549556007</string>
+	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>

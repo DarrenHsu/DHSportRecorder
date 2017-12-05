@@ -13,4 +13,5 @@ target 'DHSportRecorder' do
     pod 'SDWebImage'
     pod 'Alamofire'
     pod 'SwiftyJSON'
+    pod 'LineSDK'
 end

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import LineSDK
+import FirebaseCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,8 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
+    override init() {
+        super.init()
+        FIRApp.configure()
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        self.goSetupController()
+        
         return true
     }
 
@@ -40,7 +50,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return LineSDKLogin.sharedInstance().handleOpen(url)
+    }
 
-
+    func goSetupController() {
+        let storyBoard = self.window?.rootViewController?.storyboard
+        let controller = storyBoard?.instantiateViewController(withIdentifier: "SetupNavigationController")
+        self.window?.rootViewController = controller;
+    }
+    
+    func goRecordController() {
+        let storyBoard = self.window?.rootViewController?.storyboard
+        let controller = storyBoard?.instantiateViewController(withIdentifier: "MainTabController")
+        self.window?.rootViewController = controller;
+    }
 }
 
