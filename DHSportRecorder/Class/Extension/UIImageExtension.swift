@@ -11,8 +11,8 @@ import UIKit
 extension UIImage {
     var isPortrait:  Bool    { return size.height > size.width }
     var isLandscape: Bool    { return size.width > size.height }
-//    var breadth:     CGFloat { return min(size.width, size.height) }
-    var breadth:     CGFloat { return min(139, 139) }
+    var breadth:     CGFloat { return min(size.width, size.height) }
+//    var breadth:     CGFloat { return min(139, 139) }
     var breadthSize: CGSize  { return CGSize(width: breadth, height: breadth) }
     var breadthRect: CGRect  { return CGRect(origin: .zero, size: breadthSize) }
     var circleMasked: UIImage? {

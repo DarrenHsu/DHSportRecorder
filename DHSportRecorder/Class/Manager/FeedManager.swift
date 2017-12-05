@@ -21,16 +21,13 @@ class FeedManager: NSObject {
         return _manager!
     }
     
-    public func downloadFile(_ source: URL, destination: URL, success: ((_ : UIImage?) -> Void)?) {
+    public func downloadFile(_ source: URL, destination: URL, success: (() -> Void)?) {
         let request = URLRequest(url: source)
         Alamofire.download(request) { (url, response) -> (destinationURL: URL, options: DownloadRequest.DownloadOptions) in
             return (destination, DownloadRequest.DownloadOptions.removePreviousFile)
             }.validate().responseData(completionHandler: {(response) in
                 LogManager.DLog("\(response.description)")
-                do {
-                    let img = try UIImage(data: Data(contentsOf: destination))
-                    success?(img!)
-                }catch {}
+                success?()
             })
     }
 }

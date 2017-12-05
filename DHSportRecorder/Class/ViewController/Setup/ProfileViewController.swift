@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LineSDK
 
 class ProfileViewController: BaseViewController {
     
@@ -27,8 +28,11 @@ class ProfileViewController: BaseViewController {
         if let pictureURL: URL = self.line.profile.pictureURL {
             let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let path = "\(directory)/picture"
-            self.feed.downloadFile(pictureURL, destination: URL(string: path)!, success: { (image) in
-                self.photoImageView?.image = image
+            self.feed.downloadFile(pictureURL, destination: URL(string: path)!, success: { () in
+                do {
+                    let img = try UIImage(data: Data(contentsOf: URL(string: path)!))
+                    self.photoImageView?.image = img?.circleMasked
+                }catch {}
             })
         }
         
