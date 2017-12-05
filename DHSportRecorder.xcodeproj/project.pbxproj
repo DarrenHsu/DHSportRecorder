@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D02EC1891FD64F4D00ED965B /* FeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02EC1881FD64F4D00ED965B /* FeedManager.swift */; };
 		D057F8AC1FB2DFC0001AE86C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057F8AB1FB2DFC0001AE86C /* MapViewController.swift */; };
 		D057F8B21FB2E15D001AE86C /* DHMap.m in Sources */ = {isa = PBXBuildFile; fileRef = D057F8AE1FB2E15D001AE86C /* DHMap.m */; };
 		D057F8B31FB2E15D001AE86C /* DHLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D057F8AF1FB2E15D001AE86C /* DHLocation.m */; };
@@ -42,6 +43,7 @@
 		D09339FA1FB29B7400EC0700 /* LFLivePreview.m in Sources */ = {isa = PBXBuildFile; fileRef = D09339E11FB29B7400EC0700 /* LFLivePreview.m */; };
 		D09339FB1FB29B7400EC0700 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339E31FB29B7400EC0700 /* BaseViewController.swift */; };
 		D0933A001FB29B9100EC0700 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D09339FF1FB29B9100EC0700 /* Localizable.strings */; };
+		D0C8B5491FD66E3E0023E28D /* LineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C8B5481FD66E3E0023E28D /* LineManager.swift */; };
 		D0E0FB5D1FD577B70012A16D /* LineLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E0FB5C1FD577B70012A16D /* LineLoginViewController.swift */; };
 		D0E0FB5F1FD577C40012A16D /* GoogleLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E0FB5E1FD577C40012A16D /* GoogleLoginViewController.swift */; };
 		D0E0FB611FD577FE0012A16D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E0FB601FD577FE0012A16D /* ProfileViewController.swift */; };
@@ -65,6 +67,7 @@
 /* Begin PBXFileReference section */
 		1D6F1741CC2376DF8945D33A /* Pods-DHSportRecorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.release.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.release.xcconfig"; sourceTree = "<group>"; };
 		7EB5A111C52C8E01AD5C69C4 /* Pods_DHSportRecorder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DHSportRecorder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D02EC1881FD64F4D00ED965B /* FeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedManager.swift; sourceTree = "<group>"; };
 		D057F8AB1FB2DFC0001AE86C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D057F8AE1FB2E15D001AE86C /* DHMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHMap.m; sourceTree = "<group>"; };
 		D057F8AF1FB2E15D001AE86C /* DHLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHLocation.m; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 		D09339E31FB29B7400EC0700 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D09339E41FB29B7400EC0700 /* DHSportRecorder-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DHSportRecorder-Bridging-Header.h"; sourceTree = "<group>"; };
 		D09339FF1FB29B9100EC0700 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		D0C8B5481FD66E3E0023E28D /* LineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineManager.swift; sourceTree = "<group>"; };
 		D0E0FB5C1FD577B70012A16D /* LineLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineLoginViewController.swift; sourceTree = "<group>"; };
 		D0E0FB5E1FD577C40012A16D /* GoogleLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLoginViewController.swift; sourceTree = "<group>"; };
 		D0E0FB601FD577FE0012A16D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -333,6 +337,8 @@
 				D09339DC1FB29B7400EC0700 /* GIDSignInManager.swift */,
 				D09339DD1FB29B7400EC0700 /* LogManager.swift */,
 				D09339DE1FB29B7400EC0700 /* UIManager.swift */,
+				D02EC1881FD64F4D00ED965B /* FeedManager.swift */,
+				D0C8B5481FD66E3E0023E28D /* LineManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -526,6 +532,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D09339F81FB29B7400EC0700 /* LogManager.swift in Sources */,
+				D0C8B5491FD66E3E0023E28D /* LineManager.swift in Sources */,
 				D09339F91FB29B7400EC0700 /* UIManager.swift in Sources */,
 				D09339F71FB29B7400EC0700 /* GIDSignInManager.swift in Sources */,
 				D057F8BC1FB2F951001AE86C /* RecordViewController.swift in Sources */,
@@ -552,6 +559,7 @@
 				D09339F31FB29B7400EC0700 /* StringExtension.swift in Sources */,
 				D08E26631FB424C60065C19B /* UIImageExtension.swift in Sources */,
 				D057F8B31FB2E15D001AE86C /* DHLocation.m in Sources */,
+				D02EC1891FD64F4D00ED965B /* FeedManager.swift in Sources */,
 				D09339F51FB29B7400EC0700 /* Helpers.swift in Sources */,
 				D09339EB1FB29B7400EC0700 /* LiveStream.swift in Sources */,
 				D0E0FB5D1FD577B70012A16D /* LineLoginViewController.swift in Sources */,

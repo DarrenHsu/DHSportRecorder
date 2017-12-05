@@ -10,13 +10,15 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+    let app = UIApplication.shared.delegate as! AppDelegate
     let ui = UIManager.sharedInstance()
     let gi = GIDSignInManager.sharedInstance()
-    let app = UIApplication.shared.delegate as! AppDelegate
+    let feed = FeedManager.sharedInstance()
+    let line = LineManager.sharedInstance()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
 

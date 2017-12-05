@@ -45,6 +45,8 @@ class LineLoginViewController: BaseViewController, LineSDKLoginDelegate {
             return
         }
         
+        self.line.profile = profile
+        
         LogManager.DLog("LINE Login Succeeded")
         LogManager.DLog("Access Token: \(accessToken.accessToken)")
         LogManager.DLog("User ID: \(profile.userID)")
