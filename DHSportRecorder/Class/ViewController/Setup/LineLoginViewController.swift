@@ -13,6 +13,7 @@ class LineLoginViewController: BaseViewController, LineSDKLoginDelegate {
     
     @IBOutlet var lineLoginButton: UIButton?
     @IBOutlet var loginSuccessView: UIView?
+    @IBOutlet var nextBarItem: UIBarButtonItem?
     
     @IBAction func lineLoginPressed(sender: UIButton) {
         LineSDKLogin.sharedInstance().start()
@@ -24,6 +25,7 @@ class LineLoginViewController: BaseViewController, LineSDKLoginDelegate {
         LineSDKLogin.sharedInstance().delegate = self
         
         loginSuccessView?.isHidden = true
+        nextBarItem?.isEnabled = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,6 +58,7 @@ class LineLoginViewController: BaseViewController, LineSDKLoginDelegate {
         
         lineLoginButton?.isHidden = true
         loginSuccessView?.isHidden = false
+        nextBarItem?.isEnabled = true
     }
 
 }

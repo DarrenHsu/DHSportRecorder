@@ -38,7 +38,7 @@ class GIDSignInManager: NSObject, GIDSignInDelegate {
     
     func getAPIKey() -> String {
         var apikey: String? = nil
-        if let path = Bundle.main.path(forResource: "YoutubeService-info" , ofType: "plist" ) {
+        if let path = Bundle.main.path(forResource: "GoogleService-Info" , ofType: "plist" ) {
             if let dict = NSDictionary(contentsOfFile: path) as? Dictionary<String, AnyObject> {
                 apikey = dict["API_KEY"] as? String
             }

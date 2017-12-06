@@ -12,7 +12,6 @@ extension UIImage {
     var isPortrait:  Bool    { return size.height > size.width }
     var isLandscape: Bool    { return size.width > size.height }
     var breadth:     CGFloat { return min(size.width, size.height) }
-//    var breadth:     CGFloat { return min(139, 139) }
     var breadthSize: CGSize  { return CGSize(width: breadth, height: breadth) }
     var breadthRect: CGRect  { return CGRect(origin: .zero, size: breadthSize) }
     var circleMasked: UIImage? {
@@ -22,5 +21,15 @@ extension UIImage {
         UIBezierPath(ovalIn: breadthRect).addClip()
         UIImage(cgImage: cgImage, scale: 1, orientation: imageOrientation).draw(in: breadthRect)
         return UIGraphicsGetImageFromCurrentImageContext()
+    }
+    
+    func resizeImage(newWidth: CGFloat) -> UIImage? {
+        let scale = newWidth / self.size.width
+        let newHeight = self.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        self.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
     }
 }

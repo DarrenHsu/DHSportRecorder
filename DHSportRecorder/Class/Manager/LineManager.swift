@@ -25,4 +25,10 @@ class LineManager: NSObject {
         set{ _profile = newValue }
         get { return _profile! }
     }
+    
+    public func getLocalicturePath() -> String {
+        let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let path = "\(directory)/picture"
+        return path
+    }
 }

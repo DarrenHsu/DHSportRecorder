@@ -9,11 +9,32 @@
 import UIKit
 
 class RecordViewController: BaseViewController {
-
+    
+    @IBOutlet var recordFrame: UIView?
+    
+    @IBOutlet var profileFrame: UIView?
+    @IBOutlet var pictureImg: UIImageView?
+    @IBOutlet var nameLabel: UILabel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        recordFrame?.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+        recordFrame?.layer.borderWidth = 1
+        recordFrame?.layer.cornerRadius = 15
+        
+        profileFrame?.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+        profileFrame?.layer.borderWidth = 1
+        profileFrame?.layer.cornerRadius = 15
+        
+        do {
+            var picture = try UIImage(data: Data(contentsOf: URL(string: self.line.getLocalicturePath())!))
+            picture = picture?.resizeImage(newWidth: 100)
+            picture = picture?.circleMasked
+            pictureImg?.image = picture
+        }catch {}
+        
+        nameLabel?.text = self.line.profile.displayName
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +42,5 @@ class RecordViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -46,8 +46,12 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
         let object = DHLocation.shardDHLocation() as! DHLocation
         object.registerDelegate(self)
         
-        icon = UIImage(named: "Header")
-        icon = icon?.circleMasked
+        do {
+            icon = try UIImage(data: Data(contentsOf: URL(string: self.line.getLocalicturePath())!))
+            icon = icon?.resizeImage(newWidth: 100)
+            icon = icon?.circleMasked
+        }catch {}
+        
         path = DHMap.draw(mapView, coordinates: object.coordinates as! [DHLocationCoordinate]!)
         snippet = String(format: "%@ $@", "Tester", "record")
     }

@@ -12,6 +12,7 @@ import GoogleSignIn
 class GoogleLoginViewController: BaseViewController, GIDSignInUIDelegate {
 
     @IBOutlet var loginSuccessView: UIView?
+    @IBOutlet var nextBarItem: UIBarButtonItem?
     
     let signInButton = GIDSignInButton()
     
@@ -28,7 +29,10 @@ class GoogleLoginViewController: BaseViewController, GIDSignInUIDelegate {
             self.ui.stopLoading()
             self.signInButton.isHidden = success
             self.loginSuccessView?.isHidden = !success
+            self.nextBarItem?.isEnabled = true
         }
+        
+        nextBarItem?.isEnabled = false
     }
 
     override func didReceiveMemoryWarning() {

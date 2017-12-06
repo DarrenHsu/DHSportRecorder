@@ -17,6 +17,7 @@ class ProfileViewController: BaseViewController {
     @IBOutlet var ageTextField: UITextField?
     @IBOutlet var weightTextField: UITextField?
     @IBOutlet var heightTextField: UITextField?
+    @IBOutlet var doneBarItem: UIBarButtonItem?
     
     @IBAction func donePressed() {
         self.app.goRecordController()
@@ -26,11 +27,9 @@ class ProfileViewController: BaseViewController {
         super.viewDidLoad()
         
         if let pictureURL: URL = self.line.profile.pictureURL {
-            let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let path = "\(directory)/picture"
-            self.feed.downloadFile(pictureURL, destination: URL(string: path)!, success: { () in
+            self.feed.downloadFile(pictureURL, destination: URL(string: self.line.getLocalicturePath())!, success: { () in
                 do {
-                    let img = try UIImage(data: Data(contentsOf: URL(string: path)!))
+                    let img = try UIImage(data: Data(contentsOf: URL(string: self.line.getLocalicturePath())!))
                     self.photoImageView?.image = img?.circleMasked
                 }catch {}
             })
