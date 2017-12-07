@@ -9,28 +9,30 @@
 import UIKit
 
 extension String {
-    func websiteLink() -> String {
-        var str = self
-        if str.hasPrefix("http://") {
-            str = String(str[str.characters.index(str.startIndex, offsetBy: "http://".characters.count)..<str.endIndex])
-        }
-        
-        if str.hasPrefix("www.") {
-            str = String(str[str.characters.index(str.startIndex, offsetBy: "www.".characters.count)..<str.endIndex])
-        }
-        
-        if let index = str.characters.index(of: "/") {
-            str = str.substring(to: index)
-        }
-        
-        return str
+    
+    private static func sha256(_ data: Data) -> Data? {
+        guard let res = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH)) else { return nil }
+        CC_SHA256((data as NSData).bytes, CC_LONG(data.count), res.mutableBytes.assumingMemoryBound(to: UInt8.self))
+        return res as Data
     }
     
-    func trim() -> String {
+    public static func sha256(_ str: String) -> String? {
+        guard let data = str.data(using: String.Encoding.utf8), let shaData = sha256(data) else {
+            return nil
+        }
+        
+        let rc = shaData.base64EncodedString(options: [])
+        return rc
+    }
+}
+
+extension String {
+    
+    public func trim() -> String {
         return self.trimmingCharacters(in: CharacterSet.whitespaces)
     }
     
-    func indexOf(_ string: String) -> String.Index? {
+    public func indexOf(_ string: String) -> String.Index? {
         return range(of: string, options: .literal, range: nil, locale: nil)?.lowerBound
     }
     

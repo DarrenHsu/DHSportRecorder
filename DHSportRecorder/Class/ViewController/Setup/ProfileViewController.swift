@@ -27,9 +27,9 @@ class ProfileViewController: BaseViewController {
         super.viewDidLoad()
         
         if let pictureURL: URL = self.line.profile.pictureURL {
-            self.feed.downloadFile(pictureURL, destination: URL(string: self.line.getLocalicturePath())!, success: { () in
+            self.feed.downloadFile(pictureURL, destination: URL(fileURLWithPath: self.line.getLocalicturePath()), success: { () in
                 do {
-                    let img = try UIImage(data: Data(contentsOf: URL(string: self.line.getLocalicturePath())!))
+                    let img = try UIImage(data: Data(contentsOf: URL(fileURLWithPath: self.line.getLocalicturePath())))
                     self.photoImageView?.image = img?.circleMasked
                 }catch {}
             })

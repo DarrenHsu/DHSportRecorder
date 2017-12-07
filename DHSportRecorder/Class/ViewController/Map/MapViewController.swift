@@ -47,7 +47,7 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
         object.registerDelegate(self)
         
         do {
-            icon = try UIImage(data: Data(contentsOf: URL(string: self.line.getLocalicturePath())!))
+            icon = try UIImage(data: Data(contentsOf: URL(fileURLWithPath: self.line.getLocalicturePath())))
             icon = icon?.resizeImage(newWidth: 100)
             icon = icon?.circleMasked
         }catch {}

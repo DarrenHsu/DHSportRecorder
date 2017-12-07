@@ -28,7 +28,7 @@ class RecordViewController: BaseViewController {
         profileFrame?.layer.cornerRadius = 15
         
         do {
-            var picture = try UIImage(data: Data(contentsOf: URL(string: self.line.getLocalicturePath())!))
+            var picture = try UIImage(data: Data(contentsOf: URL(fileURLWithPath: self.line.getLocalicturePath())))
             picture = picture?.resizeImage(newWidth: 100)
             picture = picture?.circleMasked
             pictureImg?.image = picture

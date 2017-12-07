@@ -21,6 +21,21 @@ class FeedManager: NSObject {
         return _manager!
     }
     
+    fileprivate static let FEED_AUTH = "Darren Hsu I Love You"
+    
+    public func getFeedAuth(_ str: String) -> String {
+        let finalString = String(format: "%@%@", FeedManager.FEED_AUTH, str)
+        return String.sha256(finalString)!
+    }
+    
+    public func getHeader(_ str: String) -> [String : Any] {
+        let headers = ["Content-Type" : "application/json",
+                       "Authorization" : "Basic " + self.getFeedAuth(str),
+                       "verfy" : str]
+        
+        return headers
+    }
+    
     public func downloadFile(_ source: URL, destination: URL, success: (() -> Void)?) {
         let request = URLRequest(url: source)
         Alamofire.download(request) { (url, response) -> (destinationURL: URL, options: DownloadRequest.DownloadOptions) in
@@ -29,5 +44,9 @@ class FeedManager: NSObject {
                 LogManager.DLog("\(response.description)")
                 success?()
             })
+    }
+    
+    public func requestUser(_ gmail: String, success: ((User)->Void)?, failure: (()->Void)?) {
+        
     }
 }

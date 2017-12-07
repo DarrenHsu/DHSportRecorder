@@ -27,8 +27,7 @@ class LineManager: NSObject {
     }
     
     public func getLocalicturePath() -> String {
-        let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let path = "\(directory)/picture"
-        return path
+        let picture = "\(AppManager.sharedInstance().getApplicationSupport())/picture"
+        return picture
     }
 }

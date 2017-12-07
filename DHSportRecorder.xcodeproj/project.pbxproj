@@ -48,6 +48,7 @@
 		D09BB53E1FD7CED1002B9CE5 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09BB53D1FD7CED1002B9CE5 /* Record.swift */; };
 		D09BB5401FD7CEE0002B9CE5 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09BB53F1FD7CEE0002B9CE5 /* Route.swift */; };
 		D09BB5421FD7D218002B9CE5 /* Chatroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09BB5411FD7D218002B9CE5 /* Chatroom.swift */; };
+		D0C5724B1FD9329300C31C8C /* AESHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C5724A1FD9329300C31C8C /* AESHelper.swift */; };
 		D0C8B5491FD66E3E0023E28D /* LineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C8B5481FD66E3E0023E28D /* LineManager.swift */; };
 		D0E0FB5D1FD577B70012A16D /* LineLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E0FB5C1FD577B70012A16D /* LineLoginViewController.swift */; };
 		D0E0FB5F1FD577C40012A16D /* GoogleLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E0FB5E1FD577C40012A16D /* GoogleLoginViewController.swift */; };
@@ -119,6 +120,7 @@
 		D09BB53D1FD7CED1002B9CE5 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		D09BB53F1FD7CEE0002B9CE5 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		D09BB5411FD7D218002B9CE5 /* Chatroom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chatroom.swift; sourceTree = "<group>"; };
+		D0C5724A1FD9329300C31C8C /* AESHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESHelper.swift; sourceTree = "<group>"; };
 		D0C8B5481FD66E3E0023E28D /* LineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineManager.swift; sourceTree = "<group>"; };
 		D0E0FB5C1FD577B70012A16D /* LineLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineLoginViewController.swift; sourceTree = "<group>"; };
 		D0E0FB5E1FD577C40012A16D /* GoogleLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLoginViewController.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				D09339D91FB29B7400EC0700 /* Helpers.swift */,
+				D0C5724A1FD9329300C31C8C /* AESHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				D09BB5371FD7CDD1002B9CE5 /* AppManager.swift in Sources */,
 				D09339FA1FB29B7400EC0700 /* LFLivePreview.m in Sources */,
 				D09BB53C1FD7CEBE002B9CE5 /* User.swift in Sources */,
+				D0C5724B1FD9329300C31C8C /* AESHelper.swift in Sources */,
 				D08717AC1FB2B56B00A7784A /* StreamViewController.swift in Sources */,
 				D09339F11FB29B7400EC0700 /* UIView+YYAdd.m in Sources */,
 				D09339E91FB29B7400EC0700 /* BaseObject.swift in Sources */,
