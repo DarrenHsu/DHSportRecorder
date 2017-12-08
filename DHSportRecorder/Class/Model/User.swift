@@ -8,7 +8,7 @@
 
 import UIKit
 
-class User: BaseObject {
+class User: ModelObject {
     var _id: String?
     var name: String?
     var gender: NSNumber?
@@ -27,46 +27,22 @@ class User: BaseObject {
         return obj
     }
     
-    func toDict() -> [String: Any] {
-        var dict = [String:Any]()
-        let otherSelf = Mirror(reflecting: self)
-        for child in otherSelf.children {
-            if let key = child.label {
-                dict[key] = child.value
-            }
-        }
-        return dict
-    }
-    
-    func save() {
-        let userPath = String(format: "%@/UserData", AppManager.sharedInstance().getApplicationSupport())
-        let url = URL(fileURLWithPath: userPath)
-        do {
-            let userDict: [String: Any] = self.toDict()
-            let jsonData = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted)
-            let data = try AESHelper.sharedInstance().aesCBCEncrypt(data: jsonData, keyData: AppManager.sharedInstance().getEncryptKeyData())
-            try data.write(to: url)
-        } catch {
-            LogManager.DLog("\(error)")
-        }
-    }
-    
     static func getUser() -> User? {
-        var user: User? = nil
-        let userPath = String(format: "%@/UserData", AppManager.sharedInstance().getApplicationSupport())
-        let url = URL(fileURLWithPath: userPath)
+        var obj: User? = nil
+        let path = String(format: "%@/%@", AppManager.sharedInstance().getApplicationSupport(), String(describing: User.self))
+        let url = URL(fileURLWithPath: path)
         do {
-            if FileManager.default.fileExists(atPath: userPath) {
+            if FileManager.default.fileExists(atPath: path) {
                 let data =  try Data(contentsOf: url)
-                let userData = try AESHelper.sharedInstance().aesCBCDecrypt(data: data, keyData: AppManager.sharedInstance().getEncryptKeyData())
-                let json: [String : Any]? = try? JSONSerialization.jsonObject(with: userData!, options: []) as! [String : Any]
-                user = User.conver(dict: json!)
+                let jsonData = try AESHelper.sharedInstance().aesCBCDecrypt(data: data, keyData: AppManager.sharedInstance().getEncryptKeyData())
+                let json: [String : Any]? = try? JSONSerialization.jsonObject(with: jsonData!, options: []) as! [String : Any]
+                obj = User.conver(dict: json!)
             }else {
-                return user
+                return obj
             }
         }catch {
             LogManager.DLog("\(error)")
         }
-        return user
+        return obj
     }
 }
