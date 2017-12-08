@@ -100,10 +100,6 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         self.syncData()
     }
     
-    func receiverSuspended(_ location: DHLocation!) {
-        self.syncData()
-    }
-    
     func receiverChangeTime(_ location: DHLocation!) {
         self.syncData()
     }
