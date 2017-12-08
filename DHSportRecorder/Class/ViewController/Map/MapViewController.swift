@@ -55,7 +55,7 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
         path = DHMap.draw(mapView, coordinates: object?.coordinates as! [DHLocationCoordinate]!)
         snippet = String(format: "%@ $@", "Tester", "record")
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

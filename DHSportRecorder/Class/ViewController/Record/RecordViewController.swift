@@ -67,7 +67,6 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     }
     
     func syncData() {
-        
         let object = DHLocation.shard()
         
         if object?.appCurrentActionTag == KATPlayRecoding {
@@ -91,7 +90,7 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         elapseedLabel?.text = cumulativeTime
     }
     
-    //MARK: - DHLocationDelegate Methods
+    // MARK: - DHLocationDelegate Methods
     func receiverStart(_ location: DHLocation!) {
         self.syncData()
     }
