@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Record: BaseObject {
+class Record: ModelObject {
     var _id: String?
     var userId: String?
     var name: String?
@@ -18,7 +18,7 @@ class Record: BaseObject {
     var avgSpeed: NSNumber?
     var maxSpeed: NSNumber?
     var locations: [coordinate]?
-    var imglocations: [coordinate]?
+    var imglocations: [Int]?
     var modifyAt: Date?
 }
 

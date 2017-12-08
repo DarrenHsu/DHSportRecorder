@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Route: BaseObject {
+class Route: ModelObject {
     var _id: String?
     var userId: String?
     var name: String?
