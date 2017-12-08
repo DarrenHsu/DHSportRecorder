@@ -24,7 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        self.goSetupController()
+        if let user = User.getUser() {
+            AppManager.sharedInstance().user = user
+            self.goRecordController()
+        }else {
+            self.goSetupController()
+        }
         
         return true
     }

@@ -30,6 +30,13 @@ class GoogleLoginViewController: BaseViewController, GIDSignInUIDelegate {
             self.signInButton.isHidden = success
             self.loginSuccessView?.isHidden = !success
             self.nextBarItem?.isEnabled = true
+            
+            if success {
+                if let user = self.app.user {
+                    user.gmail = self.gi.email
+                    user.gAccessToken = self.gi.accessToken
+                }
+            }
         }
         
         nextBarItem?.isEnabled = false

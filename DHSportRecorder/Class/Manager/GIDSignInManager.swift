@@ -32,8 +32,17 @@ class GIDSignInManager: NSObject, GIDSignInDelegate {
         return _manager!
     }
     
-    func getAccessToken() -> String? {
-        return token
+    
+    private var _accessToken: String?
+    var accessToken: String {
+        set{ _accessToken = newValue }
+        get { return _accessToken! }
+    }
+    
+    private var _email: String?
+    var email: String {
+        set{ _email = newValue }
+        get { return _email! }
     }
     
     func getAPIKey() -> String {
@@ -72,7 +81,8 @@ class GIDSignInManager: NSObject, GIDSignInDelegate {
         if error != nil {
             authResult?(false)
         } else {
-            self.token = user.authentication.accessToken
+            self.accessToken = user.authentication.accessToken
+            self.email = user.profile.email
             authResult?(true)
         }
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Record: NSObject {
+class Record: BaseObject {
     var _id: String?
     var userId: String?
     var name: String?

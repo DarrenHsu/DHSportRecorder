@@ -54,7 +54,7 @@ class StreamViewController: BaseViewController {
     }
     
     @IBAction func publishButtonPressed(_ sender: Any) {
-        YTLive.shard().liveBroadcastTransition(YTLive.shard().broadcast.id!, broadcastStatus: YTBroadcastLifeCycleStatus.live, accessToken: self.gi.getAccessToken(), success: { (broadcast) in
+        YTLive.shard().liveBroadcastTransition(YTLive.shard().broadcast.id!, broadcastStatus: YTBroadcastLifeCycleStatus.live, accessToken: self.gi.accessToken, success: { (broadcast) in
             YTLive.shard().broadcast = broadcast
             
             self.broadcastLabel?.text = broadcast.status_?.lifeCycleStatus
@@ -68,7 +68,7 @@ class StreamViewController: BaseViewController {
     }
     
     @IBAction func completePressed(_ sender: Any) {
-        YTLive.shard().liveBroadcastTransition(YTLive.shard().broadcast.id!, broadcastStatus: YTBroadcastLifeCycleStatus.complete, accessToken: self.gi.getAccessToken(), success: { (broadcast) in
+        YTLive.shard().liveBroadcastTransition(YTLive.shard().broadcast.id!, broadcastStatus: YTBroadcastLifeCycleStatus.complete, accessToken: self.gi.accessToken, success: { (broadcast) in
             YTLive.shard().broadcast = broadcast
             self.dismiss(animated: true, completion: nil)
         }) {
@@ -99,7 +99,7 @@ class StreamViewController: BaseViewController {
     }
     
     func checkStream() {
-        YTLive.shard().LiveStreamList(YTLive.shard().stream.id!, accessToken: self.gi.getAccessToken(), success: { (streams) in
+        YTLive.shard().LiveStreamList(YTLive.shard().stream.id!, accessToken: self.gi.accessToken, success: { (streams) in
             if let s = streams[0].status_?.streamStatus {
                 self.streamLabel?.text = s
                 switch(s) {
@@ -107,7 +107,7 @@ class StreamViewController: BaseViewController {
                     
                     switch(YTLive.shard().broadcast.status_?.lifeCycleStatus) {
                     case YTBroadcastLifeCycleStatus.ready.rawValue?:
-                        YTLive.shard().liveBroadcastTransition(YTLive.shard().broadcast.id!, broadcastStatus: YTBroadcastLifeCycleStatus.testing, accessToken: self.gi.getAccessToken(), success: { (broadcast) in
+                        YTLive.shard().liveBroadcastTransition(YTLive.shard().broadcast.id!, broadcastStatus: YTBroadcastLifeCycleStatus.testing, accessToken: self.gi.accessToken, success: { (broadcast) in
                             YTLive.shard().broadcast = broadcast
                             self.broadcastLabel?.text = broadcast.status_?.lifeCycleStatus
                             

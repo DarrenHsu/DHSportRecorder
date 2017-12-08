@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Chatroom: NSObject {
+class Chatroom: BaseObject {
     var _id: String?
     var lineUserId: String?
     var type: String?

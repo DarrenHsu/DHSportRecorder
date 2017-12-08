@@ -64,8 +64,7 @@ class AESHelper: NSObject {
         
         if UInt32(cryptStatus) == UInt32(kCCSuccess) {
             cryptData.count = numBytesEncrypted + ivSize
-        }
-        else {
+        } else {
             throw AESError.CryptorError(("Encryption failed", Int(cryptStatus)))
         }
         
@@ -104,8 +103,7 @@ class AESHelper: NSObject {
         
         if UInt32(cryptStatus) == UInt32(kCCSuccess) {
             clearData.count = numBytesDecrypted
-        }
-        else {
+        } else {
             throw AESError.CryptorError(("Decryption failed", Int(cryptStatus)))
         }
         

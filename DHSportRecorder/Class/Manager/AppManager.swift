@@ -11,13 +11,19 @@ import UIKit
 class AppManager: NSObject {
     
     private static var _manager: AppManager?
-    
     public static func sharedInstance() -> AppManager {
         if _manager == nil {
             _manager = AppManager()
         }
         return _manager!
     }
+    
+    private static let ENCRYPT_KEY = "34567890rtyuyguuhytredft543qw345"
+    public func getEncryptKeyData() -> Data {
+        return AppManager.ENCRYPT_KEY.data(using: .utf8)!
+    }
+    
+    public var user: User?
     
     public func getDocumentPath() -> String {
         let directory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
@@ -36,14 +42,4 @@ class AppManager: NSObject {
         }
         return path
     }
-    
-    public func saveUserId(_ userId: String) {
-        
-    }
-    
-    public func getUserId() -> String {
-        return ""
-    }
-    
-    
 }

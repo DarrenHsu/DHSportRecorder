@@ -20,11 +20,7 @@ class LineManager: NSObject {
         return _manager!
     }
     
-    private var _profile: LineSDKProfile?
-    var profile: LineSDKProfile {
-        set{ _profile = newValue }
-        get { return _profile! }
-    }
+    var profile: LineSDKProfile?
     
     public func getLocalicturePath() -> String {
         let picture = "\(AppManager.sharedInstance().getApplicationSupport())/picture"

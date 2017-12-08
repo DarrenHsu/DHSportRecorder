@@ -34,9 +34,9 @@ class LiveViewController: BaseViewController, GIDSignInUIDelegate {
         let streamDescription = "This is a test stream"
         
         self.ui.startLoading(self.view)
-        YTLive.shard().LiveBroadcastInsert(title, description: description, startTime: startDate, endTime: endDate, accessToken: self.gi.getAccessToken(), success: { (broadcast) in
-            YTLive.shard().LiveStreamInsert(streamTitle, description: streamDescription, streamName: streamTitle, accessToken: self.gi.getAccessToken(), success: { (stream) in
-                YTLive.shard().LiveBroadcastBind(broadcast.id!, streamId: stream.id!, accessToken: self.gi.getAccessToken(), success: { (bindBroadcast) in
+        YTLive.shard().LiveBroadcastInsert(title, description: description, startTime: startDate, endTime: endDate, accessToken: self.gi.accessToken, success: { (broadcast) in
+            YTLive.shard().LiveStreamInsert(streamTitle, description: streamDescription, streamName: streamTitle, accessToken: self.gi.accessToken, success: { (stream) in
+                YTLive.shard().LiveBroadcastBind(broadcast.id!, streamId: stream.id!, accessToken: self.gi.accessToken, success: { (bindBroadcast) in
                     self.ui.stopLoading()
                     self.ui.showAlert((bindBroadcast.contentDetails_?.boundStreamId)!, controller: self)
                     self.reloadBroadcast()
@@ -85,7 +85,7 @@ class LiveViewController: BaseViewController, GIDSignInUIDelegate {
         
         isLoading = true;
         self.ui.startLoading(self.view)
-        YTLive.shard().LiveBroadcastList(broadcastStatus: YTBroadcastLifeCycleStatus.all, accessToken: self.gi.getAccessToken(), success: { (broadcasts) in
+        YTLive.shard().LiveBroadcastList(broadcastStatus: YTBroadcastLifeCycleStatus.all, accessToken: self.gi.accessToken, success: { (broadcasts) in
             self.ui.stopLoading()
             self.broadcasts = broadcasts
             self.tableView?.reloadData()
@@ -134,7 +134,7 @@ extension LiveViewController: UITableViewDelegate, UITableViewDataSource, UIScro
         switch (broadcast.status_?.lifeCycleStatus)! {
         case YTBroadcastLifeCycleStatus.live.rawValue:
             self.ui.startLoading(self.view)
-            YTLive.shard().liveBroadcastTransition(YTLive.shard().broadcast.id!, broadcastStatus: YTBroadcastLifeCycleStatus.complete, accessToken: self.gi.getAccessToken(), success: { (broadcast) in
+            YTLive.shard().liveBroadcastTransition(YTLive.shard().broadcast.id!, broadcastStatus: YTBroadcastLifeCycleStatus.complete, accessToken: self.gi.accessToken, success: { (broadcast) in
                 self.ui.stopLoading()
                 YTLive.shard().broadcast = broadcast
                 self.reloadBroadcast()
@@ -144,7 +144,7 @@ extension LiveViewController: UITableViewDelegate, UITableViewDataSource, UIScro
             break
         case YTBroadcastLifeCycleStatus.ready.rawValue:
             self.ui.startLoading(self.view)
-            YTLive.shard().LiveStreamList((broadcast.contentDetails_?.boundStreamId)!, accessToken: self.gi.getAccessToken(), success: { (streams) in
+            YTLive.shard().LiveStreamList((broadcast.contentDetails_?.boundStreamId)!, accessToken: self.gi.accessToken, success: { (streams) in
                 self.ui.stopLoading()
                 YTLive.shard().stream = streams[0]
                 let controller = self.storyboard?.instantiateViewController(withIdentifier: "StreamViewController") as! StreamViewController

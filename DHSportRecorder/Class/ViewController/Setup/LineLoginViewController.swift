@@ -56,6 +56,12 @@ class LineLoginViewController: BaseViewController, LineSDKLoginDelegate {
         LogManager.DLog("Picture URL: \(profile.pictureURL as URL?)")
         LogManager.DLog("Status Message: \(profile.statusMessage as String?)")
         
+        let user = User()
+        self.app.user = user
+        self.app.user?.name = profile.displayName
+        self.app.user?.lineUserId = profile.userID
+        self.app.user?.pictureUrl = "\(profile.pictureURL!)"
+        
         lineLoginButton?.isHidden = true
         loginSuccessView?.isHidden = false
         nextBarItem?.isEnabled = true

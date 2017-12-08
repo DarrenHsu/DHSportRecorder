@@ -34,7 +34,7 @@ class RecordViewController: BaseViewController {
             pictureImg?.image = picture
         }catch {}
         
-        nameLabel?.text = self.line.profile.displayName
+        nameLabel?.text = self.app.user?.name
     }
 
     override func didReceiveMemoryWarning() {
