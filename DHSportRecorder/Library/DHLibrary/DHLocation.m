@@ -34,7 +34,7 @@ static DHLocation *locationObject = nil;
 
 @implementation DHLocation
 
-+ (id) shardDHLocation {
++ (DHLocation *) shardDHLocation {
     @synchronized(locationObject) {
         if (!locationObject) {
             locationObject = [self new];
@@ -105,8 +105,8 @@ static DHLocation *locationObject = nil;
 	}
     
     for (id<DHLocationDelegate> delegate in _delegates) {
-        if ([delegate respondsToSelector:@selector(receiverChangeTimeDHLocation:)]) {
-            [delegate receiverChangeTimeDHLocation:self];
+        if ([delegate respondsToSelector:@selector(receiverChangeTime:)]) {
+            [delegate receiverChangeTime:self];
         }
     }
 }
@@ -144,8 +144,8 @@ static DHLocation *locationObject = nil;
 	[self playLocation];
     
     for (id<DHLocationDelegate> delegate in _delegates) {
-        if ([delegate respondsToSelector:@selector(receiverStartDHLocation:)]) {
-            [delegate receiverStartDHLocation:self];
+        if ([delegate respondsToSelector:@selector(receiverStart:)]) {
+            [delegate receiverStart:self];
         }
     }
 }
@@ -181,12 +181,6 @@ static DHLocation *locationObject = nil;
     if (self.appCurrentActionTag == KATStopRecoding)
         return;
     
-    for (id<DHLocationDelegate> delegate in _delegates) {
-        if ([delegate respondsToSelector:@selector(receiverStopDHLocation:)]) {
-            [delegate receiverStopDHLocation:self];
-        }
-    }
-    
 	if (self.locationManager) {
 		[self.locationManager stopUpdatingLocation];
 		[self setLocationManager:nil];
@@ -202,6 +196,12 @@ static DHLocation *locationObject = nil;
 	[self setLocationName:nil];
     [self setupDefaultValue];
     [self setLocationOn:NO];
+    
+    for (id<DHLocationDelegate> delegate in _delegates) {
+        if ([delegate respondsToSelector:@selector(receiverStop:)]) {
+            [delegate receiverStop:self];
+        }
+    }
 }
 
 - (void) suspendedLocation{
@@ -220,8 +220,8 @@ static DHLocation *locationObject = nil;
     [self setAppCurrentActionTag:KATSuspendedRecoding];
     
     for (id<DHLocationDelegate> delegate in _delegates) {
-        if ([delegate respondsToSelector:@selector(receiverSuspendedDHLocation:)]) {
-            [delegate receiverSuspendedDHLocation:self];
+        if ([delegate respondsToSelector:@selector(receiverSuspended:)]) {
+            [delegate receiverSuspended:self];
         }
     }
 }
@@ -258,8 +258,8 @@ static DHLocation *locationObject = nil;
     }
 
     for (id<DHLocationDelegate> delegate in _delegates) {
-        if ([delegate respondsToSelector:@selector(receiverChangeDHLocation:)]) {
-            [delegate receiverChangeDHLocation:self];
+        if ([delegate respondsToSelector:@selector(receiverChange:)]) {
+            [delegate receiverChange:self];
         }
     }
     
@@ -334,8 +334,8 @@ static DHLocation *locationObject = nil;
         [_coordinates addObject:coordinate];
         
         for (id<DHLocationDelegate> delegate in _delegates) {
-            if ([delegate respondsToSelector:@selector(receiverChangeDHLocation:)]) {
-                [delegate receiverChangeDHLocation:self];
+            if ([delegate respondsToSelector:@selector(receiverChange:)]) {
+                [delegate receiverChange:self];
             }
         }
 	}
@@ -373,8 +373,8 @@ static DHLocation *locationObject = nil;
     
     [self setErrorMessage:str];
     for (id<DHLocationDelegate> delegate in _delegates) {
-        if ([delegate respondsToSelector:@selector(receiverErrorDHLocation:)]) {
-            [delegate receiverErrorDHLocation:self];
+        if ([delegate respondsToSelector:@selector(receiverError:)]) {
+            [delegate receiverError:self];
         }
     }
 }

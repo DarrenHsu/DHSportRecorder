@@ -43,8 +43,8 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
         mapView?.delegate = self
         self.view.addSubview(mapView!)
         
-        let object = DHLocation.shardDHLocation() as! DHLocation
-        object.registerDelegate(self)
+        let object = DHLocation.shard()
+        object?.registerDelegate(self)
         
         do {
             icon = try UIImage(data: Data(contentsOf: URL(fileURLWithPath: self.line.getLocalicturePath())))
@@ -52,7 +52,7 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
             icon = icon?.circleMasked
         }catch {}
         
-        path = DHMap.draw(mapView, coordinates: object.coordinates as! [DHLocationCoordinate]!)
+        path = DHMap.draw(mapView, coordinates: object?.coordinates as! [DHLocationCoordinate]!)
         snippet = String(format: "%@ $@", "Tester", "record")
     }
 

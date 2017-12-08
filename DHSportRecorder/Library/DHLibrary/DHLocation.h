@@ -40,7 +40,7 @@ typedef enum{
 @property (nonatomic, strong) NSString *        errorMessage;
 @property (nonatomic, strong) NSMutableArray *  coordinates;
 
-+ (id) shardDHLocation;
++ (DHLocation *) shardDHLocation;
 + (NSString*) stringWithNewUUID;
 
 - (void) registerDelegate:(id<DHLocationDelegate>) delegate;
@@ -60,12 +60,11 @@ typedef enum{
 
 @protocol DHLocationDelegate <NSObject>
 @optional
-- (void) receiverStartDHLocation:(DHLocation *) location;
-- (void) receiverSuspendedDHLocation:(DHLocation *) location;
-- (void) receiverStopDHLocation:(DHLocation *) location;
-- (void) receiverChangeValueDHLocation:(DHLocation *) location;
-- (void) receiverChangeTimeDHLocation:(DHLocation *) location;
-- (void) receiverChangeDHLocation:(DHLocation *) location;
-- (void) receiverErrorDHLocation:(DHLocation *) location;
+- (void) receiverStart:(DHLocation *) location;
+- (void) receiverSuspended:(DHLocation *) location;
+- (void) receiverStop:(DHLocation *) location;
+- (void) receiverChangeTime:(DHLocation *) location;
+- (void) receiverChange:(DHLocation *) location;
+- (void) receiverError:(DHLocation *) location;
 
 @end

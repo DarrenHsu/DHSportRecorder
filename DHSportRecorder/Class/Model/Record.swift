@@ -22,7 +22,7 @@ class Record: ModelObject {
     var modifyAt: Date?
 }
 
-class coordinate: NSObject {
+class coordinate: BaseObject {
     var longitude: NSNumber?
     var latitude: NSNumber?
 }
