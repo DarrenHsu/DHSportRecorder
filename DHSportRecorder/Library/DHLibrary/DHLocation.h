@@ -62,6 +62,7 @@ typedef enum{
 @optional
 - (void) receiverStart:(DHLocation *) location;
 - (void) receiverSuspended:(DHLocation *) location;
+- (void) receiverWillStop:(DHLocation *) location;
 - (void) receiverStop:(DHLocation *) location;
 - (void) receiverChangeTime:(DHLocation *) location;
 - (void) receiverChange:(DHLocation *) location;

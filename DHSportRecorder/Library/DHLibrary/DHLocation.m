@@ -179,6 +179,12 @@ static DHLocation *locationObject = nil;
     if (self.appCurrentActionTag == KATStopRecoding)
         return;
     
+    for (id<DHLocationDelegate> delegate in _delegates) {
+        if ([delegate respondsToSelector:@selector(receiverWillStop:)]) {
+            [delegate receiverWillStop:self];
+        }
+    }
+    
 	if (self.locationManager) {
 		[self.locationManager stopUpdatingLocation];
 		[self setLocationManager:nil];

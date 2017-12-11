@@ -21,9 +21,28 @@ class User: ModelObject {
     var pictureUrl: String?
     var modifyAt: String?
     
-    override class func conver(dict: [String: Any]) -> User {
+    override class func convert(_ dict: [String: Any]) -> User {
         let obj = User()
         obj.setValuesForKeys(dict)
+        return obj
+    }
+    
+    override class func getObject() -> User? {
+        var obj: User? = nil
+        let path = String(format: "%@/%@", AppManager.sharedInstance().getApplicationSupport(), String(describing: User.self))
+        let url = URL(fileURLWithPath: path)
+        do {
+            if FileManager.default.fileExists(atPath: path) {
+                let data =  try Data(contentsOf: url)
+                let jsonData = try AESHelper.sharedInstance().aesCBCDecrypt(data: data, keyData: AppManager.sharedInstance().getEncryptKeyData())
+                let json: [String : Any]? = try? JSONSerialization.jsonObject(with: jsonData!, options: []) as! [String : Any]
+                obj = User.convert(json!)
+            }else {
+                return obj
+            }
+        }catch {
+            LogManager.DLog("\(error)")
+        }
         return obj
     }
 }

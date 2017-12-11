@@ -88,11 +88,40 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         let intev = object?.cumulativeTimeInternal;
         let cumulativeTime = String(format: "%02d:%02d:%02d", intev! / 3600,(intev! % 3600) / 60 , intev! % 60)
         elapseedLabel?.text = cumulativeTime
+        
+        self.app.record?.locality = object?.locality
+        self.app.record?.maxSpeed = NSNumber(value: (object?.hightSpeed)!)
+        self.app.record?.avgSpeed = NSNumber(value: (object?.averageSpeed)!)
+        self.app.record?.distance = NSNumber(value: (object?.cumulativeKM)!)
     }
     
     // MARK: - DHLocationDelegate Methods
     func receiverStart(_ location: DHLocation!) {
         self.syncData()
+        
+        if let record = Record.getObject() {
+            self.app.record = record
+            self.app.record?.name = location.locationName
+            self.app.record?.userId = self.app.user?.lineUserId
+            
+            if self.app.record?.imglocations == nil {
+                self.app.record?.locations = []
+            }
+            self.app.record?.locations?.removeAll()
+            
+            if self.app.record?.imglocations == nil {
+                self.app.record?.imglocations = []
+            }
+            self.app.record?.imglocations?.removeAll()
+            
+            self.app.record?.startTime = Date().toJSONformat()
+        }
+    }
+    
+    func receiverWillStop(_ location: DHLocation!) {
+        self.app.record?.endTime = Date().toJSONformat()
+        self.app.record?.save()
+        self.app.record?.removeSource()
     }
     
     func receiverStop(_ location: DHLocation!) {
@@ -105,6 +134,11 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     
     func receiverChange(_ location: DHLocation!) {
         self.syncData()
+        
+        if location.currentLocation != nil {
+            self.app.record?.locations?.append(["lat": NSNumber(value: location.currentLocation.coordinate.latitude),
+                                                "lon": NSNumber(value: location.currentLocation.coordinate.longitude)])
+        }
     }
     
     func receiverError(_ location: DHLocation!) {

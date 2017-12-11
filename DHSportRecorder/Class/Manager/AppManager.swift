@@ -24,6 +24,7 @@ class AppManager: NSObject {
     }
     
     public var user: User?
+    public var record: Record?
     
     public func getDocumentPath() -> String {
         let directory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
