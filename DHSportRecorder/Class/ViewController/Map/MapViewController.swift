@@ -105,6 +105,10 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
     }
     
     // MARK: - DHLocationDelegate Methods
+    override func attemptRecovery(fromError error: Error, optionIndex recoveryOptionIndex: Int, delegate: Any?, didRecoverSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
+        mapView?.clear()
+    }
+    
     func receiveChange(_ location: DHLocation!) {
         guard location.currentLocation != nil else {
             return
