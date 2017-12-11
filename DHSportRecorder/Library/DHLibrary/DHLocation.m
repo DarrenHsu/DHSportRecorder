@@ -10,14 +10,12 @@
 
 static DHLocation *locationObject = nil;
 
-#define kHorizontalAccuracy     50
-#define kDistanceFilter         5.0
+#define kDistanceFilter         2.5
+#define kFullAccuracy           20
+#define kZeroTimeInterval       5
 #define KTempLocationCount      2
-#define kHorizontalAccuracy     50
-#define kZeroTimeInterval       7
-#define KTempLocationCount      2
-#define kMaxHightSpeed          300.0
-#define kMaxAverageSpeedTimes   1.8
+#define kMaxHightSpeed          150
+#define kMaxAverageSpeedTimes   1
 
 @interface DHLocation () {
     int _gpsUploadCount;
@@ -238,15 +236,16 @@ static DHLocation *locationObject = nil;
     
     if (locationAge > 5.0) return;
     
-    // test that the horizontal accuracy does not indicate an invalid measurement
+    /* test that the horizontal accuracy does not indicate an invalid measurement */
     if (newLocation.horizontalAccuracy < 0) return;
     
-    if (newLocation.horizontalAccuracy > 0 && newLocation.horizontalAccuracy <= kHorizontalAccuracy) {
+    if (newLocation.horizontalAccuracy <= kFullAccuracy) {
         [self setLocationOn:YES];
 	}else {
         [self setLocationOn:NO];
 	}
 
+    /* Get current location area name */
     if (!_countryName && !_locality) {
         CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
         [geoCoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
@@ -263,7 +262,7 @@ static DHLocation *locationObject = nil;
         }
     }
     
-	//里程數
+	/* heck GPS count is correct */
 	if(_gpsUploadCount > KTempLocationCount && self.tempLocation && newLocation && oldLocation &&
 	   (newLocation.coordinate.latitude != oldLocation.coordinate.latitude) &&
 	   (newLocation.coordinate.longitude != oldLocation.coordinate.longitude)) {
@@ -277,9 +276,7 @@ static DHLocation *locationObject = nil;
 	if(newLocation && self.tempLocation &&
 	   (newLocation.coordinate.latitude != self.tempLocation.coordinate.latitude) &&
 	   (newLocation.coordinate.longitude != self.tempLocation.coordinate.longitude) &&
-	   newLocation.horizontalAccuracy > 0 &&
-	   newLocation.horizontalAccuracy <= kHorizontalAccuracy){
-        
+	   newLocation.horizontalAccuracy <= kFullAccuracy) {
 		locationChanged = YES;
 	}else {
 		locationChanged = NO;
@@ -310,10 +307,10 @@ static DHLocation *locationObject = nil;
 			_tempKM += distance;
 		}
 		
-		//平均時速
+		/* AVG Speed */
 		self.averageSpeed = self.cumulativeKM / (self.cumulativeMS / 3600);
 		
-		//現在時速
+		/* Current Speed */
 		self.currentSpeed = _tempKM / (_tempMS / 3600);
 		if (self.averageSpeed > 0 && self.currentSpeed > self.averageSpeed * kMaxAverageSpeedTimes) {
 			self.currentSpeed = self.averageSpeed;
@@ -321,7 +318,7 @@ static DHLocation *locationObject = nil;
 		_tempKM = 0;
 		_tempMS = 0;
 		
-		//最高時速
+		/* Max speed */
 		if (self.currentSpeed > self.hightSpeed && self.currentSpeed < kMaxHightSpeed) {
 			self.hightSpeed = self.currentSpeed;
 		}
@@ -340,8 +337,7 @@ static DHLocation *locationObject = nil;
         }
 	}
 	
-	if (newLocation.horizontalAccuracy <= kHorizontalAccuracy &&
-		newLocation.horizontalAccuracy > 0 ) {
+	if (newLocation.horizontalAccuracy <= kFullAccuracy) {
 		if (_gpsUploadCount > KTempLocationCount) {
 			[self setTempLocation:newLocation];
 		}

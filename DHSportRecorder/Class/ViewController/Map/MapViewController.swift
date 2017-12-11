@@ -11,6 +11,10 @@ import GoogleMaps
 
 class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDelegate {
 
+    @IBOutlet var mapBaseView: UIView?
+    @IBOutlet var lockBaseView: UIView?
+    @IBOutlet var lockSwitch: UISwitch?
+    
     private var mapView: GMSMapView?
     private var marker: GMSMarker?
     private var path: GMSPath?
@@ -27,21 +31,14 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
         var camera: GMSCameraPosition? = nil
         
         let clm = CLLocationManager()
-        clm.distanceFilter = 10;
         clm.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         clm.startUpdatingLocation()
         if clm.location != nil {
             currentCoordinate = clm.location?.coordinate
-            camera = GMSCameraPosition.camera(withTarget: currentCoordinate!, zoom: 18)
+            camera = GMSCameraPosition.camera(withTarget: currentCoordinate!, zoom: 19)
         }else {
             camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 18)
         }
-        
-        mapView = GMSMapView.map(withFrame: self.view.frame, camera: camera!)
-        mapView?.isMyLocationEnabled = true
-        mapView?.accessibilityElementsHidden = true
-        mapView?.delegate = self
-        self.view.addSubview(mapView!)
         
         let object = DHLocation.shard()
         object?.registerDelegate(self)
@@ -51,6 +48,21 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
             icon = icon?.resizeImage(newWidth: 100)
             icon = icon?.circleMasked
         }catch {}
+
+        mapBaseView?.layer.cornerRadius = 15
+        mapBaseView?.layer.borderWidth = 1
+        mapBaseView?.layer.masksToBounds = true
+        mapBaseView?.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+
+        lockBaseView?.layer.cornerRadius = 15
+        lockBaseView?.layer.borderWidth = 1
+        lockBaseView?.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+        
+        mapView = GMSMapView.map(withFrame: (mapBaseView?.bounds)!, camera: camera!)
+        mapView?.isMyLocationEnabled = true
+        mapView?.accessibilityElementsHidden = true
+        mapView?.addObserver(self, forKeyPath: "myLocation", options: [.old, .new], context: nil)
+        mapBaseView?.addSubview(mapView!)
         
         path = DHMap.draw(mapView, coordinates: object?.coordinates as! [DHLocationCoordinate]!)
         snippet = String(format: "%@ $@", "Tester", "record")
@@ -59,6 +71,18 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        mapView?.frame = (mapBaseView?.bounds)!
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "myLocation" {
+            self.addMarker()
+        }
     }
     
     func addMarker() {
@@ -73,32 +97,21 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
         }else {
             marker = DHMap.draw(mapView, markIcon: icon, title: "Titile", snippet: snippet, latitude: (mapView?.camera.target.latitude)!, longtitude: (mapView?.camera.target.longitude)!)
         }
-    }
-    
-    // MARK: - GMSMapViewDelegate Methods
-    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-        self.addMarker()
-    }
-    
-    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-        self.addMarker()
+        
+        if (lockSwitch?.isOn)! {
+            let camera = GMSCameraPosition.camera(withTarget: (mapView?.myLocation?.coordinate)!, zoom: 19)
+            mapView?.moveCamera(GMSCameraUpdate.setCamera(camera))
+        }
     }
     
     // MARK: - DHLocationDelegate Methods
-    func receiverStop(_ location: DHLocation!) {
-        mapView?.clear()
-        self.addMarker()
-    }
-    
     func receiverChange(_ location: DHLocation!) {
         guard location.currentLocation != nil else {
             return
         }
-        
-        mapView?.clear()
-        
+
         let coordinate = location.currentLocation.coordinate
         DHMap.add(mapView, path: path as! GMSMutablePath, latitude: coordinate.latitude, longtitude: coordinate.longitude)
-        marker = DHMap.draw(mapView, markIcon: icon, title: "Titile", snippet: snippet, latitude: (mapView?.camera.target.latitude)!, longtitude: (mapView?.camera.target.longitude)!)
+        self.addMarker()
     }
 }
