@@ -105,7 +105,7 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
     }
     
     // MARK: - DHLocationDelegate Methods
-    func receiverChange(_ location: DHLocation!) {
+    func receiveChange(_ location: DHLocation!) {
         guard location.currentLocation != nil else {
             return
         }

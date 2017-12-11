@@ -103,8 +103,8 @@ static DHLocation *locationObject = nil;
 	}
     
     for (id<DHLocationDelegate> delegate in _delegates) {
-        if ([delegate respondsToSelector:@selector(receiverChangeTime:)]) {
-            [delegate receiverChangeTime:self];
+        if ([delegate respondsToSelector:@selector(receiveChangeTime:)]) {
+            [delegate receiveChangeTime:self];
         }
     }
 }
@@ -142,8 +142,8 @@ static DHLocation *locationObject = nil;
 	[self playLocation];
     
     for (id<DHLocationDelegate> delegate in _delegates) {
-        if ([delegate respondsToSelector:@selector(receiverStart:)]) {
-            [delegate receiverStart:self];
+        if ([delegate respondsToSelector:@selector(receiveStart:)]) {
+            [delegate receiveStart:self];
         }
     }
 }
@@ -180,8 +180,8 @@ static DHLocation *locationObject = nil;
         return;
     
     for (id<DHLocationDelegate> delegate in _delegates) {
-        if ([delegate respondsToSelector:@selector(receiverWillStop:)]) {
-            [delegate receiverWillStop:self];
+        if ([delegate respondsToSelector:@selector(receiveWillStop:)]) {
+            [delegate receiveWillStop:self];
         }
     }
     
@@ -202,8 +202,8 @@ static DHLocation *locationObject = nil;
     [self setLocationOn:NO];
     
     for (id<DHLocationDelegate> delegate in _delegates) {
-        if ([delegate respondsToSelector:@selector(receiverStop:)]) {
-            [delegate receiverStop:self];
+        if ([delegate respondsToSelector:@selector(receiveStop:)]) {
+            [delegate receiveStop:self];
         }
     }
 }
@@ -224,8 +224,8 @@ static DHLocation *locationObject = nil;
     [self setAppCurrentActionTag:KATSuspendedRecoding];
     
     for (id<DHLocationDelegate> delegate in _delegates) {
-        if ([delegate respondsToSelector:@selector(receiverSuspended:)]) {
-            [delegate receiverSuspended:self];
+        if ([delegate respondsToSelector:@selector(receiveSuspended:)]) {
+            [delegate receiveSuspended:self];
         }
     }
 }
@@ -263,8 +263,8 @@ static DHLocation *locationObject = nil;
     }
 
     for (id<DHLocationDelegate> delegate in _delegates) {
-        if ([delegate respondsToSelector:@selector(receiverChange:)]) {
-            [delegate receiverChange:self];
+        if ([delegate respondsToSelector:@selector(receiveChange:)]) {
+            [delegate receiveChange:self];
         }
     }
     
@@ -337,8 +337,8 @@ static DHLocation *locationObject = nil;
         [_coordinates addObject:coordinate];
         
         for (id<DHLocationDelegate> delegate in _delegates) {
-            if ([delegate respondsToSelector:@selector(receiverChange:)]) {
-                [delegate receiverChange:self];
+            if ([delegate respondsToSelector:@selector(receiveChange:)]) {
+                [delegate receiveChange:self];
             }
         }
 	}
@@ -375,8 +375,8 @@ static DHLocation *locationObject = nil;
     
     [self setErrorMessage:str];
     for (id<DHLocationDelegate> delegate in _delegates) {
-        if ([delegate respondsToSelector:@selector(receiverError:)]) {
-            [delegate receiverError:self];
+        if ([delegate respondsToSelector:@selector(receiveError:)]) {
+            [delegate receiveError:self];
         }
     }
 }

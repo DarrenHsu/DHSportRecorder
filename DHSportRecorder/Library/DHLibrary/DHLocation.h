@@ -60,12 +60,12 @@ typedef enum{
 
 @protocol DHLocationDelegate <NSObject>
 @optional
-- (void) receiverStart:(DHLocation *) location;
-- (void) receiverSuspended:(DHLocation *) location;
-- (void) receiverWillStop:(DHLocation *) location;
-- (void) receiverStop:(DHLocation *) location;
-- (void) receiverChangeTime:(DHLocation *) location;
-- (void) receiverChange:(DHLocation *) location;
-- (void) receiverError:(DHLocation *) location;
+- (void) receiveStart:(DHLocation *) location;
+- (void) receiveSuspended:(DHLocation *) location;
+- (void) receiveWillStop:(DHLocation *) location;
+- (void) receiveStop:(DHLocation *) location;
+- (void) receiveChangeTime:(DHLocation *) location;
+- (void) receiveChange:(DHLocation *) location;
+- (void) receiveError:(DHLocation *) location;
 
 @end

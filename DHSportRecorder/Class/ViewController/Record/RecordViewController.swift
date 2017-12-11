@@ -96,7 +96,7 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     }
     
     // MARK: - DHLocationDelegate Methods
-    func receiverStart(_ location: DHLocation!) {
+    func receiveStart(_ location: DHLocation!) {
         self.syncData()
         
         if let record = Record.getObject() {
@@ -118,22 +118,22 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         }
     }
     
-    func receiverWillStop(_ location: DHLocation!) {
+    func receiveWillStop(_ location: DHLocation!) {
         self.app.record?.endTime = Date().toJSONformat()
         self.app.record?.save()
         let _ = self.app.record?.toJSONString()
         self.app.record?.removeSource()
     }
     
-    func receiverStop(_ location: DHLocation!) {
+    func receiveStop(_ location: DHLocation!) {
         self.syncData()
     }
     
-    func receiverChangeTime(_ location: DHLocation!) {
+    func receiveChangeTime(_ location: DHLocation!) {
         self.syncData()
     }
     
-    func receiverChange(_ location: DHLocation!) {
+    func receiveChange(_ location: DHLocation!) {
         self.syncData()
         
         if location.currentLocation != nil {
@@ -142,7 +142,7 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         }
     }
     
-    func receiverError(_ location: DHLocation!) {
+    func receiveError(_ location: DHLocation!) {
         self.syncData()
     }
     
