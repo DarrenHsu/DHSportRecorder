@@ -69,6 +69,7 @@ class ModelObject: BaseObject {
             let jsonData = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
             let data = try AESHelper.sharedInstance().aesCBCEncrypt(data: jsonData, keyData: AppManager.sharedInstance().getEncryptKeyData())
             try data.write(to: url)
+            LogManager.DLog("save to \(path)")
         } catch {
             LogManager.DLog("\(error)")
         }
@@ -79,6 +80,7 @@ class ModelObject: BaseObject {
         do {
             if FileManager.default.fileExists(atPath: path) {
                 try FileManager.default.removeItem(atPath: path)
+                LogManager.DLog("remove from \(path)")
             }
         } catch {
             LogManager.DLog("\(error)")

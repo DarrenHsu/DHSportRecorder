@@ -44,6 +44,7 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         recordFrame?.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
         recordFrame?.layer.borderWidth = 1
         recordFrame?.layer.cornerRadius = 15
+        recordFrame?.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
         
         profileFrame?.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
         profileFrame?.layer.borderWidth = 1

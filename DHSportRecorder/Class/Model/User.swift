@@ -37,7 +37,9 @@ class User: ModelObject {
                 let jsonData = try AESHelper.sharedInstance().aesCBCDecrypt(data: data, keyData: AppManager.sharedInstance().getEncryptKeyData())
                 let json: [String : Any]? = try? JSONSerialization.jsonObject(with: jsonData!, options: []) as! [String : Any]
                 obj = User.convert(json!)
+                LogManager.DLog("conver from \(path)")
             }else {
+                LogManager.DLog("new object ")
                 return obj
             }
         }catch {

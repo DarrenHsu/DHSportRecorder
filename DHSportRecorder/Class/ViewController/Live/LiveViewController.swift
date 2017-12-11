@@ -101,7 +101,7 @@ class LiveViewController: BaseViewController, GIDSignInUIDelegate {
 extension LiveViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == self.tableView {
-            if scrollView.contentOffset.y < -150 {
+            if scrollView.contentOffset.y < -120 {
                 self.reloadBroadcast()
             }
         }

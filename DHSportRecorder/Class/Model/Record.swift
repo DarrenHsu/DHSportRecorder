@@ -37,7 +37,9 @@ class Record: ModelObject {
                 let jsonData = try AESHelper.sharedInstance().aesCBCDecrypt(data: data, keyData: AppManager.sharedInstance().getEncryptKeyData())
                 let json: [String : Any]? = try? JSONSerialization.jsonObject(with: jsonData!, options: []) as! [String : Any]
                 obj = Record.convert(json!)
+                LogManager.DLog("conver from \(path)")
             }else {
+                LogManager.DLog("new object ")
                 obj = Record()
                 obj?.save()
             }
