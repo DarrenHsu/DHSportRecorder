@@ -46,6 +46,21 @@ class ModelObject: BaseObject {
         return dict
     }
     
+    func toJSONString() -> String {
+        let dict = self.toDict()
+        var str: String = ""
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+            // here "jsonData" is the dictionary encoded in JSON data
+            str = String(data: jsonData, encoding: String.Encoding.utf8)!
+            LogManager.DLog("\(str)")
+        } catch {
+            LogManager.DLog("\(error)")
+        }
+        
+        return str
+    }
+    
     func save() {
         let path = String(format: "%@/%@", AppManager.sharedInstance().getApplicationSupport(), String(describing: type(of: self)))
         let url = URL(fileURLWithPath: path)
