@@ -10,6 +10,7 @@ import UIKit
 
 class User: ModelObject {
     var _id: String?
+    var __v: NSNumber?
     var name: String?
     var gender: NSNumber?
     var age: NSNumber?
@@ -20,6 +21,7 @@ class User: ModelObject {
     var lineUserId: String?
     var pictureUrl: String?
     var modifyAt: String?
+    var createdAt: String?
     
     override class func convert(_ dict: [String: Any]) -> User {
         let obj = User()

@@ -23,7 +23,7 @@ class ProfileViewController: BaseViewController {
     var orignalRect: CGRect?
     
     @IBAction func donePressed() {
-        self.applicaiton.goRecordController()
+        self.view.endEditing(true)
         
         if let user = self.app.user {
             if self.line.profile != nil {
@@ -35,31 +35,36 @@ class ProfileViewController: BaseViewController {
             user.age = NSNumber(value: Int((self.ageTextField?.text)!)!)
             user.height = NSNumber(value: Int((self.heightTextField?.text)!)!)
             user.weight = NSNumber(value: Int((self.weightTextField?.text)!)!)
-            user.save()
+            
+            self.ui.startLoading(self.view)
+            self.feed.addtUser(user, success: {
+                self.ui.stopLoading()
+                self.app.user?.save()
+                self.applicaiton.goRecordController()
+            }, failure: { (msg) in
+                self.ui.stopLoading()
+                self.ui.showAlert(msg, controller: self)
+            })
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        if self.line.profile != nil {
-            if let pictureURL: URL = self.line.profile?.pictureURL {
-                self.feed.downloadFile(pictureURL, destination: URL(fileURLWithPath: self.line.getLocalicturePath()), success: { () in
-                    do {
-                        let img = try UIImage(data: Data(contentsOf: URL(fileURLWithPath: self.line.getLocalicturePath())))
-                        self.photoImageView?.image = img?.circleMasked
-                    }catch {}
-                })
-            }
-        }
-        
         nameLabel?.text = self.line.profile?.displayName
 
+        self.ui.startLoading(self.view)
+        self.feed.listUser((self.app.user?.lineUserId)!, success: {
+            self.ui.stopLoading()
+            self.app.user?.save()
+            self.applicaiton.goRecordController()
+        }) { (msg) in
+            self.ui.stopLoading()
+            self.setDefaultValue()
+        }
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
-        setDefaultValue()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -74,6 +79,17 @@ class ProfileViewController: BaseViewController {
     }
     
     func setDefaultValue() {
+        if self.line.profile != nil {
+            if let pictureURL: URL = self.line.profile?.pictureURL {
+                self.feed.downloadFile(pictureURL, destination: URL(fileURLWithPath: self.line.getLocalicturePath()), success: { () in
+                    do {
+                        let img = try UIImage(data: Data(contentsOf: URL(fileURLWithPath: self.line.getLocalicturePath())))
+                        self.photoImageView?.image = img?.circleMasked
+                    }catch {}
+                })
+            }
+        }
+        
         if let user = self.app.user {
             if user.name != nil {
                 nameLabel?.text = user.name!
