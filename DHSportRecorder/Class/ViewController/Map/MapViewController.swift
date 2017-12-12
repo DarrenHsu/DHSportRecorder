@@ -105,15 +105,16 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
     }
     
     // MARK: - DHLocationDelegate Methods
-    override func attemptRecovery(fromError error: Error, optionIndex recoveryOptionIndex: Int, delegate: Any?, didRecoverSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
+    func receiveStop(_ location: DHLocation!) {
         mapView?.clear()
+        self.addMarker()
     }
     
     func receiveChange(_ location: DHLocation!) {
         guard location.currentLocation != nil else {
             return
         }
-
+        
         let coordinate = location.currentLocation.coordinate
         DHMap.add(mapView, path: path as! GMSMutablePath, latitude: coordinate.latitude, longtitude: coordinate.longitude)
         self.addMarker()
