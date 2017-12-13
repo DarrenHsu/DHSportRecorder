@@ -138,20 +138,19 @@ extension FeedManager {
     }
     
     fileprivate func process(_ response: DataResponse<Any>, success: @escaping ()->Void, failure: @escaping (String)->Void) {
-        debugPrint(response)
-        
         if response.error != nil {
             failure("error")
             return
         }
         
         let json = JSON(data: response.data!)
+        LogManager.DLog("\(json)")
         let message = json["message"].stringValue
         if let code = json["code"].number {
             switch (code) {
             case 0:
                 break
-            case -9:
+            case -97:
                 AppManager.sharedInstance().user?.removeSource()
                 failure(message)
                 break
