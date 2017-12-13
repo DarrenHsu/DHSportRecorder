@@ -17,14 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        if let user = User.getObject() {
-            AppManager.sharedInstance().user = user
-            self.goRecordController()
-        }else {
-            self.goSetupController()
-        }
-        
+        checkUserExist()
         return true
     }
 
@@ -64,6 +57,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyBoard = self.window?.rootViewController?.storyboard
         let controller = storyBoard?.instantiateViewController(withIdentifier: "MainTabController")
         self.window?.rootViewController = controller;
+    }
+    
+    func checkUserExist() {
+        if let user = User.getObject() {
+            AppManager.sharedInstance().user = user
+            self.goRecordController()
+            
+            FeedManager.sharedInstance().listUser(user.lineUserId!, success: {
+            }, failure: { (msg) in
+                if User.getObject() == nil {
+                    AppManager.sharedInstance().user = nil
+                    self.goSetupController()
+                }
+            })
+        }else {
+            self.goSetupController()
+        }
     }
 }
 

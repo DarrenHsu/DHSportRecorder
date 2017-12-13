@@ -52,6 +52,8 @@ class ProfileViewController: BaseViewController {
         super.viewDidLoad()
         
         nameLabel?.text = self.line.profile?.displayName
+        
+        self.doneBarItem?.isEnabled = false
 
         self.ui.startLoading(self.view)
         self.feed.listUser((self.app.user?.lineUserId)!, success: {
@@ -110,6 +112,8 @@ class ProfileViewController: BaseViewController {
                 weightTextField?.text = "\(String(describing: user.weight!))"
             }
         }
+        
+        self.doneBarItem?.isEnabled = true
     }
     
     @objc func keyboardDidHide(notification: Notification) {

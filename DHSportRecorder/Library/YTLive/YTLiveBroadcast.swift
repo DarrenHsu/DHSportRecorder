@@ -140,7 +140,6 @@ extension YTLive {
         }
         
         let json = JSON(data: response.data!)
-        LogManager.DLog("\(json)")
         let liveBoradcast = LiveBroadcast.conver(dict: json.object as! [String : Any])
         success?(liveBoradcast)
     }
@@ -151,7 +150,6 @@ extension YTLive {
         }
         
         let json = JSON(data: response.data!)
-        LogManager.DLog("\(json)")
         if let items = json.dictionaryObject!["items"] {
             var results: [LiveBroadcast] = []
             for item in items as! [[String : Any]] {

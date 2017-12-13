@@ -50,6 +50,17 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         profileFrame?.layer.borderWidth = 1
         profileFrame?.layer.cornerRadius = 15
         
+        DHLocation.shard().registerDelegate(self)
+        
+        self.setDefaultValue()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func setDefaultValue() {
         do {
             var picture = try UIImage(data: Data(contentsOf: URL(fileURLWithPath: self.line.getLocalicturePath())))
             picture = picture?.resizeImage(newWidth: 100)
@@ -58,13 +69,6 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         }catch {}
         
         nameLabel?.text = self.app.user?.name
-        
-        DHLocation.shard().registerDelegate(self)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func syncData() {
