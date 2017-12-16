@@ -10,6 +10,7 @@ import UIKit
 
 class Record: ModelObject {
     var _id: String?
+    var __v: NSNumber?
     var userId: String?
     var locality: String?
     var name: String?
@@ -20,6 +21,8 @@ class Record: ModelObject {
     var maxSpeed: NSNumber?
     var locations: [[String: Any]]?
     var imglocations: [Int]?
+    var modifyAt: String?
+    var createdAt: String?
     
     override class func convert(_ dict: [String: Any]) -> Record {
         let obj = Record()

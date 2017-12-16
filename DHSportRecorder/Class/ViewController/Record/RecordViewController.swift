@@ -126,7 +126,6 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     func receiveWillStop(_ location: DHLocation!) {
         self.app.record?.endTime = Date().toJSONformat()
         self.app.record?.save()
-        let _ = self.app.record?.toJSONString()
         self.app.record?.removeSource()
     }
     
