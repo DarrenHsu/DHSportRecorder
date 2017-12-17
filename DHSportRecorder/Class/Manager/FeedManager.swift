@@ -84,10 +84,14 @@ class FeedManager: NSObject {
             headers: getHeader(getVerfy()))
             .validate()
     }
-    
-    fileprivate func process(_ response: DataResponse<Any>, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
+}
+
+
+// MARK: - Request Process
+extension FeedManager {
+    fileprivate func processResponse(_ response: DataResponse<Any>, success: (([[String: Any]], String)->Void)? = nil , failure: (NSNumber, String)->Void) {
         if response.error != nil {
-            failure("error")
+            failure(-999, LString("Message:Request error"))
             return
         }
         
@@ -95,83 +99,182 @@ class FeedManager: NSObject {
         LogManager.DLog("\(json)")
         let message = json["message"].stringValue
         if let code = json["code"].number {
-            if code == 0 {
-                success(message)
-            }else {
-                failure(message)
+            if  code != 0 {
+                failure(code, message)
+                return
             }
+        }
+        
+        if let data = json["data"].arrayObject {
+            success?(data as! [[String : Any]], message)
+            return
+        }
+        
+        if let data = json["data"].dictionaryObject {
+            success?([data], message)
+            return
+        }
+    }
+    
+    fileprivate func processObject(_ objName: String, array: [[String: Any]]) -> [ModelObject] {
+        let objclass = ModelObject.stringClassFromString(objName) as! ModelObject.Type
+        var result: [ModelObject] = []
+        for dict in array {
+            let obj = objclass.convert(dict)
+            result.append(obj)
+        }
+        
+        return result
+    }
+    
+    fileprivate func processObject(_ objName: String, dict: [String: Any]) -> ModelObject {
+        let objclass = ModelObject.stringClassFromString(objName) as! ModelObject.Type
+        let obj = objclass.convert(dict)
+        return obj
+    }
+}
+
+// MARK: - Request Route
+extension FeedManager {
+    fileprivate static let ROUTE_API = "\(SERVER_NAME)/api/route"
+    
+    public func addtRoute(_ route: Route, success: @escaping (Route)->Void, failure: @escaping (String)->Void) {
+        self.requestPost(FeedManager.ROUTE_API, parameters: route.toAddDict()).responseJSON { (response) in
+            self.processResponse(response, success: { (objs, message) in
+                success(self.processObject("Route", dict: objs[0]) as! Route)
+            }, failure: { (code, msg) in
+                failure(msg)
+            })
+        }
+    }
+    
+    public func updatetRoute(_ route: Route, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
+        self.requestPut("\(FeedManager.ROUTE_API)/\(String(describing: route._id))", parameters: route.toUpdateDict()).responseJSON { (response) in
+            self.processResponse(response, success: { (objs, message) in
+                success(message)
+            }, failure: { (code, message) in
+                failure(message)
+            })
+        }
+    }
+    
+    public func listRoute(_ lineUserId: String, success: @escaping ([Route])->Void, failure: @escaping (String)->Void) {
+        self.requestGet("\(FeedManager.ROUTE_API)/\(lineUserId)").responseJSON { (response) in
+            self.processResponse(response, success: { (objs, message) in
+                success(self.processObject("Route", array: objs) as! [Route])
+            }, failure: { (code, message) in
+                failure(message)
+            })
+        }
+    }
+    
+    public func removeRoute(_ id: String, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
+        self.requestDelete("\(FeedManager.ROUTE_API)/\(id)").responseJSON { (response) in
+            self.processResponse(response, success: { (objs, message) in
+                success(message)
+            }, failure: { (code, message) in
+                failure(message)
+            })
+        }
+    }
+}
+
+// MARK: - Request Record
+extension FeedManager {
+    fileprivate static let RECORD_API = "\(SERVER_NAME)/api/record"
+    
+    public func addtRecord(_ record: Record, success: @escaping (Record)->Void, failure: @escaping (String)->Void) {
+        self.requestPost(FeedManager.RECORD_API, parameters: record.toAddDict()).responseJSON { (response) in
+            self.processResponse(response, success: { (objs, message) in
+                success(self.processObject("Record", dict: objs[0]) as! Record)
+            }, failure: { (code, message) in
+                failure(message)
+            })
+        }
+    }
+    
+    public func updatetRecord(_ record: Record, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
+        let urlStr = "\(FeedManager.RECORD_API)/\(String(describing: record._id))"
+        self.requestPut(urlStr, parameters: record.toUpdateDict()).responseJSON { (response) in
+            self.processResponse(response, success: { (objs, message) in
+                success(message)
+            }, failure: { (code, message) in
+                failure(message)
+            })
+        }
+    }
+    
+    public func listRecord(_ lineUserId: String, success: @escaping ([Record])->Void, failure: @escaping (String)->Void) {
+        self.requestGet("\(FeedManager.RECORD_API)/\(lineUserId)").responseJSON { (response) in
+            self.processResponse(response, success: { (objs, message) in
+                success(self.processObject("Record", array: objs) as! [Record])
+            }, failure: { (code, message) in
+                failure(message)
+            })
+        }
+    }
+    
+    public func removeRecord(_ id: String, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
+        self.requestDelete("\(FeedManager.RECORD_API)/\(id)").responseJSON { (response) in
+            self.processResponse(response, success: { (objs, message) in
+                success(message)
+            }, failure: { (code, message) in
+                failure(message)
+            })
         }
     }
 }
 
 // MARK: - Request User
 extension FeedManager {
-    
     fileprivate static let USER_API = "\(SERVER_NAME)/api/user"
     
     public func addtUser(_ user: User, success: @escaping ()->Void, failure: @escaping (String)->Void) {
-        let urlStr = FeedManager.USER_API
-        self.requestPost(urlStr, parameters: user.toAddDict()).responseJSON { (response) in
-            self.process(response, success: success, failure: failure)
+        self.requestPost(FeedManager.USER_API, parameters: user.toAddDict()).responseJSON { (response) in
+            self.processResponse(response, success: { (objs, message) in
+                AppManager.sharedInstance().user = self.processObject("User", dict: objs[0]) as? User
+                success()
+            }, failure: { (code, message) in
+                failure(message)
+            })
         }
     }
     
-    public func updatetUser(_ user: User, success: @escaping ()->Void, failure: @escaping (String)->Void) {
-        let urlStr = "\(FeedManager.USER_API)/\(String(describing: user._id))"
-        self.requestPut(urlStr, parameters: user.toUpdateDict()).responseJSON { (response) in
-            self.process(response, success: success, failure: failure)
+    public func updatetUser(_ user: User, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
+        self.requestPut("\(FeedManager.USER_API)/\(String(describing: user._id))", parameters: user.toUpdateDict()).responseJSON { (response) in
+            self.processResponse(response, success: { (objs, message) in
+                AppManager.sharedInstance().user = self.processObject("User", dict: objs[0]) as? User
+                success(message)
+            }, failure: { (code, message) in
+                failure(message)
+            })
         }
     }
     
     public func listUser(_ lineUserId: String, success: @escaping ()->Void, failure: @escaping (String)->Void) {
-        let urlStr = "\(FeedManager.USER_API)/\(lineUserId)"
-        self.requestGet(urlStr).responseJSON { (response) in
-            self.process(response, success: success, failure: failure)
+        self.requestGet("\(FeedManager.USER_API)/\(lineUserId)").responseJSON { (response) in
+            self.processResponse(response, success: { (objs, message) in
+                AppManager.sharedInstance().user = self.processObject("User", dict: objs[0]) as? User
+                success()
+            }, failure: { (code, message) in
+                if code == -97 {
+                    AppManager.sharedInstance().user?.removeSource()
+                    AppManager.sharedInstance().user = nil
+                }
+                failure(message)
+            })
         }
     }
     
     public func removeUser(_ id: String, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
-        let urlStr = "\(FeedManager.USER_API)/\(id)"
-        self.requestDelete(urlStr).responseJSON { (response) in
-            self.process(response, success: success, failure: failure)
-        }
-    }
-    
-    fileprivate func process(_ response: DataResponse<Any>, success: @escaping ()->Void, failure: @escaping (String)->Void) {
-        if response.error != nil {
-            failure("error")
-            return
-        }
-        
-        let json = JSON(data: response.data!)
-        LogManager.DLog("\(json)")
-        let message = json["message"].stringValue
-        if let code = json["code"].number {
-            switch (code) {
-            case 0:
-                break
-            case -97:
+        self.requestDelete("\(FeedManager.USER_API)/\(id)").responseJSON { (response) in
+            self.processResponse(response, success: { (objs, message) in
                 AppManager.sharedInstance().user?.removeSource()
+                AppManager.sharedInstance().user = nil
+                success(message)
+            }, failure: { (code, message) in
                 failure(message)
-                break
-            default:
-                failure(message)
-                break
-            }
-        }
-        
-        if let data = json["data"].dictionaryObject {
-            let user = User.convert(data)
-            AppManager.sharedInstance().user = user
-            success()
-            return
-        }
-        
-        if let data = json["data"].arrayObject {
-            let user = User.convert(data[0] as! [String : Any])
-            AppManager.sharedInstance().user = user
-            success()
-            return
+            })
         }
     }
 }

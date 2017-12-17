@@ -10,6 +10,11 @@ import UIKit
 
 class ModelObject: BaseObject {
     
+    class func stringClassFromString(_ className: String) -> AnyClass {
+        let namespace = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String;
+        return NSClassFromString("\(namespace).\(className)")!
+    }
+    
     class func convert(_ dict: [String: Any]) -> ModelObject {
         let obj = ModelObject()
         obj.setValuesForKeys(dict)
