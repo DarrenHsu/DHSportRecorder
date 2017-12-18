@@ -11,7 +11,7 @@ import UIKit
 class Route: ModelObject {
     var _id: String?
     var __v: NSNumber?
-    var userId: String?
+    var lineUserId: String?
     var name: String?
     var startTime: Date?
     var endTime: Date?

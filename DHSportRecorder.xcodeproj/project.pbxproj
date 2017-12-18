@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CFE2D38B32B6EB1D4A3BB565 /* Pods_DHSportRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30F682FEFF2D3DDF61F8728 /* Pods_DHSportRecorder.framework */; };
 		D02EC1891FD64F4D00ED965B /* FeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02EC1881FD64F4D00ED965B /* FeedManager.swift */; };
 		D057F8AC1FB2DFC0001AE86C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057F8AB1FB2DFC0001AE86C /* MapViewController.swift */; };
 		D057F8B21FB2E15D001AE86C /* DHMap.m in Sources */ = {isa = PBXBuildFile; fileRef = D057F8AE1FB2E15D001AE86C /* DHMap.m */; };
@@ -14,8 +15,6 @@
 		D057F8B81FB2F939001AE86C /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057F8B71FB2F939001AE86C /* HistoryViewController.swift */; };
 		D057F8BA1FB2F943001AE86C /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057F8B91FB2F943001AE86C /* OtherViewController.swift */; };
 		D057F8BC1FB2F951001AE86C /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057F8BB1FB2F951001AE86C /* RecordViewController.swift */; };
-		D057F8BD1FB3098E001AE86C /* Pods_DHSportRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EB5A111C52C8E01AD5C69C4 /* Pods_DHSportRecorder.framework */; };
-		D057F8BE1FB3098E001AE86C /* Pods_DHSportRecorder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7EB5A111C52C8E01AD5C69C4 /* Pods_DHSportRecorder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D07736601FDA65DB00BB50F6 /* ModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077365F1FDA65DB00BB50F6 /* ModelObject.swift */; };
 		D08717A81FB2B55400A7784A /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08717A51FB2B55400A7784A /* LiveViewController.swift */; };
 		D08717A91FB2B55400A7784A /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08717A61FB2B55400A7784A /* PlayViewController.swift */; };
@@ -64,7 +63,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D057F8BE1FB3098E001AE86C /* Pods_DHSportRecorder.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,8 +70,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1D6F1741CC2376DF8945D33A /* Pods-DHSportRecorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.release.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.release.xcconfig"; sourceTree = "<group>"; };
-		7EB5A111C52C8E01AD5C69C4 /* Pods_DHSportRecorder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DHSportRecorder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29C4EC531CB941A36504A4E1 /* Pods-DHSportRecorder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.debug.xcconfig"; sourceTree = "<group>"; };
+		70868086652D1A08B24673F2 /* Pods-DHSportRecorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.release.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.release.xcconfig"; sourceTree = "<group>"; };
 		D02EC1881FD64F4D00ED965B /* FeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedManager.swift; sourceTree = "<group>"; };
 		D057F8AB1FB2DFC0001AE86C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D057F8AE1FB2E15D001AE86C /* DHMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHMap.m; sourceTree = "<group>"; };
@@ -128,7 +126,7 @@
 		D0E0FB5E1FD577C40012A16D /* GoogleLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLoginViewController.swift; sourceTree = "<group>"; };
 		D0E0FB601FD577FE0012A16D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D0FBC9EF1FD645DC00863280 /* YoutubeService-info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "YoutubeService-info.plist"; sourceTree = "<group>"; };
-		F03F419780B43425DF462D40 /* Pods-DHSportRecorder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.debug.xcconfig"; sourceTree = "<group>"; };
+		E30F682FEFF2D3DDF61F8728 /* Pods_DHSportRecorder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DHSportRecorder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,28 +134,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D057F8BD1FB3098E001AE86C /* Pods_DHSportRecorder.framework in Frameworks */,
+				CFE2D38B32B6EB1D4A3BB565 /* Pods_DHSportRecorder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		066634AAA384DA7341745153 /* Pods */ = {
+		46302C95EB1F2E27F3065331 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F03F419780B43425DF462D40 /* Pods-DHSportRecorder.debug.xcconfig */,
-				1D6F1741CC2376DF8945D33A /* Pods-DHSportRecorder.release.xcconfig */,
+				29C4EC531CB941A36504A4E1 /* Pods-DHSportRecorder.debug.xcconfig */,
+				70868086652D1A08B24673F2 /* Pods-DHSportRecorder.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		5A1849E8C02D40781DB92344 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7EB5A111C52C8E01AD5C69C4 /* Pods_DHSportRecorder.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D057F8AA1FB2DFB7001AE86C /* Map */ = {
@@ -218,8 +208,8 @@
 			children = (
 				D09339AD1FB29AC200EC0700 /* DHSportRecorder */,
 				D09339AC1FB29AC200EC0700 /* Products */,
-				066634AAA384DA7341745153 /* Pods */,
-				5A1849E8C02D40781DB92344 /* Frameworks */,
+				46302C95EB1F2E27F3065331 /* Pods */,
+				E85148DF9CACC0E3FF929A99 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -404,6 +394,14 @@
 				D0E0FB601FD577FE0012A16D /* ProfileViewController.swift */,
 			);
 			path = Setup;
+			sourceTree = "<group>";
+		};
+		E85148DF9CACC0E3FF929A99 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E30F682FEFF2D3DDF61F8728 /* Pods_DHSportRecorder.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -734,7 +732,7 @@
 		};
 		D09339BE1FB29AC200EC0700 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F03F419780B43425DF462D40 /* Pods-DHSportRecorder.debug.xcconfig */;
+			baseConfigurationReference = 29C4EC531CB941A36504A4E1 /* Pods-DHSportRecorder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -754,7 +752,7 @@
 		};
 		D09339BF1FB29AC200EC0700 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D6F1741CC2376DF8945D33A /* Pods-DHSportRecorder.release.xcconfig */;
+			baseConfigurationReference = 70868086652D1A08B24673F2 /* Pods-DHSportRecorder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;

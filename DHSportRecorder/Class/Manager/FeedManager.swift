@@ -259,7 +259,6 @@ extension FeedManager {
             }, failure: { (code, message) in
                 if code == -97 {
                     AppManager.sharedInstance().user?.removeSource()
-                    AppManager.sharedInstance().user = nil
                 }
                 failure(message)
             })
@@ -270,7 +269,6 @@ extension FeedManager {
         self.requestDelete("\(FeedManager.USER_API)/\(id)").responseJSON { (response) in
             self.processResponse(response, success: { (objs, message) in
                 AppManager.sharedInstance().user?.removeSource()
-                AppManager.sharedInstance().user = nil
                 success(message)
             }, failure: { (code, message) in
                 failure(message)

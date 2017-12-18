@@ -11,7 +11,7 @@ import UIKit
 class Record: ModelObject {
     var _id: String?
     var __v: NSNumber?
-    var userId: String?
+    var lineUserId: String?
     var locality: String?
     var name: String?
     var distance: NSNumber?

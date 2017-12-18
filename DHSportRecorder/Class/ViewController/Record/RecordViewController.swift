@@ -107,7 +107,7 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         if let record = Record.getObject() {
             self.app.record = record
             self.app.record?.name = location.locationName
-            self.app.record?.userId = self.app.user?.lineUserId
+            self.app.record?.lineUserId = self.app.user?.lineUserId
             
             if self.app.record?.imglocations == nil {
                 self.app.record?.locations = []
