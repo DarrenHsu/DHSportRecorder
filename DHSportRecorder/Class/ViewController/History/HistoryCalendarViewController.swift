@@ -22,8 +22,8 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
         super.viewDidLoad()
 
         for scrollView in dayScrollViews {
-            scrollView.layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1).cgColor
-            scrollView.layer.borderWidth = 1
+            scrollView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1).cgColor
+            scrollView.layer.borderWidth = 0.5
             
             var y: CGFloat = 0
             for _ in 0...23 {

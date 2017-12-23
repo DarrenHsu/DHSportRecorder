@@ -40,6 +40,7 @@ extension HistoryViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! HistoryTimeCell
         cell.startLabel.text = String(format: "%02d:\n00", indexPath.row)
         cell.endLabel.text = String(format: "%02d:\n59", indexPath.row)
+        cell.selectionStyle = .none
         return cell
     }
     
