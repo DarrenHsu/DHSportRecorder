@@ -19,6 +19,8 @@ class UIManager: NSObject {
         return _manager!
     }
     
+    @objc public dynamic var contentOffSet: CGPoint = CGPoint.zero
+    
     private var loading: CircleLoading!
     private var loadingSuperView: UIView!
     private var loadingLabel: UILabel!

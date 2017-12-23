@@ -9,11 +9,13 @@
 import UIKit
 
 class HistoryViewController: BaseViewController {
-
+    
+    @IBOutlet var timeTable: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        ui.addObserver(self, forKeyPath: "contentOffSet" , options: [.new, .old], context: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +23,35 @@ class HistoryViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "contentOffSet" {
+            timeTable.contentOffset = ui.contentOffSet
+        }
     }
-    */
+}
 
+extension HistoryViewController: UITableViewDataSource {
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 24
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! HistoryTimeCell
+        cell.startLabel.text = String(format: "%02d:\n00", indexPath.row)
+        cell.endLabel.text = String(format: "%02d:\n59", indexPath.row)
+        return cell
+    }
+    
+}
+
+extension HistoryViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.ui.contentOffSet = scrollView.contentOffset
+    }
+}
+
+class HistoryTimeCell: UITableViewCell {
+    @IBOutlet var startLabel: UILabel!
+    @IBOutlet var endLabel: UILabel!
 }
