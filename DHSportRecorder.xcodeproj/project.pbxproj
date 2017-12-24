@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CFE2D38B32B6EB1D4A3BB565 /* Pods_DHSportRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30F682FEFF2D3DDF61F8728 /* Pods_DHSportRecorder.framework */; };
 		D02EC1891FD64F4D00ED965B /* FeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02EC1881FD64F4D00ED965B /* FeedManager.swift */; };
+		D045067A1FEF47C100E45C35 /* HistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04506791FEF47C100E45C35 /* HistoryManager.swift */; };
 		D057F8AC1FB2DFC0001AE86C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057F8AB1FB2DFC0001AE86C /* MapViewController.swift */; };
 		D057F8B21FB2E15D001AE86C /* DHMap.m in Sources */ = {isa = PBXBuildFile; fileRef = D057F8AE1FB2E15D001AE86C /* DHMap.m */; };
 		D057F8B31FB2E15D001AE86C /* DHLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D057F8AF1FB2E15D001AE86C /* DHLocation.m */; };
@@ -75,6 +76,7 @@
 		29C4EC531CB941A36504A4E1 /* Pods-DHSportRecorder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.debug.xcconfig"; sourceTree = "<group>"; };
 		70868086652D1A08B24673F2 /* Pods-DHSportRecorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.release.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.release.xcconfig"; sourceTree = "<group>"; };
 		D02EC1881FD64F4D00ED965B /* FeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedManager.swift; sourceTree = "<group>"; };
+		D04506791FEF47C100E45C35 /* HistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManager.swift; sourceTree = "<group>"; };
 		D057F8AB1FB2DFC0001AE86C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D057F8AE1FB2E15D001AE86C /* DHMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHMap.m; sourceTree = "<group>"; };
 		D057F8AF1FB2E15D001AE86C /* DHLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHLocation.m; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				D02EC1881FD64F4D00ED965B /* FeedManager.swift */,
 				D0C8B5481FD66E3E0023E28D /* LineManager.swift */,
 				D09BB5361FD7CDD1002B9CE5 /* AppManager.swift */,
+				D04506791FEF47C100E45C35 /* HistoryManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				D0C5724B1FD9329300C31C8C /* AESHelper.swift in Sources */,
 				D08717AC1FB2B56B00A7784A /* StreamViewController.swift in Sources */,
 				D09F31251FEE60BC0047DD4F /* HistoryCalendarViewController.swift in Sources */,
+				D045067A1FEF47C100E45C35 /* HistoryManager.swift in Sources */,
 				D09339F11FB29B7400EC0700 /* UIView+YYAdd.m in Sources */,
 				D09339E91FB29B7400EC0700 /* BaseObject.swift in Sources */,
 				D09339EA1FB29B7400EC0700 /* LiveBroadcast.swift in Sources */,

@@ -17,3 +17,7 @@
 "Message:List Broadcast Failure" = "取得 youtube broadcast list 失敗";
 "Message:Play faild" = "影片播放失敗!";
 "Message:Request error" = "伺服器連線錯誤";
+
+"UI:Year" = "年";
+"UI:Month" = "月";
+"UI:Day" = "日";

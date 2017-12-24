@@ -11,11 +11,15 @@ import UIKit
 class HistoryViewController: BaseViewController {
     
     @IBOutlet var timeTable: UITableView!
+    @IBOutlet var yearMonthLabel: UILabel!
+    
+    let history = HistoryManager.sharedInstance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ui.addObserver(self, forKeyPath: "contentOffSet" , options: [.new, .old], context: nil)
+        history.addObserver(self, forKeyPath: "calendarIndex", options: [.new, .old], context: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,6 +30,9 @@ class HistoryViewController: BaseViewController {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "contentOffSet" {
             timeTable.contentOffset = ui.contentOffSet
+        }else if keyPath == "calendarIndex" {
+            let date = history.currentDate.increaseDay(day: history.calendarIndex * 7)
+            yearMonthLabel.text = String(format: "%d%@%d%@", date.year(), LString("UI:Year"), date.month(), LString("UI:Month"))
         }
     }
 }

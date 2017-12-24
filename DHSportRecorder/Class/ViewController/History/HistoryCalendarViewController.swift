@@ -11,8 +11,11 @@ import UIKit
 class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
     
     @IBOutlet var dayScrollViews: [UIScrollView]!
+    @IBOutlet var dayLabel: [UILabel]!
+    @IBOutlet var dayView: [UIView]!
     
-    var scrollContentOffSet: ((CGPoint)->Void)?
+    let history = HistoryManager.sharedInstance()
+    var index: Int = 0
     
     deinit {
         ui.removeObserver(self, forKeyPath: "contentOffSet")
@@ -20,6 +23,33 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let today = history.currentDate.increaseDay(day: index * 7)
+        let weekDay = today.weekDay()
+        
+        for i in 0..<dayLabel.count {
+            let view = dayView[i]
+            let label = dayLabel[i]
+            
+            if (today.year() == history.currentDate.year() && today.month() == history.currentDate.month() && today.day() == history.currentDate.day()) && i == weekDay {
+                view.backgroundColor = UIColor(red: 232 / 255, green: 83 / 255, blue: 87 / 255, alpha: 0.7)
+                view.layer.cornerRadius = view.frame.size.width / 2
+                view.clipsToBounds = true
+                view.isHidden = false
+                label.textColor = UIColor.white
+            }else {
+                view.isHidden = true
+                label.textColor = UIColor.darkGray
+            }
+            
+            if i == weekDay {
+                label.text = String(format: "%d", today.day())
+            }else if i < weekDay {
+                label.text = String(format: "%d", today.increaseDay(day: -weekDay).day())
+            }else if i > weekDay {
+                label.text = String(format: "%d", today.increaseDay(day: i - weekDay).day())
+            }
+        }
 
         for scrollView in dayScrollViews {
             scrollView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1).cgColor

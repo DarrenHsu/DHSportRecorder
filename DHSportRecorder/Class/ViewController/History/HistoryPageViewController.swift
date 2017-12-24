@@ -10,9 +10,7 @@ import UIKit
 
 class HistoryPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
-    deinit {
-        print("HistoryPageViewController deint")
-    }
+    let history: HistoryManager = HistoryManager.sharedInstance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,17 +31,22 @@ class HistoryPageViewController: UIPageViewController, UIPageViewControllerDataS
     // MARK: - UIPageViewControllerDataSource Methods
     public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "HistoryCalendarViewController") as! HistoryCalendarViewController
+        controller.index = history.calendarIndex - 1
     
         return controller
     }
     
     public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "HistoryCalendarViewController") as! HistoryCalendarViewController
+        controller.index = history.calendarIndex + 1
         
         return controller
     }
 
     // MARK: - UIPageViewControllerDelegate Methods
-    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        let controller = pageViewController.viewControllers?.first as! HistoryCalendarViewController
+        history.calendarIndex = controller.index
+    }
     
 }
