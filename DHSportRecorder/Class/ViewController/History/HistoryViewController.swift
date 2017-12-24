@@ -15,8 +15,16 @@ class HistoryViewController: BaseViewController {
     
     let history = HistoryManager.sharedInstance()
     
+    deinit {
+        ui.removeObserver(self, forKeyPath: "contentOffSet")
+        history.removeObserver(self, forKeyPath: "calendarIndex")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        history.currentDate = Date()
+        history.calendarIndex = 0
         
         ui.addObserver(self, forKeyPath: "contentOffSet" , options: [.new, .old], context: nil)
         history.addObserver(self, forKeyPath: "calendarIndex", options: [.new, .old], context: nil)
