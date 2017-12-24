@@ -32,7 +32,7 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
             let label = dayLabel[i]
             
             if (today.year() == history.currentDate.year() && today.month() == history.currentDate.month() && today.day() == history.currentDate.day()) && i == weekDay {
-                view.backgroundColor = UIColor(red: 232 / 255, green: 83 / 255, blue: 87 / 255, alpha: 0.7)
+                view.backgroundColor = UIColor.red
                 view.layer.cornerRadius = view.frame.size.width / 2
                 view.clipsToBounds = true
                 view.isHidden = false

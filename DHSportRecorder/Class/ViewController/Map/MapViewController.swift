@@ -28,6 +28,9 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
 
         GMSServices.provideAPIKey(GIDSignInManager.sharedInstance().getAPIKey())
         
+        lockSwitch?.tintColor = UIColor.black
+        lockSwitch?.onTintColor = UIColor.black
+        
         var camera: GMSCameraPosition? = nil
         
         let clm = CLLocationManager()
