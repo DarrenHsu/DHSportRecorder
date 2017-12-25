@@ -63,7 +63,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func checkUserExist() {
         if let user = User.getObject() {
             AppManager.sharedInstance().user = user
-            self.goRecordController()
+            if !(self.window?.rootViewController?.isMember(of: UITabBarController.self))! {
+                self.goRecordController()
+            }
             
             FeedManager.sharedInstance().listUser(user.lineUserId!, success: {
             }, failure: { (msg) in
