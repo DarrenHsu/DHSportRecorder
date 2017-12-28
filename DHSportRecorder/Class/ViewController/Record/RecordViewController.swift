@@ -10,23 +10,23 @@ import UIKit
 
 class RecordViewController: BaseViewController, DHLocationDelegate {
     
-    @IBOutlet var recordFrame: UIView?
+    @IBOutlet weak var recordFrame: UIView?
     
-    @IBOutlet var profileFrame: UIView?
-    @IBOutlet var pictureImg: UIImageView?
-    @IBOutlet var nameLabel: UILabel?
+    @IBOutlet weak var profileFrame: UIView?
+    @IBOutlet weak var pictureImg: UIImageView?
+    @IBOutlet weak var nameLabel: UILabel?
 
-    @IBOutlet var playButton: UIButton?
-    @IBOutlet var startLocationImageView: UIImageView?
+    @IBOutlet weak var playButton: UIButton?
+    @IBOutlet weak var startLocationImageView: UIImageView?
 
-    @IBOutlet var cityLabel: UILabel?
-    @IBOutlet var reocrdNameLabel: UILabel?
-    @IBOutlet var distanceLabel: UILabel?
-    @IBOutlet var currentSpeedLabel: UILabel?
-    @IBOutlet var elapseedLabel: UILabel?
-    @IBOutlet var maxSpeedLabel: UILabel?
-    @IBOutlet var heightLabel: UILabel?
-    @IBOutlet var avgSpeedLabel: UILabel?
+    @IBOutlet weak var cityLabel: UILabel?
+    @IBOutlet weak var reocrdNameLabel: UILabel?
+    @IBOutlet weak var distanceLabel: UILabel?
+    @IBOutlet weak var currentSpeedLabel: UILabel?
+    @IBOutlet weak var elapseedLabel: UILabel?
+    @IBOutlet weak var maxSpeedLabel: UILabel?
+    @IBOutlet weak var heightLabel: UILabel?
+    @IBOutlet weak var avgSpeedLabel: UILabel?
     
     @IBAction func startRecordPressed(sender: UIButton) {
         let object = DHLocation.shard()
@@ -141,8 +141,8 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         self.syncData()
         
         if location.currentLocation != nil {
-            self.app.record?.locations?.append(["lat": NSNumber(value: location.currentLocation.coordinate.latitude),
-                                                "lon": NSNumber(value: location.currentLocation.coordinate.longitude)])
+            self.app.record?.locations?.append([NSNumber(value: location.currentLocation.coordinate.latitude),
+                                                NSNumber(value: location.currentLocation.coordinate.longitude)])
         }
     }
     

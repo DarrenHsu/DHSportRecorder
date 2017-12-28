@@ -11,21 +11,21 @@ import LineSDK
 
 class ProfileViewController: BaseViewController {
     
-    @IBOutlet var photoImageView: UIImageView?
-    @IBOutlet var nameLabel: UILabel?
-    @IBOutlet var gendersSegmented: UISegmentedControl?
-    @IBOutlet var ageTextField: UITextField?
-    @IBOutlet var weightTextField: UITextField?
-    @IBOutlet var heightTextField: UITextField?
-    @IBOutlet var doneBarItem: UIBarButtonItem?
-    @IBOutlet var profileView: UIView?
+    @IBOutlet weak var photoImageView: UIImageView?
+    @IBOutlet weak var nameLabel: UILabel?
+    @IBOutlet weak var gendersSegmented: UISegmentedControl?
+    @IBOutlet weak var ageTextField: UITextField?
+    @IBOutlet weak var weightTextField: UITextField?
+    @IBOutlet weak var heightTextField: UITextField?
+    @IBOutlet weak var doneBarItem: UIBarButtonItem?
+    @IBOutlet weak var profileView: UIView?
     
     var orignalRect: CGRect?
     
     @IBAction func donePressed() {
         self.view.endEditing(true)
         
-        if let user = self.app.user {
+        if let user = self.app.setupUser {
             if self.line.profile != nil {
                 user.name = self.line.profile?.displayName
                 user.lineUserId = self.line.profile?.userID
@@ -56,7 +56,7 @@ class ProfileViewController: BaseViewController {
         self.doneBarItem?.isEnabled = false
 
         self.ui.startLoading(self.view)
-        self.feed.listUser((self.app.user?.lineUserId)!, success: {
+        self.feed.listUser((self.app.setupUser?.lineUserId)!, success: {
             self.ui.stopLoading()
             self.app.user?.save()
             self.applicaiton.goRecordController()

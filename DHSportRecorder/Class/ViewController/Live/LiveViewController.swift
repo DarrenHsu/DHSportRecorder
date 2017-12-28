@@ -15,7 +15,7 @@ import XCDYouTubeKit
 
 class LiveViewController: BaseViewController, GIDSignInUIDelegate {
     
-    @IBOutlet var tableView: UITableView?
+    @IBOutlet weak var tableView: UITableView?
     
     var broadcasts: [LiveBroadcast] = []
     var isLoading = false

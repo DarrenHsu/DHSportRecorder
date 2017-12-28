@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		CFE2D38B32B6EB1D4A3BB565 /* Pods_DHSportRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30F682FEFF2D3DDF61F8728 /* Pods_DHSportRecorder.framework */; };
+		D01954EA1FF1283D00CF6B0A /* AddRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01954E91FF1283D00CF6B0A /* AddRouteViewController.swift */; };
+		D01954F01FF1318000CF6B0A /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01954EC1FF1317F00CF6B0A /* PickerView.swift */; };
+		D01954F11FF1318000CF6B0A /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01954ED1FF1317F00CF6B0A /* DatePickerView.swift */; };
+		D01954F21FF1318000CF6B0A /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D01954EE1FF1317F00CF6B0A /* DatePickerView.xib */; };
+		D01954F31FF1318000CF6B0A /* PickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D01954EF1FF1317F00CF6B0A /* PickerView.xib */; };
+		D01954F71FF1319D00CF6B0A /* LFLivePreview.m in Sources */ = {isa = PBXBuildFile; fileRef = D01954F51FF1319D00CF6B0A /* LFLivePreview.m */; };
 		D02EC1891FD64F4D00ED965B /* FeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02EC1881FD64F4D00ED965B /* FeedManager.swift */; };
 		D045067A1FEF47C100E45C35 /* HistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04506791FEF47C100E45C35 /* HistoryManager.swift */; };
 		D057F8AC1FB2DFC0001AE86C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057F8AB1FB2DFC0001AE86C /* MapViewController.swift */; };
@@ -41,7 +47,6 @@
 		D09339F71FB29B7400EC0700 /* GIDSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339DC1FB29B7400EC0700 /* GIDSignInManager.swift */; };
 		D09339F81FB29B7400EC0700 /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339DD1FB29B7400EC0700 /* LogManager.swift */; };
 		D09339F91FB29B7400EC0700 /* UIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339DE1FB29B7400EC0700 /* UIManager.swift */; };
-		D09339FA1FB29B7400EC0700 /* LFLivePreview.m in Sources */ = {isa = PBXBuildFile; fileRef = D09339E11FB29B7400EC0700 /* LFLivePreview.m */; };
 		D09339FB1FB29B7400EC0700 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339E31FB29B7400EC0700 /* BaseViewController.swift */; };
 		D0933A001FB29B9100EC0700 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D09339FF1FB29B9100EC0700 /* Localizable.strings */; };
 		D09BB5371FD7CDD1002B9CE5 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09BB5361FD7CDD1002B9CE5 /* AppManager.swift */; };
@@ -75,6 +80,13 @@
 /* Begin PBXFileReference section */
 		29C4EC531CB941A36504A4E1 /* Pods-DHSportRecorder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.debug.xcconfig"; sourceTree = "<group>"; };
 		70868086652D1A08B24673F2 /* Pods-DHSportRecorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.release.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.release.xcconfig"; sourceTree = "<group>"; };
+		D01954E91FF1283D00CF6B0A /* AddRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRouteViewController.swift; sourceTree = "<group>"; };
+		D01954EC1FF1317F00CF6B0A /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		D01954ED1FF1317F00CF6B0A /* DatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		D01954EE1FF1317F00CF6B0A /* DatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerView.xib; sourceTree = "<group>"; };
+		D01954EF1FF1317F00CF6B0A /* PickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerView.xib; sourceTree = "<group>"; };
+		D01954F51FF1319D00CF6B0A /* LFLivePreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFLivePreview.m; sourceTree = "<group>"; };
+		D01954F61FF1319D00CF6B0A /* LFLivePreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFLivePreview.h; sourceTree = "<group>"; };
 		D02EC1881FD64F4D00ED965B /* FeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedManager.swift; sourceTree = "<group>"; };
 		D04506791FEF47C100E45C35 /* HistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManager.swift; sourceTree = "<group>"; };
 		D057F8AB1FB2DFC0001AE86C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -114,8 +126,6 @@
 		D09339DC1FB29B7400EC0700 /* GIDSignInManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIDSignInManager.swift; sourceTree = "<group>"; };
 		D09339DD1FB29B7400EC0700 /* LogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogManager.swift; sourceTree = "<group>"; };
 		D09339DE1FB29B7400EC0700 /* UIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIManager.swift; sourceTree = "<group>"; };
-		D09339E01FB29B7400EC0700 /* LFLivePreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFLivePreview.h; sourceTree = "<group>"; };
-		D09339E11FB29B7400EC0700 /* LFLivePreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFLivePreview.m; sourceTree = "<group>"; };
 		D09339E31FB29B7400EC0700 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D09339E41FB29B7400EC0700 /* DHSportRecorder-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DHSportRecorder-Bridging-Header.h"; sourceTree = "<group>"; };
 		D09339FF1FB29B9100EC0700 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -156,6 +166,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D01954EB1FF1317F00CF6B0A /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				D01954EC1FF1317F00CF6B0A /* PickerView.swift */,
+				D01954ED1FF1317F00CF6B0A /* DatePickerView.swift */,
+				D01954EE1FF1317F00CF6B0A /* DatePickerView.xib */,
+				D01954EF1FF1317F00CF6B0A /* PickerView.xib */,
+			);
+			path = Picker;
+			sourceTree = "<group>";
+		};
+		D01954F41FF1319D00CF6B0A /* LFLive */ = {
+			isa = PBXGroup;
+			children = (
+				D01954F51FF1319D00CF6B0A /* LFLivePreview.m */,
+				D01954F61FF1319D00CF6B0A /* LFLivePreview.h */,
+			);
+			path = LFLive;
+			sourceTree = "<group>";
+		};
 		D057F8AA1FB2DFB7001AE86C /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +219,7 @@
 				D057F8B71FB2F939001AE86C /* HistoryViewController.swift */,
 				D09F31221FEE5DC30047DD4F /* HistoryPageViewController.swift */,
 				D09F31241FEE60BC0047DD4F /* HistoryCalendarViewController.swift */,
+				D01954E91FF1283D00CF6B0A /* AddRouteViewController.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -362,8 +393,8 @@
 		D09339DF1FB29B7400EC0700 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D09339E01FB29B7400EC0700 /* LFLivePreview.h */,
-				D09339E11FB29B7400EC0700 /* LFLivePreview.m */,
+				D01954F41FF1319D00CF6B0A /* LFLive */,
+				D01954EB1FF1317F00CF6B0A /* Picker */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -476,7 +507,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D01954F31FF1318000CF6B0A /* PickerView.xib in Resources */,
 				D0933A001FB29B9100EC0700 /* Localizable.strings in Resources */,
+				D01954F21FF1318000CF6B0A /* DatePickerView.xib in Resources */,
 				D09339B91FB29AC200EC0700 /* LaunchScreen.storyboard in Resources */,
 				D0FBC9F01FD645DD00863280 /* YoutubeService-info.plist in Resources */,
 				D09339EF1FB29B7400EC0700 /* GoogleService-Info.plist in Resources */,
@@ -569,6 +602,7 @@
 			files = (
 				D09339F81FB29B7400EC0700 /* LogManager.swift in Sources */,
 				D0C8B5491FD66E3E0023E28D /* LineManager.swift in Sources */,
+				D01954EA1FF1283D00CF6B0A /* AddRouteViewController.swift in Sources */,
 				D09BB53E1FD7CED1002B9CE5 /* Record.swift in Sources */,
 				D09339F91FB29B7400EC0700 /* UIManager.swift in Sources */,
 				D09339F71FB29B7400EC0700 /* GIDSignInManager.swift in Sources */,
@@ -582,7 +616,6 @@
 				D09339FB1FB29B7400EC0700 /* BaseViewController.swift in Sources */,
 				D057F8AC1FB2DFC0001AE86C /* MapViewController.swift in Sources */,
 				D09BB5371FD7CDD1002B9CE5 /* AppManager.swift in Sources */,
-				D09339FA1FB29B7400EC0700 /* LFLivePreview.m in Sources */,
 				D09BB53C1FD7CEBE002B9CE5 /* User.swift in Sources */,
 				D0C5724B1FD9329300C31C8C /* AESHelper.swift in Sources */,
 				D08717AC1FB2B56B00A7784A /* StreamViewController.swift in Sources */,
@@ -590,6 +623,7 @@
 				D045067A1FEF47C100E45C35 /* HistoryManager.swift in Sources */,
 				D09339F11FB29B7400EC0700 /* UIView+YYAdd.m in Sources */,
 				D09339E91FB29B7400EC0700 /* BaseObject.swift in Sources */,
+				D01954F11FF1318000CF6B0A /* DatePickerView.swift in Sources */,
 				D09339EA1FB29B7400EC0700 /* LiveBroadcast.swift in Sources */,
 				D057F8B81FB2F939001AE86C /* HistoryViewController.swift in Sources */,
 				D09339EE1FB29B7400EC0700 /* YTLiveStreams.swift in Sources */,
@@ -597,6 +631,7 @@
 				D09339EC1FB29B7400EC0700 /* YTLive.swift in Sources */,
 				D09339E81FB29B7400EC0700 /* CircleLoading.swift in Sources */,
 				D08717A81FB2B55400A7784A /* LiveViewController.swift in Sources */,
+				D01954F71FF1319D00CF6B0A /* LFLivePreview.m in Sources */,
 				D057F8BA1FB2F943001AE86C /* OtherViewController.swift in Sources */,
 				D07736601FDA65DB00BB50F6 /* ModelObject.swift in Sources */,
 				D0E0FB5F1FD577C40012A16D /* GoogleLoginViewController.swift in Sources */,
@@ -604,6 +639,7 @@
 				D09339F31FB29B7400EC0700 /* StringExtension.swift in Sources */,
 				D08E26631FB424C60065C19B /* UIImageExtension.swift in Sources */,
 				D057F8B31FB2E15D001AE86C /* DHLocation.m in Sources */,
+				D01954F01FF1318000CF6B0A /* PickerView.swift in Sources */,
 				D09BB5401FD7CEE0002B9CE5 /* Route.swift in Sources */,
 				D02EC1891FD64F4D00ED965B /* FeedManager.swift in Sources */,
 				D09339F51FB29B7400EC0700 /* Helpers.swift in Sources */,

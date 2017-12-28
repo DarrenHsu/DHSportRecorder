@@ -40,26 +40,16 @@ class ModelObject: BaseObject {
         return obj
     }
     
-    func toAddDict() -> [String: Any] {
-        var dict = self.toDict()
-        dict.removeValue(forKey: "_id")
-        dict.removeValue(forKey: "__v")
-        dict.removeValue(forKey: "modifyAt")
-        dict.removeValue(forKey: "createdAt")
-        return dict
-    }
-    
-    func toUpdateDict() -> [String: Any] {
-        var dict = self.toDict()
-        dict.removeValue(forKey: "__v")
-        dict.removeValue(forKey: "modifyAt")
-        dict.removeValue(forKey: "createdAt")
-        return dict
-    }
-    
     func toDict() -> [String: Any] {
         var dict = [String:Any]()
         let otherSelf = Mirror(reflecting: self)
+        let superLess = otherSelf.superclassMirror
+        for parent in (superLess?.children)! {
+            if let key = parent.label {
+                dict[key] = parent.value
+            }
+        }
+        
         for child in otherSelf.children {
             if let key = child.label {
                 dict[key] = child.value

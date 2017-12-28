@@ -11,9 +11,9 @@ import LineSDK
 
 class LineLoginViewController: BaseViewController, LineSDKLoginDelegate {
     
-    @IBOutlet var lineLoginButton: UIButton?
-    @IBOutlet var loginSuccessView: UIView?
-    @IBOutlet var nextBarItem: UIBarButtonItem?
+    @IBOutlet weak var lineLoginButton: UIButton?
+    @IBOutlet weak var loginSuccessView: UIView?
+    @IBOutlet weak var nextBarItem: UIBarButtonItem?
     
     @IBAction func lineLoginPressed(sender: UIButton) {
         LineSDKLogin.sharedInstance().start()
@@ -56,11 +56,11 @@ class LineLoginViewController: BaseViewController, LineSDKLoginDelegate {
         LogManager.DLog("Picture URL: \(profile.pictureURL as URL?)")
         LogManager.DLog("Status Message: \(profile.statusMessage as String?)")
         
-        let user = User()
-        self.app.user = user
-        self.app.user?.name = profile.displayName
-        self.app.user?.lineUserId = profile.userID
-        self.app.user?.pictureUrl = "\(profile.pictureURL!)"
+        let user = UserAdding()
+        self.app.setupUser = user
+        self.app.setupUser?.name = profile.displayName
+        self.app.setupUser?.lineUserId = profile.userID
+        self.app.setupUser?.pictureUrl = "\(profile.pictureURL!)"
         
         lineLoginButton?.isHidden = true
         loginSuccessView?.isHidden = false

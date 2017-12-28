@@ -10,24 +10,32 @@ import UIKit
 
 class HistoryViewController: BaseViewController {
     
-    @IBOutlet var timeTable: UITableView!
-    @IBOutlet var yearMonthLabel: UILabel!
+    @IBOutlet weak var timeTable: UITableView!
+    @IBOutlet weak var yearMonthLabel: UILabel!
     
     let history = HistoryManager.sharedInstance()
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        ui.addObserver(self, forKeyPath: "contentOffSet" , options: [.new, .old], context: nil)
+        history.addObserver(self, forKeyPath: "calendarIndex", options: [.new, .old], context: nil)
+    }
     
     deinit {
         ui.removeObserver(self, forKeyPath: "contentOffSet")
         history.removeObserver(self, forKeyPath: "calendarIndex")
     }
     
+    @IBAction func createPressed(_ sender: UIBarItem) {
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         history.currentDate = Date()
         history.calendarIndex = 0
-        
-        ui.addObserver(self, forKeyPath: "contentOffSet" , options: [.new, .old], context: nil)
-        history.addObserver(self, forKeyPath: "calendarIndex", options: [.new, .old], context: nil)
     }
 
     override func didReceiveMemoryWarning() {

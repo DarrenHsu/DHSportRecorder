@@ -57,7 +57,44 @@ class YTLive: NSObject {
         return "{}"
     }
     
+    fileprivate func printResponse(_ method: String, response: DataResponse<Data>) {
+        var str = "\n========================== \(method) ==========================\n"
+        str += "URL: \(String(describing: (response.request?.url)!)) \n"
+        if response.request?.httpBody != nil {
+            str += "BODY: \(String(describing: String(data: (response.request?.httpBody)!, encoding: String.Encoding.utf8)!)) \n"
+        }
+        
+        if let error = response.error {
+            str += "\(error)\n"
+        }else {
+            if  let data = response.data {
+                let json: JSON = JSON(data: data)
+                if json.array != nil {
+                    if json.count > 3 {
+                        str += "RESPONSE: \n"
+                        for i in (0...2)  {
+                            let j: JSON = json.array![i]
+                            str += "\(j.debugDescription) \n"
+                        }
+                        str += "...More \(json.count - 3) Objects\n"
+                    }else {
+                        str += "RESPONSE: \(json.debugDescription)\n"
+                    }
+                }
+                
+                if json.dictionary != nil {
+                    str += "RESPONSE: \(json.debugDescription)\n"
+                }
+            }
+        }
+        
+        str += "---------------------------------------------------------\n"
+        LogManager.DLog("\(str)")
+    }
+    
     func checkResponseCorrect(_ response: DataResponse<Data>, failure: (() -> Void)?) -> Bool {
+        printResponse((response.request?.httpMethod)!, response: response)
+        
         guard let data = response.data else {
             failure?()
             return false
@@ -67,7 +104,6 @@ class YTLive: NSObject {
         let error = json["error"].dictionaryObject
         if let e = error {
             if let message = e["message"] {
-                print("Error while Youtube broadcast was creating: \(message)")
                 failure?()
             }else {
                 failure?()

@@ -41,6 +41,41 @@ class FeedManager: NSObject {
         return headers
     }
     
+    fileprivate func printResponse(_ method: String, response: DataResponse<Any>) {
+        var str = "\n========================== \(method) ==========================\n"
+        str += "URL: \(String(describing: (response.request?.url)!)) \n"
+        if response.request?.httpBody != nil {
+            str += "BODY: \(String(describing: String(data: (response.request?.httpBody)!, encoding: String.Encoding.utf8)!)) \n"
+        }
+        
+        if let error = response.error {
+            str += "\(error)\n"
+        }else {
+            if  let data = response.data {
+                let json: JSON = JSON(data: data)
+                if json.array != nil {
+                    if json.count > 3 {
+                        str += "RESPONSE: \n"
+                        for i in (0...2)  {
+                            let j: JSON = json.array![i]
+                            str += "\(j.debugDescription) \n"
+                        }
+                        str += "...More \(json.count - 3) Objects\n"
+                    }else {
+                        str += "RESPONSE: \(json.debugDescription)\n"
+                    }
+                }
+                
+                if json.dictionary != nil {
+                    str += "RESPONSE: \(json.debugDescription)\n"
+                }
+            }
+        }
+        
+        str += "---------------------------------------------------------\n"
+        LogManager.DLog("\(str)")
+    }
+    
     public func downloadFile(_ source: URL, destination: URL, success: @escaping ()->Void ) {
         let request = URLRequest(url: source)
         Alamofire.download(request) { (url, response) -> (destinationURL: URL, options: DownloadRequest.DownloadOptions) in
@@ -90,13 +125,14 @@ class FeedManager: NSObject {
 // MARK: - Request Process
 extension FeedManager {
     fileprivate func processResponse(_ response: DataResponse<Any>, success: (([[String: Any]], String)->Void)? = nil , failure: (NSNumber, String)->Void) {
+        printResponse((response.request?.httpMethod)!, response: response)
+        
         if response.error != nil {
             failure(-999, LString("Message:Request error"))
             return
         }
         
         let json = JSON(data: response.data!)
-        LogManager.DLog("\(json)")
         let message = json["message"].stringValue
         if let code = json["code"].number {
             if  code != 0 {
@@ -138,8 +174,8 @@ extension FeedManager {
 extension FeedManager {
     fileprivate static let ROUTE_API = "\(SERVER_NAME)/api/route"
     
-    public func addtRoute(_ route: Route, success: @escaping (Route)->Void, failure: @escaping (String)->Void) {
-        self.requestPost(FeedManager.ROUTE_API, parameters: route.toAddDict()).responseJSON { (response) in
+    public func addtRoute(_ route: RouteAdding, success: @escaping (Route)->Void, failure: @escaping (String)->Void) {
+        self.requestPost(FeedManager.ROUTE_API, parameters: route.toDict()).responseJSON { (response) in
             self.processResponse(response, success: { (objs, message) in
                 success(self.processObject("Route", dict: objs[0]) as! Route)
             }, failure: { (code, msg) in
@@ -148,8 +184,8 @@ extension FeedManager {
         }
     }
     
-    public func updatetRoute(_ route: Route, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
-        self.requestPut("\(FeedManager.ROUTE_API)/\(String(describing: route._id))", parameters: route.toUpdateDict()).responseJSON { (response) in
+    public func updatetRoute(_ route: RouteUpdating, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
+        self.requestPut("\(FeedManager.ROUTE_API)/\(String(describing: route._id))", parameters: route.toDict()).responseJSON { (response) in
             self.processResponse(response, success: { (objs, message) in
                 success(message)
             }, failure: { (code, message) in
@@ -183,8 +219,8 @@ extension FeedManager {
 extension FeedManager {
     fileprivate static let RECORD_API = "\(SERVER_NAME)/api/record"
     
-    public func addtRecord(_ record: Record, success: @escaping (Record)->Void, failure: @escaping (String)->Void) {
-        self.requestPost(FeedManager.RECORD_API, parameters: record.toAddDict()).responseJSON { (response) in
+    public func addtRecord(_ record: RecordAdding, success: @escaping (Record)->Void, failure: @escaping (String)->Void) {
+        self.requestPost(FeedManager.RECORD_API, parameters: record.toDict()).responseJSON { (response) in
             self.processResponse(response, success: { (objs, message) in
                 success(self.processObject("Record", dict: objs[0]) as! Record)
             }, failure: { (code, message) in
@@ -193,9 +229,9 @@ extension FeedManager {
         }
     }
     
-    public func updatetRecord(_ record: Record, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
+    public func updatetRecord(_ record: RecordUpdating, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
         let urlStr = "\(FeedManager.RECORD_API)/\(String(describing: record._id))"
-        self.requestPut(urlStr, parameters: record.toUpdateDict()).responseJSON { (response) in
+        self.requestPut(urlStr, parameters: record.toDict()).responseJSON { (response) in
             self.processResponse(response, success: { (objs, message) in
                 success(message)
             }, failure: { (code, message) in
@@ -229,8 +265,8 @@ extension FeedManager {
 extension FeedManager {
     fileprivate static let USER_API = "\(SERVER_NAME)/api/user"
     
-    public func addtUser(_ user: User, success: @escaping ()->Void, failure: @escaping (String)->Void) {
-        self.requestPost(FeedManager.USER_API, parameters: user.toAddDict()).responseJSON { (response) in
+    public func addtUser(_ user: UserAdding, success: @escaping ()->Void, failure: @escaping (String)->Void) {
+        self.requestPost(FeedManager.USER_API, parameters: user.toDict()).responseJSON { (response) in
             self.processResponse(response, success: { (objs, message) in
                 AppManager.sharedInstance().user = self.processObject("User", dict: objs[0]) as? User
                 success()
@@ -240,8 +276,8 @@ extension FeedManager {
         }
     }
     
-    public func updatetUser(_ user: User, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
-        self.requestPut("\(FeedManager.USER_API)/\(String(describing: user._id))", parameters: user.toUpdateDict()).responseJSON { (response) in
+    public func updatetUser(_ user: UserUpdating, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
+        self.requestPut("\(FeedManager.USER_API)/\(String(describing: user._id))", parameters: user.toDict()).responseJSON { (response) in
             self.processResponse(response, success: { (objs, message) in
                 AppManager.sharedInstance().user = self.processObject("User", dict: objs[0]) as? User
                 success(message)

@@ -11,9 +11,9 @@ import GoogleMaps
 
 class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDelegate {
 
-    @IBOutlet var mapBaseView: UIView?
-    @IBOutlet var lockBaseView: UIView?
-    @IBOutlet var lockSwitch: UISwitch?
+    @IBOutlet weak var mapBaseView: UIView?
+    @IBOutlet weak var lockBaseView: UIView?
+    @IBOutlet weak var lockSwitch: UISwitch?
     
     private var mapView: GMSMapView?
     private var marker: GMSMarker?

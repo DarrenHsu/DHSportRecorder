@@ -11,7 +11,7 @@ import XCDYouTubeKit
 
 class PlayViewController: BaseViewController {
     
-    @IBOutlet var preView: UIView?
+    @IBOutlet weak var preView: UIView?
     var controller: XCDYouTubeVideoPlayerViewController?
     
     @IBAction func closePressed(_ sender: UIButton) {

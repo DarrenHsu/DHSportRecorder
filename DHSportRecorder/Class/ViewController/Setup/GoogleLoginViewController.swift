@@ -11,8 +11,8 @@ import GoogleSignIn
 
 class GoogleLoginViewController: BaseViewController, GIDSignInUIDelegate {
 
-    @IBOutlet var loginSuccessView: UIView?
-    @IBOutlet var nextBarItem: UIBarButtonItem?
+    @IBOutlet weak var loginSuccessView: UIView?
+    @IBOutlet weak var nextBarItem: UIBarButtonItem?
     
     let signInButton = GIDSignInButton()
     
@@ -32,7 +32,7 @@ class GoogleLoginViewController: BaseViewController, GIDSignInUIDelegate {
             self.nextBarItem?.isEnabled = true
             
             if success {
-                if let user = self.app.user {
+                if let user = self.app.setupUser {
                     user.gmail = self.gi.email
                     user.gAccessToken = self.gi.accessToken
                 }

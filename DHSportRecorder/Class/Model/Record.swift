@@ -8,19 +8,29 @@
 
 import UIKit
 
-class Record: ModelObject {
-    var _id: String?
-    var __v: NSNumber?
+class RecordAdding: ModelObject {
     var lineUserId: String?
     var locality: String?
     var name: String?
     var distance: NSNumber?
+    var startDate: String?
     var startTime: String?
     var endTime: String?
     var avgSpeed: NSNumber?
     var maxSpeed: NSNumber?
-    var locations: [[String: Any]]?
+    var locations: [[NSNumber]]?
     var imglocations: [Int]?
+    
+    override class func convert(_ dict: [String: Any]) -> RecordAdding {
+        let obj = RecordAdding()
+        obj.setValuesForKeys(dict)
+        return obj
+    }
+}
+
+class Record: RecordAdding {
+    var _id: String?
+    var __v: NSNumber?
     var modifyAt: String?
     var createdAt: String?
     
@@ -49,6 +59,16 @@ class Record: ModelObject {
         }catch {
             LogManager.DLog("\(error)")
         }
+        return obj
+    }
+}
+
+class RecordUpdating: RecordAdding {
+    var _id: String?
+    
+    override class func convert(_ dict: [String: Any]) -> RecordUpdating {
+        let obj = RecordUpdating()
+        obj.setValuesForKeys(dict)
         return obj
     }
 }

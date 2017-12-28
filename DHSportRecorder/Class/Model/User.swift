@@ -8,9 +8,7 @@
 
 import UIKit
 
-class User: ModelObject {
-    var _id: String?
-    var __v: NSNumber?
+class UserAdding: ModelObject {
     var name: String?
     var gender: NSNumber?
     var age: NSNumber?
@@ -20,6 +18,17 @@ class User: ModelObject {
     var gAccessToken: String?
     var lineUserId: String?
     var pictureUrl: String?
+    
+    override class func convert(_ dict: [String: Any]) -> UserAdding {
+        let obj = UserAdding()
+        obj.setValuesForKeys(dict)
+        return obj
+    }
+}
+
+class User: UserAdding {
+    var _id: String?
+    var __v: NSNumber?
     var modifyAt: String?
     var createdAt: String?
     
@@ -47,6 +56,16 @@ class User: ModelObject {
         }catch {
             LogManager.DLog("\(error)")
         }
+        return obj
+    }
+}
+
+class UserUpdating: UserAdding {
+    var _id: String?
+    
+    override class func convert(_ dict: [String: Any]) -> UserUpdating {
+        let obj = UserUpdating()
+        obj.setValuesForKeys(dict)
         return obj
     }
 }
