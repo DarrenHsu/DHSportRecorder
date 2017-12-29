@@ -1603,11 +1603,11 @@
                                 <rect key="frame" x="27" y="89" width="321" height="288"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_people" translatesAutoresizingMaskIntoConstraints="NO" id="3EN-7p-UgD">
-                                        <rect key="frame" x="8" y="12" width="70" height="70"/>
+                                        <rect key="frame" x="79" y="25" width="70" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tyr-mw-Fxr">
-                                        <rect key="frame" x="86" y="29" width="213" height="34"/>
+                                        <rect key="frame" x="168" y="42" width="131" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                         <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -1700,7 +1700,8 @@
                         <outlet property="baseView" destination="ybI-Zj-gNe" id="PTY-x6-Kze"/>
                         <outlet property="dateField" destination="9GX-M1-kby" id="63g-pv-GPA"/>
                         <outlet property="endTimeField" destination="Oos-W7-PB7" id="Z8G-xC-iwD"/>
-                        <outlet property="nameLabel" destination="Tyr-mw-Fxr" id="IVS-HV-hkg"/>
+                        <outlet property="nameLabel" destination="Tyr-mw-Fxr" id="85K-v9-uFO"/>
+                        <outlet property="pictureImg" destination="3EN-7p-UgD" id="cRB-qC-BPS"/>
                         <outlet property="routeNameField" destination="neQ-2L-8VI" id="8g1-Qe-sYJ"/>
                         <outlet property="startTimeField" destination="7Lc-Jf-PgO" id="xcX-PZ-hMV"/>
                     </connections>

@@ -12,8 +12,8 @@ class RouteAdding: ModelObject {
     var lineUserId: String?
     var name: String?
     var startDate: String?
-    var startTime: Date?
-    var endTime: Date?
+    var startTime: String?
+    var endTime: String?
     var ytbroadcastId: String?
     
     override class func convert(_ dict: [String: Any]) -> RouteAdding {

@@ -102,12 +102,8 @@ class YTLive: NSObject {
         
         let json = JSON(data: data)
         let error = json["error"].dictionaryObject
-        if let e = error {
-            if let message = e["message"] {
-                failure?()
-            }else {
-                failure?()
-            }
+        if error != nil {
+            failure?()
             return false
         }
         

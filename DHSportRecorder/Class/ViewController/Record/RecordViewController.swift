@@ -119,12 +119,15 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
             }
             self.app.record?.imglocations?.removeAll()
             
-            self.app.record?.startTime = Date().toJSONformat()
+            let date = Date()
+            self.app.record?.startDate = date.stringDate("yyyy/MM/dd")
+            self.app.record?.startTime = date.stringDate("HH:mm")
         }
     }
     
     func receiveWillStop(_ location: DHLocation!) {
-        self.app.record?.endTime = Date().toJSONformat()
+        let date = Date()
+        self.app.record?.endTime = date.stringDate("HH:mm")
         self.app.record?.save()
         self.app.record?.removeSource()
     }
