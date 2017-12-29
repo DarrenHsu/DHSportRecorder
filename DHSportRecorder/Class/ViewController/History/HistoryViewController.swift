@@ -24,19 +24,16 @@ class HistoryViewController: BaseViewController {
         history.removeObserver(self, forKeyPath: "dynamicDate")
     }
     
-    @IBAction func createPressed(_ sender: UIBarItem) {
-        
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        reloadData()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .needReloadRoute, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,7 +49,7 @@ class HistoryViewController: BaseViewController {
         }
     }
     
-    func reloadData() {
+    @objc func reloadData() {
         self.startAnimating()
         history.reloadRoute { (success, msg) in
             self.stopAnimating()

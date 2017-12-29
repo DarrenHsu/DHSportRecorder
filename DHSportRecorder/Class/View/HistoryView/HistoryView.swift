@@ -13,10 +13,11 @@ class HistoryView: UIView {
     @IBOutlet weak var nameLabel: UILabel!
     
     override func awakeFromNib() {
-        nameLabel.layer.borderColor = UIColor(hue: 0.8, saturation: 0.8, brightness: 0.0, alpha: 0.5).cgColor
-        nameLabel.layer.borderWidth = 1
+        self.layer.cornerRadius = 10
+        self.layer.masksToBounds = true
+        self.layer.borderColor = UIColor(hue: 0.8, saturation: 0.8, brightness: 0.0, alpha: 0.5).cgColor
+        self.layer.borderWidth = 1
     }
-
 }
 
 extension UIView {

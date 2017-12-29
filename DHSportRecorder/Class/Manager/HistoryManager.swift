@@ -20,7 +20,6 @@ class HistoryManager: NSObject {
     private var routes: [Route] = []
     public var routeDict: [String: [Route]] = [:]
     
-    @objc public dynamic var calendarIndex: Int = 0
     @objc public dynamic var dynamicDate: Date = Date()
     public var currentDate: Date = Date()
     
