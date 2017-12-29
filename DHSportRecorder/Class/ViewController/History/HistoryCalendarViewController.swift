@@ -114,9 +114,12 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
                         let e = route.endTime?.transferToString(Date.JSONFormat, format2: "HH")
                         let y: Int = Int(s!)!
                         let height: Int = Int(e!)! - Int(s!)!
-                        let rect = CGRect(x: 0, y: Int(y * self.hourViewHeight + 1), width: Int(scrollView.frame.size.width), height: Int(height * self.hourViewHeight - 1))
-
                         DispatchQueue.main.async {
+                            let rect = CGRect(x: 5,
+                                              y: Int(y * self.hourViewHeight + 1),
+                                              width: Int(scrollView.frame.size.width - 10),
+                                              height: Int(height * self.hourViewHeight - 1))
+ 
                             let historyView :HistoryView = .fromNib()
                             historyView.nameLabel.text = route.name
                             historyView.frame = rect

@@ -115,10 +115,10 @@ extension LiveViewController: UITableViewDelegate, UITableViewDataSource, UIScro
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell") as! BroadcastTabelCell
         
         let broadcast = broadcasts[indexPath.row]
-        cell.ytNameLabel?.text = broadcast.snippet_?.title
-        cell.ytActivityLabel?.text = broadcast.status_?.lifeCycleStatus
+        cell.ytNameLabel.text = broadcast.snippet_?.title
+        cell.ytActivityLabel.text = broadcast.status_?.lifeCycleStatus
         
-        cell.ytImageView?.sd_setImage(with: URL(string: (broadcast.snippet_?.thumbnails?.default_?.url)!),
+        cell.ytImageView.sd_setImage(with: URL(string: (broadcast.snippet_?.thumbnails?.default_?.url)!),
                                       placeholderImage: UIImage(named: "ic_youtube"),
                                       completed: nil)
         
@@ -163,7 +163,14 @@ extension LiveViewController: UITableViewDelegate, UITableViewDataSource, UIScro
 }
 
 class BroadcastTabelCell: UITableViewCell {
-    @IBOutlet var ytImageView: UIImageView?
-    @IBOutlet var ytNameLabel: UILabel?
-    @IBOutlet var ytActivityLabel: UILabel?
+    @IBOutlet var baseView: UIView!
+    @IBOutlet var ytImageView: UIImageView!
+    @IBOutlet var ytNameLabel: UILabel!
+    @IBOutlet var ytActivityLabel: UILabel!
+    
+    override func awakeFromNib() {
+        baseView.layer.borderWidth = 1
+        baseView.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+        baseView.layer.cornerRadius = 10
+    }
 }
