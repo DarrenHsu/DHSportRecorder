@@ -13,8 +13,6 @@ class HistoryViewController: BaseViewController {
     @IBOutlet weak var timeTable: UITableView!
     @IBOutlet weak var yearMonthLabel: UILabel!
     
-    let history = HistoryManager.sharedInstance()
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         ui.addObserver(self, forKeyPath: "contentOffSet" , options: [.new, .old], context: nil)
@@ -50,7 +48,7 @@ class HistoryViewController: BaseViewController {
             let date = history.currentDate.increaseDay(day: history.calendarIndex * 7)
             yearMonthLabel.text = String(format: "%d%@%d%@", date.year(), LString("UI:Year"), date.month(), LString("UI:Month"))
         }
-    }
+    }    
 }
 
 extension HistoryViewController: UITableViewDataSource {

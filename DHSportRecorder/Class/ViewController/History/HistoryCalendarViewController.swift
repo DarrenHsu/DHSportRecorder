@@ -14,7 +14,6 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
     @IBOutlet var dayLabel: [UILabel]!
     @IBOutlet var dayView: [UIView]!
     
-    let history = HistoryManager.sharedInstance()
     var index: Int = 0
     
     deinit {
@@ -45,7 +44,7 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
             if i == weekDay {
                 label.text = String(format: "%d", today.day())
             }else if i < weekDay {
-                label.text = String(format: "%d", today.increaseDay(day: -weekDay).day())
+                label.text = String(format: "%d", today.increaseDay(day: -(weekDay - i)).day())
             }else if i > weekDay {
                 label.text = String(format: "%d", today.increaseDay(day: i - weekDay).day())
             }

@@ -24,9 +24,9 @@ class GoogleLoginViewController: BaseViewController, GIDSignInUIDelegate {
         signInButton.center = view.center
         self.view.addSubview(signInButton)
         
-        self.ui.startLoading(self.view)
+        self.startAnimating()
         gi.authorization(controller: self) { (success) in
-            self.ui.stopLoading()
+            self.stopAnimating()
             self.signInButton.isHidden = success
             self.loginSuccessView?.isHidden = !success
             self.nextBarItem?.isEnabled = true

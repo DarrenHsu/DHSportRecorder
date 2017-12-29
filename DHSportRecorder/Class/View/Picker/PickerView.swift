@@ -44,7 +44,7 @@ class PickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate, UIPopove
      class func presentSelf(_ pickerView: PickerView, sourceView: UIView) {
         pickerView.presentController = PickerViewController()
         pickerView.presentController?.view = pickerView
-        pickerView.presentController?.modalPresentationStyle = .popover
+        pickerView.presentController?.modalPresentationStyle = .pageSheet
         pickerView.presentController?.popoverPresentationController?.delegate = pickerView
         pickerView.presentController?.popoverPresentationController?.sourceView = sourceView
         pickerView.presentController?.popoverPresentationController?.sourceRect = sourceView.bounds

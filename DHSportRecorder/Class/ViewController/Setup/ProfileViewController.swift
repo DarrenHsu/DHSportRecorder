@@ -36,13 +36,13 @@ class ProfileViewController: BaseViewController {
             user.height = NSNumber(value: Int((self.heightTextField?.text)!)!)
             user.weight = NSNumber(value: Int((self.weightTextField?.text)!)!)
             
-            self.ui.startLoading(self.view)
+            self.startAnimating()
             self.feed.addtUser(user, success: {
-                self.ui.stopLoading()
+                self.stopAnimating()
                 self.app.user?.save()
                 self.applicaiton.goRecordController()
             }, failure: { (msg) in
-                self.ui.stopLoading()
+                self.stopAnimating()
                 self.ui.showAlert(msg, controller: self)
             })
         }
@@ -55,13 +55,13 @@ class ProfileViewController: BaseViewController {
         
         self.doneBarItem?.isEnabled = false
 
-        self.ui.startLoading(self.view)
+        self.startAnimating()
         self.feed.listUser((self.app.setupUser?.lineUserId)!, success: {
-            self.ui.stopLoading()
+            self.stopAnimating()
             self.app.user?.save()
             self.applicaiton.goRecordController()
         }) { (msg) in
-            self.ui.stopLoading()
+            self.startAnimating()
             self.setDefaultValue()
         }
         

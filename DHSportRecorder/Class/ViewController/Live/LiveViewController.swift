@@ -33,23 +33,23 @@ class LiveViewController: BaseViewController, GIDSignInUIDelegate {
         let streamTitle = "Live Stream \(dateStr)"
         let streamDescription = "This is a test stream"
         
-        self.ui.startLoading(self.view)
+        self.startAnimating()
         YTLive.shard().LiveBroadcastInsert(title, description: description, startTime: startDate, endTime: endDate, accessToken: self.gi.accessToken, success: { (broadcast) in
             YTLive.shard().LiveStreamInsert(streamTitle, description: streamDescription, streamName: streamTitle, accessToken: self.gi.accessToken, success: { (stream) in
                 YTLive.shard().LiveBroadcastBind(broadcast.id!, streamId: stream.id!, accessToken: self.gi.accessToken, success: { (bindBroadcast) in
-                    self.ui.stopLoading()
+                    self.stopAnimating()
                     self.ui.showAlert((bindBroadcast.contentDetails_?.boundStreamId)!, controller: self)
                     self.reloadBroadcast()
                 }, failure: {
-                    self.ui.stopLoading()
+                    self.stopAnimating()
                     self.ui.showAlert(LString("Message:Bind Broadcast Failure"), controller: self)
                 })
             }, failure: {
-                self.ui.stopLoading()
+                self.stopAnimating()
                 self.ui.showAlert(LString("Message:Add Stream Failure"), controller: self)
             })
         }) {
-            self.ui.stopLoading()
+            self.stopAnimating()
             self.ui.showAlert(LString("Message:Add Broadcast Failure"), controller: self)
         }
     }
@@ -59,9 +59,9 @@ class LiveViewController: BaseViewController, GIDSignInUIDelegate {
         
         tableView?.isHidden = true
         
-        self.ui.startLoading(self.view)
+        self.startAnimating()
         gi.authorization(controller: self) { (success) in
-            self.ui.stopLoading()
+            self.stopAnimating()
             self.tableView?.isHidden = !success
             
             if success {
@@ -84,14 +84,14 @@ class LiveViewController: BaseViewController, GIDSignInUIDelegate {
         }
         
         isLoading = true;
-        self.ui.startLoading(self.view)
+        self.startAnimating()
         YTLive.shard().LiveBroadcastList(broadcastStatus: YTBroadcastLifeCycleStatus.all, accessToken: self.gi.accessToken, success: { (broadcasts) in
-            self.ui.stopLoading()
+            self.stopAnimating()
             self.broadcasts = broadcasts
             self.tableView?.reloadData()
             self.isLoading = false
         }, failure: {
-            self.ui.stopLoading()
+            self.stopAnimating()
             self.ui.showAlert(LString("Message:list Broadcast Failure"), controller: self)
             self.isLoading = false
         })
@@ -133,24 +133,24 @@ extension LiveViewController: UITableViewDelegate, UITableViewDataSource, UIScro
         
         switch (broadcast.status_?.lifeCycleStatus)! {
         case YTBroadcastLifeCycleStatus.live.rawValue:
-            self.ui.startLoading(self.view)
+            self.startAnimating()
             YTLive.shard().liveBroadcastTransition(YTLive.shard().broadcast.id!, broadcastStatus: YTBroadcastLifeCycleStatus.complete, accessToken: self.gi.accessToken, success: { (broadcast) in
-                self.ui.stopLoading()
+                self.stopAnimating()
                 YTLive.shard().broadcast = broadcast
                 self.reloadBroadcast()
             }, failure:{
-                self.ui.stopLoading()
+                self.stopAnimating()
             })
             break
         case YTBroadcastLifeCycleStatus.ready.rawValue:
-            self.ui.startLoading(self.view)
+            self.startAnimating()
             YTLive.shard().LiveStreamList((broadcast.contentDetails_?.boundStreamId)!, accessToken: self.gi.accessToken, success: { (streams) in
-                self.ui.stopLoading()
+                self.stopAnimating()
                 YTLive.shard().stream = streams[0]
                 let controller = self.storyboard?.instantiateViewController(withIdentifier: "StreamViewController") as! StreamViewController
                 self.present(controller, animated: true, completion: nil)
             }, failure:{
-                self.ui.stopLoading()
+                self.stopAnimating()
             })
             break
         case YTBroadcastLifeCycleStatus.complete.rawValue:

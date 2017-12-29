@@ -18,9 +18,36 @@ class AddRouteViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var startTimeField: UITextField!
     @IBOutlet weak var endTimeField: UITextField!
     
-    let history = HistoryManager.sharedInstance()
     var route: RouteAdding = RouteAdding()
-    var format: String = "yyyy/MM/dd"
+    var date: Date = Date()
+    var sDate: Date?
+    var eDate: Date?
+    
+    var format1: String = "yyyy/MM/dd"
+    var format2: String = "HH:ss"
+    var format3: String = "yyyy/MM/dd HH:ss"
+    
+    @IBAction func donePressed(_ sender: UIBarItem) {
+        route.name = routeNameField.text
+        route.lineUserId = app.user?.lineUserId
+        route.startTime = sDate?.toJSONformat()
+        route.endTime = eDate?.toJSONformat()
+        
+        let verify = route.verifyData()
+        guard verify.0 else {
+            ui.showAlert(verify.1!, controller: self)
+            return
+        }
+        
+        self.startAnimating()
+        feed.addtRoute(route, success: { (route) in
+            self.stopAnimating()
+            self.navigationController?.popViewController(animated: true)
+        }) { (msg) in
+            self.stopAnimating()
+            self.ui.showAlert(msg, controller: self)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +57,7 @@ class AddRouteViewController: BaseViewController, UITextFieldDelegate {
         baseView.layer.cornerRadius = 15
         baseView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
         
-        route.startDate = Date().stringDate(format)
+        routeNameField.text = "這是一個測試 \(Date().stringDate("yyyyMMddHHmm"))"
         
         do {
             var picture = try UIImage(data: Data(contentsOf: URL(fileURLWithPath: self.line.getLocalicturePath())))
@@ -48,9 +75,8 @@ class AddRouteViewController: BaseViewController, UITextFieldDelegate {
     }
     
     func showDate(_ field: UITextField) {
-        let date: Date? = route.startDate != nil ? Date.getDateFromString(route.startDate!, format: format) : nil
         DatePickerView.presentPicker(field, defaultDate: date) { (date) in
-            self.route.startDate = date.stringDate(self.format)
+            self.date = date
             self.setDefaultData()
         }
     }
@@ -58,25 +84,26 @@ class AddRouteViewController: BaseViewController, UITextFieldDelegate {
     func showStartTime(_ field: UITextField) {
         var list: [String] = []
         list.append(contentsOf: history.getStartTimeList())
-        let index = route.startTime != nil ? list.index(of: route.startTime!) : 0
+        let index = sDate?.stringDate(format2) != nil ? list.index(of: route.startTime!) : 0
         PickerView.presentPicker(field, defaultIndex: index, dataList: list) { (timeStr, index) in
-            self.route.startTime = timeStr
+            self.sDate = Date.getDateFromString("\(self.date.stringDate(self.format1)) \(timeStr)", format: self.format3)
             let list = self.history.getEndTimeList(startTime: timeStr)
-            self.route.endTime = list.count > 2 ? list[2] : list.last
+            let eDateStr: String = list.count > 2 ? list[2] : list.last!
+            self.eDate = Date.getDateFromString("\(self.date.stringDate(self.format1)) \(eDateStr)", format: self.format3)
             self.setDefaultData()
         }
     }
     
     func showEndTime(_ field: UITextField) {
         var list: [String] = []
-        if route.startTime != nil {
-            list.append(contentsOf: history.getEndTimeList(startTime: route.startTime!))
+        if sDate != nil {
+            list.append(contentsOf: history.getEndTimeList(startTime: (sDate?.stringDate(format2))!))
         }else {
             list.append(contentsOf: history.getStartTimeList())
         }
         let index = route.endTime != nil ? list.index(of: route.endTime!) : 0
         PickerView.presentPicker(field, defaultIndex: index, dataList: list) { (timeStr, index) in
-            self.route.endTime = timeStr
+            self.eDate = Date.getDateFromString("\(self.date.stringDate(self.format1)) \(timeStr)", format: self.format3)
             self.setDefaultData()
         }
     }
@@ -84,9 +111,9 @@ class AddRouteViewController: BaseViewController, UITextFieldDelegate {
     func setDefaultData() {
         nameLabel.text = app.user?.name
         
-        dateField.text = route.startDate
-        startTimeField.text = route.startTime
-        endTimeField.text = route.endTime
+        dateField.text = date.stringDate(format1)
+        startTimeField.text = sDate?.stringDate(format2)
+        endTimeField.text = eDate?.stringDate(format2)
     }
     
     // MARK: - UITextFieldDelegate Methods

@@ -21,36 +21,8 @@ class UIManager: NSObject {
     
     @objc public dynamic var contentOffSet: CGPoint = CGPoint.zero
     
-    private var loading: CircleLoading!
     private var loadingSuperView: UIView!
     private var loadingLabel: UILabel!
-    
-    public func startLoading(_ view: UIView) {
-        loadingSuperView = UIView(frame: view.bounds)
-        loadingSuperView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
-        
-        loadingLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 30))
-        loadingLabel.text = LString("Alert:Loading")
-        loadingLabel.textColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1)
-        loadingLabel.font = UIFont(name: "Roboto-Regular", size: 20)
-        loadingLabel.textAlignment = NSTextAlignment.center
-        loadingLabel.center = loadingSuperView.center
-        
-        loadingSuperView.addSubview(loadingLabel)
-        
-        loading = CircleLoading(frame: CGRect(x: loadingLabel.frame.origin.x - 60, y: loadingLabel.frame.origin.y - 15, width: 60, height: 60))
-        loading.colors(color1: #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1), color2: #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1), color3: #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1))
-        loading.start()
-        
-        loadingSuperView.addSubview(loading)
-        
-        view.addSubview(loadingSuperView)
-    }
-    
-    public func stopLoading() {
-        loading.stop()
-        loadingSuperView.removeFromSuperview()
-    }
     
     public func showAlert(_ msg: String, controller: UIViewController) {
         let alert : UIAlertController = UIAlertController.init(title: "提示", message: msg, preferredStyle: UIAlertControllerStyle.alert)

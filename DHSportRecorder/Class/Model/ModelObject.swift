@@ -98,4 +98,8 @@ class ModelObject: BaseObject {
             LogManager.DLog("\(error)")
         }
     }
+    
+    func verifyData() -> (Bool, String?) {
+        return (true, nil)
+    }
 }

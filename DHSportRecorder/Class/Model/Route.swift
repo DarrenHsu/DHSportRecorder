@@ -11,7 +11,6 @@ import UIKit
 class RouteAdding: ModelObject {
     var lineUserId: String?
     var name: String?
-    var startDate: String?
     var startTime: String?
     var endTime: String?
     var ytbroadcastId: String?
@@ -20,6 +19,20 @@ class RouteAdding: ModelObject {
         let obj = RouteAdding()
         obj.setValuesForKeys(dict)
         return obj
+    }
+    
+    override func verifyData() -> (Bool, String?) {
+        if name == nil {
+            return (false, LString("Message:Input Route Name"))
+        }
+        if startTime == nil {
+            return (false, LString("Message:Input Route StartTime"))
+        }
+        if endTime == nil {
+            return (false, LString("Message:Input Route EndTime"))
+        }
+        
+        return (true, nil)
     }
 }
 

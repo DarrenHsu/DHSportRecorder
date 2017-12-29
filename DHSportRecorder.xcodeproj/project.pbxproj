@@ -31,7 +31,6 @@
 		D09339B41FB29AC200EC0700 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09339B21FB29AC200EC0700 /* Main.storyboard */; };
 		D09339B61FB29AC200EC0700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D09339B51FB29AC200EC0700 /* Assets.xcassets */; };
 		D09339B91FB29AC200EC0700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09339B71FB29AC200EC0700 /* LaunchScreen.storyboard */; };
-		D09339E81FB29B7400EC0700 /* CircleLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339C41FB29B7300EC0700 /* CircleLoading.swift */; };
 		D09339E91FB29B7400EC0700 /* BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339C71FB29B7300EC0700 /* BaseObject.swift */; };
 		D09339EA1FB29B7400EC0700 /* LiveBroadcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339C81FB29B7300EC0700 /* LiveBroadcast.swift */; };
 		D09339EB1FB29B7400EC0700 /* LiveStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09339C91FB29B7300EC0700 /* LiveStream.swift */; };
@@ -108,7 +107,6 @@
 		D09339B51FB29AC200EC0700 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D09339B81FB29AC200EC0700 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D09339BA1FB29AC200EC0700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D09339C41FB29B7300EC0700 /* CircleLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleLoading.swift; sourceTree = "<group>"; };
 		D09339C71FB29B7300EC0700 /* BaseObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseObject.swift; sourceTree = "<group>"; };
 		D09339C81FB29B7300EC0700 /* LiveBroadcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveBroadcast.swift; sourceTree = "<group>"; };
 		D09339C91FB29B7300EC0700 /* LiveStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveStream.swift; sourceTree = "<group>"; };
@@ -170,9 +168,9 @@
 			isa = PBXGroup;
 			children = (
 				D01954EC1FF1317F00CF6B0A /* PickerView.swift */,
+				D01954EF1FF1317F00CF6B0A /* PickerView.xib */,
 				D01954ED1FF1317F00CF6B0A /* DatePickerView.swift */,
 				D01954EE1FF1317F00CF6B0A /* DatePickerView.xib */,
-				D01954EF1FF1317F00CF6B0A /* PickerView.xib */,
 			);
 			path = Picker;
 			sourceTree = "<group>";
@@ -281,34 +279,9 @@
 			isa = PBXGroup;
 			children = (
 				D057F8AD1FB2E15D001AE86C /* DHLibrary */,
-				D09339C11FB29B7300EC0700 /* CircleLoading */,
 				D09339C51FB29B7300EC0700 /* YTLive */,
 			);
 			path = Library;
-			sourceTree = "<group>";
-		};
-		D09339C11FB29B7300EC0700 /* CircleLoading */ = {
-			isa = PBXGroup;
-			children = (
-				D09339C21FB29B7300EC0700 /* Assets */,
-				D09339C31FB29B7300EC0700 /* Classes */,
-			);
-			path = CircleLoading;
-			sourceTree = "<group>";
-		};
-		D09339C21FB29B7300EC0700 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Assets;
-			sourceTree = "<group>";
-		};
-		D09339C31FB29B7300EC0700 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				D09339C41FB29B7300EC0700 /* CircleLoading.swift */,
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		D09339C51FB29B7300EC0700 /* YTLive */ = {
@@ -552,6 +525,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/LFLiveKit/LFLiveKit.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/XCDYouTubeKit/XCDYouTubeKit.framework",
@@ -564,6 +538,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LFLiveKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCDYouTubeKit.framework",
@@ -629,7 +604,6 @@
 				D09339EE1FB29B7400EC0700 /* YTLiveStreams.swift in Sources */,
 				D09339F01FB29B7400EC0700 /* UIControl+YYAdd.m in Sources */,
 				D09339EC1FB29B7400EC0700 /* YTLive.swift in Sources */,
-				D09339E81FB29B7400EC0700 /* CircleLoading.swift in Sources */,
 				D08717A81FB2B55400A7784A /* LiveViewController.swift in Sources */,
 				D01954F71FF1319D00CF6B0A /* LFLivePreview.m in Sources */,
 				D057F8BA1FB2F943001AE86C /* OtherViewController.swift in Sources */,

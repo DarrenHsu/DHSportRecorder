@@ -17,6 +17,10 @@
 "Message:List Broadcast Failure" = "取得 youtube broadcast list 失敗";
 "Message:Play faild" = "影片播放失敗!";
 "Message:Request error" = "伺服器連線錯誤";
+"Message:Input Route Name" = "請輸入您的行程名稱";
+"Message:Input Route Date" = "請輸入行程日期";
+"Message:Input Route StartTime" = "請輸入行程開始時間";
+"Message:Input Route EndTime" = "請輸入行程(大約)結束時間";
 
 "UI:Year" = "年";
 "UI:Month" = "月";

@@ -121,7 +121,6 @@ extension Date {
         }
     }
     
-    
     func weekDay() -> Int {
         let calendar : Calendar = Calendar.current
         return calendar.component(.weekday, from: self)-1
@@ -176,8 +175,7 @@ extension Date {
         return calendar.component(.weekday, from: date)-1
     }
     
-    func isInRange(from: Date, to:Date) -> Bool
-    {
+    func isInRange(from: Date, to:Date) -> Bool {
         if(self.compare(from) == .orderedDescending ||
             self.compare(from) == .orderedSame)
         {

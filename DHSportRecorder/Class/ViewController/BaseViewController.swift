@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController, NVActivityIndicatorViewable {
     
     let applicaiton = UIApplication.shared.delegate as! AppDelegate
     let ui = UIManager.sharedInstance()
@@ -16,11 +17,13 @@ class BaseViewController: UIViewController {
     let feed = FeedManager.sharedInstance()
     let line = LineManager.sharedInstance()
     let app = AppManager.sharedInstance()
+    let history = HistoryManager.sharedInstance()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        NVActivityIndicatorView.DEFAULT_TYPE = .ballPulse
+        NVActivityIndicatorView.DEFAULT_BLOCKER_SIZE = CGSize(width: 100, height: 100)
     }
 
     override func didReceiveMemoryWarning() {

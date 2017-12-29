@@ -17,6 +17,9 @@ class HistoryManager: NSObject {
         return _manager!
     }
     
+    private var routes: [Route] = []
+    public var routeDict: [String: [Route]] = [:]
+    
     @objc public dynamic var calendarIndex: Int = 0
     public var currentDate: Date = Date()
     
@@ -47,5 +50,16 @@ class HistoryManager: NSObject {
         
         return aryTimeList
     }
-    
+}
+
+extension HistoryManager {
+    func reloadRoute(_ complete: ((Bool, String?)->Void)? = nil) {
+        FeedManager.sharedInstance().listRoute((AppManager.sharedInstance().user?.lineUserId)!, success: { (rs) in
+            self.routes = rs
+            
+            complete?(true, nil)
+        }) { (msg) in
+            complete?(false, msg)
+        }
+    }
 }
