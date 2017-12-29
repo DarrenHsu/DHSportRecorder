@@ -9,6 +9,8 @@
 import UIKit
 
 extension Date {
+    static let JSONFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    
     func toLocalTime() -> Date {
         let timeZone = TimeZone.autoupdatingCurrent
         let seconds : TimeInterval = Double(timeZone.secondsFromGMT(for: self))
@@ -26,13 +28,13 @@ extension Date {
     
     func toJSONformat() -> String {
         let dateFormatterDate = DateFormatter()
-        dateFormatterDate.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS'Z'"
+        dateFormatterDate.dateFormat = Date.JSONFormat
         let dateStr = dateFormatterDate.string(from: self)
-        let startDateStr = String(dateStr.characters.map {
-            $0 == " " ? "T" : $0
-        })
-        let startDate = startDateStr
-        return startDate
+//        let startDateStr = String(dateStr.characters.map {
+//            $0 == " " ? "T" : $0
+//        })
+//        let startDate = startDateStr
+        return dateStr
     }
     
     static func today() -> Date {

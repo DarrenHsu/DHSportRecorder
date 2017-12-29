@@ -16,12 +16,12 @@ class HistoryViewController: BaseViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         ui.addObserver(self, forKeyPath: "contentOffSet" , options: [.new, .old], context: nil)
-        history.addObserver(self, forKeyPath: "calendarIndex", options: [.new, .old], context: nil)
+        history.addObserver(self, forKeyPath: "dynamicDate", options: [.new, .old], context: nil)
     }
     
     deinit {
         ui.removeObserver(self, forKeyPath: "contentOffSet")
-        history.removeObserver(self, forKeyPath: "calendarIndex")
+        history.removeObserver(self, forKeyPath: "dynamicDate")
     }
     
     @IBAction func createPressed(_ sender: UIBarItem) {
@@ -31,11 +31,14 @@ class HistoryViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        history.currentDate = Date()
-        history.calendarIndex = 0
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -44,11 +47,22 @@ class HistoryViewController: BaseViewController {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "contentOffSet" {
             timeTable.contentOffset = ui.contentOffSet
-        }else if keyPath == "calendarIndex" {
-            let date = history.currentDate.increaseDay(day: history.calendarIndex * 7)
-            yearMonthLabel.text = String(format: "%d%@%d%@", date.year(), LString("UI:Year"), date.month(), LString("UI:Month"))
+        }else if keyPath == "dynamicDate" {
+            yearMonthLabel.text = String(format: "%d%@%d%@", history.dynamicDate.year(), LString("UI:Year"), history.dynamicDate.month(), LString("UI:Month"))
         }
-    }    
+    }
+    
+    func reloadData() {
+        self.startAnimating()
+        history.reloadRoute { (success, msg) in
+            self.stopAnimating()
+            if success {
+                
+            }else {
+                self.ui.showAlert(msg!, controller: self)
+            }
+        }
+    }
 }
 
 extension HistoryViewController: UITableViewDataSource {

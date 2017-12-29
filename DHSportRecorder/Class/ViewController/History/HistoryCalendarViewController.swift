@@ -10,21 +10,25 @@ import UIKit
 
 class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
     
+    
     @IBOutlet var dayScrollViews: [UIScrollView]!
     @IBOutlet var dayLabel: [UILabel]!
     @IBOutlet var dayView: [UIView]!
     
+    var hourViewHeight: Int = 80
     var index: Int = 0
+    var today: Date = Date()
+    var weekDay: Int!
     
     deinit {
+        NotificationCenter.default.removeObserver(self)
         ui.removeObserver(self, forKeyPath: "contentOffSet")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let today = history.currentDate.increaseDay(day: index * 7)
-        let weekDay = today.weekDay()
+        weekDay = today.weekDay()
         
         for i in 0..<dayLabel.count {
             let view = dayView[i]
@@ -56,21 +60,73 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
             
             var y: CGFloat = 0
             for _ in 0...23 {
-                y += 80
+                y += CGFloat(hourViewHeight)
                 let v = UIView(frame: CGRect(x: 2, y: y, width: scrollView.frame.size.width - 4, height: 1))
-                v.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.5)
+                v.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.3)
                 scrollView.addSubview(v)
             }
             scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: y)
             scrollView.contentOffset = ui.contentOffSet
         }
         
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .loadRouteFinished, object: nil)
         ui.addObserver(self, forKeyPath: "contentOffSet" , options: [.new, .old], context: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        reloadData()
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func reloadData() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            DispatchQueue.main.async {
+                for scrollView in self.dayScrollViews {
+                    for v in scrollView.subviews {
+                        if v is HistoryView {
+                            v.removeFromSuperview()
+                        }
+                    }
+                }
+            }
+            
+            for i in 0..<self.dayScrollViews.count {
+                let scrollView = self.dayScrollViews[i]
+                
+                var date: Date
+                if i < self.weekDay {
+                    date = self.today.increaseDay(day: -(self.weekDay - i))
+                } else if i > self.weekDay {
+                    date = self.today.increaseDay(day: i - self.weekDay)
+                } else {
+                    date = self.today
+                }
+                
+                let key = date.stringDate("yyyyMMdd")
+                if let routes = self.history.routeDict[key] {
+                    for route in routes {
+                        let s = route.startTime?.transferToString(Date.JSONFormat, format2: "HH")
+                        let e = route.endTime?.transferToString(Date.JSONFormat, format2: "HH")
+                        let y: Int = Int(s!)!
+                        let height: Int = Int(e!)! - Int(s!)!
+                        let rect = CGRect(x: 0, y: Int(y * self.hourViewHeight), width: Int(scrollView.frame.size.width), height: Int(height * self.hourViewHeight))
+
+                        DispatchQueue.main.async {
+                            let historyView :HistoryView = .fromNib()
+                            historyView.nameLabel.text = route.name
+                            historyView.frame = rect
+                            scrollView.addSubview(historyView)
+                        }
+                    }
+                }
+            }
+        }
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

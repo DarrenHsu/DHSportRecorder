@@ -84,7 +84,7 @@ class AddRouteViewController: BaseViewController, UITextFieldDelegate {
     func showStartTime(_ field: UITextField) {
         var list: [String] = []
         list.append(contentsOf: history.getStartTimeList())
-        let index = sDate?.stringDate(format2) != nil ? list.index(of: route.startTime!) : 0
+        let index = sDate?.stringDate(format2) != nil ? list.index(of: (sDate?.stringDate(format2))!) : 0
         PickerView.presentPicker(field, defaultIndex: index, dataList: list) { (timeStr, index) in
             self.sDate = Date.getDateFromString("\(self.date.stringDate(self.format1)) \(timeStr)", format: self.format3)
             let list = self.history.getEndTimeList(startTime: timeStr)

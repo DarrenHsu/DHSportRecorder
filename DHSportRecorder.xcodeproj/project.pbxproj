@@ -22,6 +22,9 @@
 		D057F8B81FB2F939001AE86C /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057F8B71FB2F939001AE86C /* HistoryViewController.swift */; };
 		D057F8BA1FB2F943001AE86C /* OtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057F8B91FB2F943001AE86C /* OtherViewController.swift */; };
 		D057F8BC1FB2F951001AE86C /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057F8BB1FB2F951001AE86C /* RecordViewController.swift */; };
+		D05D16551FF6430200B63F05 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05D16541FF6430200B63F05 /* NotificationExtension.swift */; };
+		D05D16581FF6448000B63F05 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05D16571FF6448000B63F05 /* HistoryView.swift */; };
+		D05D165A1FF6449700B63F05 /* HistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D05D16591FF6449700B63F05 /* HistoryView.xib */; };
 		D07736601FDA65DB00BB50F6 /* ModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077365F1FDA65DB00BB50F6 /* ModelObject.swift */; };
 		D08717A81FB2B55400A7784A /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08717A51FB2B55400A7784A /* LiveViewController.swift */; };
 		D08717A91FB2B55400A7784A /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08717A61FB2B55400A7784A /* PlayViewController.swift */; };
@@ -96,6 +99,9 @@
 		D057F8B71FB2F939001AE86C /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		D057F8B91FB2F943001AE86C /* OtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewController.swift; sourceTree = "<group>"; };
 		D057F8BB1FB2F951001AE86C /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		D05D16541FF6430200B63F05 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
+		D05D16571FF6448000B63F05 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		D05D16591FF6449700B63F05 /* HistoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryView.xib; sourceTree = "<group>"; };
 		D077365F1FDA65DB00BB50F6 /* ModelObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelObject.swift; sourceTree = "<group>"; };
 		D08717A51FB2B55400A7784A /* LiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		D08717A61FB2B55400A7784A /* PlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
@@ -230,6 +236,15 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		D05D16561FF6446900B63F05 /* HistoryView */ = {
+			isa = PBXGroup;
+			children = (
+				D05D16571FF6448000B63F05 /* HistoryView.swift */,
+				D05D16591FF6449700B63F05 /* HistoryView.xib */,
+			);
+			path = HistoryView;
+			sourceTree = "<group>";
+		};
 		D08717A41FB2B55400A7784A /* Live */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,6 +351,7 @@
 				D09339D51FB29B7400EC0700 /* DateExtension.swift */,
 				D09339D61FB29B7400EC0700 /* StringExtension.swift */,
 				D08E26621FB424C60065C19B /* UIImageExtension.swift */,
+				D05D16541FF6430200B63F05 /* NotificationExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -366,6 +382,7 @@
 		D09339DF1FB29B7400EC0700 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D05D16561FF6446900B63F05 /* HistoryView */,
 				D01954F41FF1319D00CF6B0A /* LFLive */,
 				D01954EB1FF1317F00CF6B0A /* Picker */,
 			);
@@ -480,6 +497,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D05D165A1FF6449700B63F05 /* HistoryView.xib in Resources */,
 				D01954F31FF1318000CF6B0A /* PickerView.xib in Resources */,
 				D0933A001FB29B9100EC0700 /* Localizable.strings in Resources */,
 				D01954F21FF1318000CF6B0A /* DatePickerView.xib in Resources */,
@@ -589,6 +607,7 @@
 				D0E0FB611FD577FE0012A16D /* ProfileViewController.swift in Sources */,
 				D09339F21FB29B7400EC0700 /* DateExtension.swift in Sources */,
 				D09339FB1FB29B7400EC0700 /* BaseViewController.swift in Sources */,
+				D05D16551FF6430200B63F05 /* NotificationExtension.swift in Sources */,
 				D057F8AC1FB2DFC0001AE86C /* MapViewController.swift in Sources */,
 				D09BB5371FD7CDD1002B9CE5 /* AppManager.swift in Sources */,
 				D09BB53C1FD7CEBE002B9CE5 /* User.swift in Sources */,
@@ -611,6 +630,7 @@
 				D0E0FB5F1FD577C40012A16D /* GoogleLoginViewController.swift in Sources */,
 				D09339AF1FB29AC200EC0700 /* AppDelegate.swift in Sources */,
 				D09339F31FB29B7400EC0700 /* StringExtension.swift in Sources */,
+				D05D16581FF6448000B63F05 /* HistoryView.swift in Sources */,
 				D08E26631FB424C60065C19B /* UIImageExtension.swift in Sources */,
 				D057F8B31FB2E15D001AE86C /* DHLocation.m in Sources */,
 				D01954F01FF1318000CF6B0A /* PickerView.swift in Sources */,

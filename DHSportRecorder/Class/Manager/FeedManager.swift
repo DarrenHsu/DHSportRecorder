@@ -12,6 +12,8 @@ import SwiftyJSON
 
 class FeedManager: NSObject {
 
+    let PrintCount = 1
+    
     private static var _manager: FeedManager?
     
     public static func sharedInstance() -> FeedManager {
@@ -53,21 +55,28 @@ class FeedManager: NSObject {
         }else {
             if  let data = response.data {
                 let json: JSON = JSON(data: data)
-                if json.array != nil {
-                    if json.count > 3 {
-                        str += "RESPONSE: \n"
-                        for i in (0...2)  {
-                            let j: JSON = json.array![i]
-                            str += "\(j.debugDescription) \n"
-                        }
-                        str += "...More \(json.count - 3) Objects\n"
-                    }else {
-                        str += "RESPONSE: \(json.debugDescription)\n"
-                    }
-                }
                 
                 if json.dictionary != nil {
-                    str += "RESPONSE: \(json.debugDescription)\n"
+                    if let code: JSON = json.dictionary?["code"] {
+                        str += "CODE: \(code.debugDescription)\n"
+                    }
+                    if let message: JSON = json.dictionary?["message"] {
+                        str += "MESSAGE: \(message.debugDescription)\n"
+                    }
+                    if let dataArray: JSON = json.dictionary?["data"] {
+                        if dataArray.array != nil {
+                            if dataArray.count > PrintCount {
+                                str += "RESPONSE: \n"
+                                for i in (0...PrintCount-1)  {
+                                    let j: JSON = dataArray.array![i]
+                                    str += "\(j.debugDescription) \n"
+                                }
+                                str += "...More \(dataArray.count - PrintCount) Objects\n"
+                            }else {
+                                str += "RESPONSE: \(dataArray.debugDescription)\n"
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -12,6 +12,8 @@ import SwiftyJSON
 
 class YTLive: NSObject {
     
+    private let PrintCount = 1
+    
     private static var _instance: YTLive?
     static func shard() -> YTLive {
         if _instance == nil {
@@ -70,20 +72,31 @@ class YTLive: NSObject {
             if  let data = response.data {
                 let json: JSON = JSON(data: data)
                 if json.array != nil {
-                    if json.count > 3 {
+                    if json.count > PrintCount {
                         str += "RESPONSE: \n"
-                        for i in (0...2)  {
+                        for i in (0...PrintCount-1)  {
                             let j: JSON = json.array![i]
                             str += "\(j.debugDescription) \n"
                         }
-                        str += "...More \(json.count - 3) Objects\n"
+                        str += "...More \(json.count - PrintCount) Objects\n"
                     }else {
                         str += "RESPONSE: \(json.debugDescription)\n"
                     }
                 }
                 
                 if json.dictionary != nil {
-                    str += "RESPONSE: \(json.debugDescription)\n"
+                    if let items: JSON = json.dictionary?["items"] {
+                        if items.array != nil {
+                            str += "RESPONSE: \n"
+                            for i in (0...PrintCount-1)  {
+                                let j: JSON = items.array![i]
+                                str += "\(j.debugDescription) \n"
+                            }
+                            str += "...More \(items.count - PrintCount) Objects\n"
+                        }
+                    }else {
+                        str += "RESPONSE: \(json.debugDescription)\n"
+                    }
                 }
             }
         }

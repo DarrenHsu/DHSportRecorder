@@ -9,7 +9,6 @@
 import UIKit
 
 extension String {
-    
     private static func sha256(_ data: Data) -> Data? {
         guard let res = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH)) else { return nil }
         CC_SHA256((data as NSData).bytes, CC_LONG(data.count), res.mutableBytes.assumingMemoryBound(to: UInt8.self))
@@ -27,6 +26,10 @@ extension String {
 }
 
 extension String {
+    
+    public func transferToString(_ format1: String, format2: String) -> String {
+        return Date.getDateFromString(self, format: format1).stringDate(format2)
+    }
     
     public func trim() -> String {
         return self.trimmingCharacters(in: CharacterSet.whitespaces)

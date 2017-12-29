@@ -21,12 +21,13 @@ class HistoryManager: NSObject {
     public var routeDict: [String: [Route]] = [:]
     
     @objc public dynamic var calendarIndex: Int = 0
+    @objc public dynamic var dynamicDate: Date = Date()
     public var currentDate: Date = Date()
     
     private lazy var aryTimeList : [String] = {
         var aryTime : [String] = []
         
-        for h in (7...23) {
+        for h in (0...23) {
             for m in (0...1) {
                 if !(h == 23 && m == 1) {
                     aryTime.append("\(String(format: "%02d", h)):\(String(format: "%02d", m * 30))")
@@ -54,9 +55,25 @@ class HistoryManager: NSObject {
 
 extension HistoryManager {
     func reloadRoute(_ complete: ((Bool, String?)->Void)? = nil) {
+        routeDict.removeAll()
+        routes.removeAll()
+        
         FeedManager.sharedInstance().listRoute((AppManager.sharedInstance().user?.lineUserId)!, success: { (rs) in
             self.routes = rs
+            self.routes = self.routes.sorted(by: { (r0, r1) -> Bool in
+                return Date.getDateFromString(r0.startTime!, format: Date.JSONFormat) < Date.getDateFromString(r1.startTime!, format: Date.JSONFormat)
+            })
             
+            for route in self.routes {
+                let key = Date.getDateFromString(route.startTime!, format: Date.JSONFormat).stringDate("yyyyMMdd")
+                if self.routeDict[key] == nil {
+                    self.routeDict[key] = []
+                }
+                
+                self.routeDict[key]?.append(route)
+            }
+            
+            NotificationCenter.default.post(name: .loadRouteFinished, object: nil)
             complete?(true, nil)
         }) { (msg) in
             complete?(false, msg)
