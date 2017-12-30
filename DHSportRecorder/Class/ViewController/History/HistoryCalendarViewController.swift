@@ -54,6 +54,7 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
         }
 
         for scrollView in dayScrollViews {
+            scrollView.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.7)
             scrollView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1).cgColor
             scrollView.layer.borderWidth = 0.5
             
@@ -61,7 +62,7 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
             for _ in 0...23 {
                 y += CGFloat(hourViewHeight)
                 let v = UIView(frame: CGRect(x: 2, y: y, width: scrollView.frame.size.width - 4, height: 1))
-                v.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.3)
+                v.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
                 scrollView.addSubview(v)
             }
             scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: y)

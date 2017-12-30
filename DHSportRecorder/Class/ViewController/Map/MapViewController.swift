@@ -57,6 +57,7 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
         mapBaseView?.layer.masksToBounds = true
         mapBaseView?.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
 
+        lockBaseView?.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1)
         lockBaseView?.layer.cornerRadius = 15
         lockBaseView?.layer.borderWidth = 1
         lockBaseView?.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)

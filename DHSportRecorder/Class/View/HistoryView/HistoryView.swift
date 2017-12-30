@@ -13,10 +13,10 @@ class HistoryView: UIView {
     @IBOutlet weak var nameLabel: UILabel!
     
     override func awakeFromNib() {
-        self.layer.cornerRadius = 10
+        self.layer.cornerRadius = 20
         self.layer.masksToBounds = true
-        self.layer.borderColor = UIColor(hue: 0.8, saturation: 0.8, brightness: 0.0, alpha: 0.5).cgColor
-        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.darkGray.cgColor
+        self.layer.borderWidth = 2
     }
 }
 

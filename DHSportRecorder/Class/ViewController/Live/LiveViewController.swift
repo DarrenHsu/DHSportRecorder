@@ -169,6 +169,7 @@ class BroadcastTabelCell: UITableViewCell {
     @IBOutlet var ytActivityLabel: UILabel!
     
     override func awakeFromNib() {
+        baseView.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.8)
         baseView.layer.borderWidth = 1
         baseView.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
         baseView.layer.cornerRadius = 10
