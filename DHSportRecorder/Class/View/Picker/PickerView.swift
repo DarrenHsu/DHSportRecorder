@@ -32,13 +32,26 @@ class PickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate, UIPopove
         let pickerView: PickerView = UINib(nibName: "PickerView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! PickerView
         pickerView.aryList = dataList
         pickerView.didSelectedStringAndIndex = handleSelected
-
+        
         if defaultIndex != nil {
             pickerView.indexSelected = defaultIndex!
             pickerView.picker.selectRow(defaultIndex!, inComponent: 0, animated: false)
         }
         
-        self.presentSelf(pickerView, sourceView: sourceView)
+        if let topController = self.topViewController() {
+            var frame = pickerView.frame
+            frame.size.width = topController.view.frame.size.width
+            frame.origin.y = topController.view.frame.size.height
+            
+            pickerView.frame = frame
+            topController.view.addSubview(pickerView)
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                pickerView.frame.origin.y = topController.view.frame.size.height - frame.size.height
+            })
+        }
+        
+//        self.presentSelf(pickerView, sourceView: sourceView)
     }
     
      class func presentSelf(_ pickerView: PickerView, sourceView: UIView) {

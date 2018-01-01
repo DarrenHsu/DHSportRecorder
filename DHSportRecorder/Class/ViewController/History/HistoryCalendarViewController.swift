@@ -168,6 +168,7 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
         
         if scrollView.contentOffset.y < -120 {
             NotificationCenter.default.post(name: .needReloadRoute, object: nil)
+            return
         }
         
         for sview in dayScrollViews {

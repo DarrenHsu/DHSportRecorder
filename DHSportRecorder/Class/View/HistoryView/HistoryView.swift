@@ -15,9 +15,9 @@ class HistoryView: UIView {
     var historyObject: ModelObject!
     
     override func awakeFromNib() {
-        self.layer.cornerRadius = 20
+        self.layer.cornerRadius = 15
         self.layer.masksToBounds = true
-        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.borderColor = UIColor.black.cgColor
         self.layer.borderWidth = 2
     }
 }
