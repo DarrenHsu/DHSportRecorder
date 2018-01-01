@@ -16,8 +16,8 @@ class HistoryRecordDetailViewController: BaseViewController {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var localitlyLabel: UILabel!
-    @IBOutlet weak var startTimeLabel: UILabel!
-    @IBOutlet weak var endTimeLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var maxSpeedLabel: UILabel!
     @IBOutlet weak var avgSpeedLabel: UILabel!
@@ -30,7 +30,8 @@ class HistoryRecordDetailViewController: BaseViewController {
     
     var record: Record?
     
-    var format1: String = "yyyy/MM/dd HH:ss"
+    let format1: String = "yyyy/MM/dd"
+    let format2: String = "HH:ss"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,11 +47,11 @@ class HistoryRecordDetailViewController: BaseViewController {
         
         nameLabel.text = record?.name
         localitlyLabel.text = record?.locality
-        startTimeLabel.text = record?.startTime?.transferToString(Date.JSONFormat, format2: format1)
-        endTimeLabel.text = record?.endTime?.transferToString(Date.JSONFormat, format2: format1)
-        distanceLabel.text = "\((record?.distance)!)"
-        maxSpeedLabel.text = "\((record?.maxSpeed)!)"
-        avgSpeedLabel.text = "\((record?.avgSpeed)!)"
+        dateLabel.text = record?.startTime?.transferToString(Date.JSONFormat, format2: format1)
+        timeLabel.text = "\(String(describing: (record?.startTime?.transferToString(Date.JSONFormat, format2: format2))!)) ~ \(String(describing: (record?.endTime?.transferToString(Date.JSONFormat, format2: format2))!))"
+        distanceLabel.text = String(format: "%.01f", (record?.distance)!.doubleValue)
+        maxSpeedLabel.text = String(format: "%.01f", (record?.maxSpeed)!.doubleValue)
+        avgSpeedLabel.text = String(format: "%.01f", (record?.avgSpeed)!.doubleValue)
         
         GMSServices.provideAPIKey(GIDSignInManager.sharedInstance().getAPIKey())
         

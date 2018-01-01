@@ -28,6 +28,8 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     @IBOutlet weak var heightLabel: UILabel?
     @IBOutlet weak var avgSpeedLabel: UILabel?
     
+    var tmp: Double = 0.001
+    
     @IBAction func startRecordPressed(sender: UIButton) {
         let object = DHLocation.shard()
         if object?.appCurrentActionTag == KATStopRecoding {
@@ -98,9 +100,13 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
             self.app.addRecord?.locality = object?.locality
         }
         
-        self.app.addRecord?.maxSpeed = NSNumber(value: (object?.hightSpeed)!)
-        self.app.addRecord?.avgSpeed = NSNumber(value: (object?.averageSpeed)!)
-        self.app.addRecord?.distance = NSNumber(value: (object?.cumulativeKM)!)
+        object?.hightSpeed = 50.1
+        object?.averageSpeed = 40.3
+        object?.cumulativeKM = 20.5
+        
+        self.app.addRecord?.maxSpeed = NSNumber(value: Double((object?.hightSpeed)!))
+        self.app.addRecord?.avgSpeed = NSNumber(value: Double((object?.averageSpeed)!))
+        self.app.addRecord?.distance = NSNumber(value: Double((object?.cumulativeKM)!))
     }
     
     // MARK: - DHLocationDelegate Methods
@@ -148,17 +154,16 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     
     func receiveChangeTime(_ location: DHLocation!) {
         self.syncData()
-
-        self.app.addRecord?.locations?.append([25.050146557784323, 121.55926211243681])
     }
     
     func receiveChange(_ location: DHLocation!) {
         self.syncData()
         
         if location.currentLocation != nil {
-//            self.app.addRecord?.locations?.append([25.050146557784323, 121.55926211243681])
-            self.app.addRecord?.locations?.append([NSNumber(value: location.currentLocation.coordinate.latitude),
-                                                NSNumber(value: location.currentLocation.coordinate.longitude)])
+            self.app.addRecord?.locations?.append([
+                NSNumber(value: location.currentLocation.coordinate.latitude),
+                NSNumber(value: location.currentLocation.coordinate.longitude)
+                ])
         }
     }
     
