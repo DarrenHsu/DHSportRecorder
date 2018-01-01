@@ -16,8 +16,7 @@ class HistoryDetailViewController: BaseViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var routeNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var startTimeLabel: UILabel!
-    @IBOutlet weak var endTimeLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     var route: Route?
     
@@ -42,8 +41,6 @@ class HistoryDetailViewController: BaseViewController {
         nameLabel.text = app.user?.name
         routeNameLabel.text = route?.name
         dateLabel.text = route?.startTime?.transferToString(Date.JSONFormat, format2: format1)
-        startTimeLabel.text = route?.startTime?.transferToString(Date.JSONFormat, format2: format2)
-        endTimeLabel.text = route?.endTime?.transferToString(Date.JSONFormat, format2: format2)
+        timeLabel.text = "\(String(describing: (route?.startTime?.transferToString(Date.JSONFormat, format2: format2))!)) ~ \(String(describing: (route?.endTime?.transferToString(Date.JSONFormat, format2: format2))!))"
     }
-    
 }
