@@ -24,6 +24,9 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zwD-C4-Kdj">
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <connections>
+                        <action selector="buttonPressed" destination="iN0-l3-epB" eventType="touchUpInside" id="Mbc-Pb-Qf4"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.091424249112606049" green="0.5597609281539917" blue="0.66468030214309692" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

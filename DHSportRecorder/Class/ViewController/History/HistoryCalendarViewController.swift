@@ -122,7 +122,6 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
                                               height: Int(height * self.hourViewHeight - 1))
  
                             let historyView :HistoryView = .fromNib()
-                            historyView.historyObject = route
                             historyView.nameLabel.text = route.name
                             historyView.frame = rect
                             historyView.click = {() in
@@ -149,8 +148,12 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
                             
                             let historyView :HistoryRecordView = .fromNib()
                             historyView.nameLabel.text = record.name
-                            historyView.historyObject = record
                             historyView.frame = rect
+                            historyView.click = {() in
+                                let controller = self.storyboard?.instantiateViewController(withIdentifier: "HistoryRecordDetailViewController") as! HistoryRecordDetailViewController
+                                controller.record = record
+                                self.navigationController?.pushViewController(controller, animated: true)
+                            }
                             scrollView.addSubview(historyView)
                         }
                     }

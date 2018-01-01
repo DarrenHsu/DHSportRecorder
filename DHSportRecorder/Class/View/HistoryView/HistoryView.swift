@@ -12,7 +12,6 @@ class HistoryView: UIView {
 
     @IBOutlet weak var nameLabel: UILabel!
     
-    var historyObject: ModelObject!
     var click: (()->Void)?
     
     override func awakeFromNib() {

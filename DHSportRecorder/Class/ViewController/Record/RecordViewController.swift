@@ -156,9 +156,9 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         self.syncData()
         
         if location.currentLocation != nil {
-            self.app.addRecord?.locations?.append([25.050146557784323, 121.55926211243681])
-//            self.app.addRecord?.locations?.append([NSNumber(value: location.currentLocation.coordinate.latitude),
-//                                                NSNumber(value: location.currentLocation.coordinate.longitude)])
+//            self.app.addRecord?.locations?.append([25.050146557784323, 121.55926211243681])
+            self.app.addRecord?.locations?.append([NSNumber(value: location.currentLocation.coordinate.latitude),
+                                                NSNumber(value: location.currentLocation.coordinate.longitude)])
         }
     }
     
