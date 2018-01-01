@@ -125,6 +125,11 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
                             historyView.historyObject = route
                             historyView.nameLabel.text = route.name
                             historyView.frame = rect
+                            historyView.click = {() in
+                                let controller = self.storyboard?.instantiateViewController(withIdentifier: "HistoryDetailViewController") as! HistoryDetailViewController
+                                controller.route = route
+                                self.navigationController?.pushViewController(controller, animated: true)
+                            }
                             scrollView.addSubview(historyView)
                         }
                     }

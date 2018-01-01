@@ -13,12 +13,17 @@ class HistoryView: UIView {
     @IBOutlet weak var nameLabel: UILabel!
     
     var historyObject: ModelObject!
+    var click: (()->Void)?
     
     override func awakeFromNib() {
         self.layer.cornerRadius = 15
         self.layer.masksToBounds = true
         self.layer.borderColor = UIColor.black.cgColor
         self.layer.borderWidth = 2
+    }
+    
+    @IBAction func buttonPressed() {
+        click?()
     }
 }
 

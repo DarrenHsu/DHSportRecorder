@@ -60,6 +60,7 @@
 		D09F31251FEE60BC0047DD4F /* HistoryCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09F31241FEE60BC0047DD4F /* HistoryCalendarViewController.swift */; };
 		D0BD50861FF9D16900208260 /* HistoryRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD50851FF9D16900208260 /* HistoryRecordView.swift */; };
 		D0BD50881FF9D19000208260 /* HistoryRecordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0BD50871FF9D19000208260 /* HistoryRecordView.xib */; };
+		D0BD508A1FF9F2D800208260 /* HistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD50891FF9F2D800208260 /* HistoryDetailViewController.swift */; };
 		D0C5724B1FD9329300C31C8C /* AESHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C5724A1FD9329300C31C8C /* AESHelper.swift */; };
 		D0C8B5491FD66E3E0023E28D /* LineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C8B5481FD66E3E0023E28D /* LineManager.swift */; };
 		D0E0FB5D1FD577B70012A16D /* LineLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E0FB5C1FD577B70012A16D /* LineLoginViewController.swift */; };
@@ -144,6 +145,7 @@
 		D09F31241FEE60BC0047DD4F /* HistoryCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCalendarViewController.swift; sourceTree = "<group>"; };
 		D0BD50851FF9D16900208260 /* HistoryRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRecordView.swift; sourceTree = "<group>"; };
 		D0BD50871FF9D19000208260 /* HistoryRecordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryRecordView.xib; sourceTree = "<group>"; };
+		D0BD50891FF9F2D800208260 /* HistoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailViewController.swift; sourceTree = "<group>"; };
 		D0C5724A1FD9329300C31C8C /* AESHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESHelper.swift; sourceTree = "<group>"; };
 		D0C8B5481FD66E3E0023E28D /* LineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineManager.swift; sourceTree = "<group>"; };
 		D0E0FB5C1FD577B70012A16D /* LineLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineLoginViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				D057F8B71FB2F939001AE86C /* HistoryViewController.swift */,
 				D09F31221FEE5DC30047DD4F /* HistoryPageViewController.swift */,
 				D09F31241FEE60BC0047DD4F /* HistoryCalendarViewController.swift */,
+				D0BD50891FF9F2D800208260 /* HistoryDetailViewController.swift */,
 				D01954E91FF1283D00CF6B0A /* AddRouteViewController.swift */,
 			);
 			path = History;
@@ -621,6 +624,7 @@
 				D057F8AC1FB2DFC0001AE86C /* MapViewController.swift in Sources */,
 				D09BB5371FD7CDD1002B9CE5 /* AppManager.swift in Sources */,
 				D09BB53C1FD7CEBE002B9CE5 /* User.swift in Sources */,
+				D0BD508A1FF9F2D800208260 /* HistoryDetailViewController.swift in Sources */,
 				D0C5724B1FD9329300C31C8C /* AESHelper.swift in Sources */,
 				D08717AC1FB2B56B00A7784A /* StreamViewController.swift in Sources */,
 				D09F31251FEE60BC0047DD4F /* HistoryCalendarViewController.swift in Sources */,
