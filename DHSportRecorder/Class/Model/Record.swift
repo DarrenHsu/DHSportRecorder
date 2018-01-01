@@ -13,7 +13,6 @@ class RecordAdding: ModelObject {
     var locality: String?
     var name: String?
     var distance: NSNumber?
-    var startDate: String?
     var startTime: String?
     var endTime: String?
     var avgSpeed: NSNumber?
@@ -24,6 +23,28 @@ class RecordAdding: ModelObject {
     override class func convert(_ dict: [String: Any]) -> RecordAdding {
         let obj = RecordAdding()
         obj.setValuesForKeys(dict)
+        return obj
+    }
+    
+    override class func getObject() -> RecordAdding? {
+        var obj: RecordAdding? = nil
+        let path = String(format: "%@/%@", AppManager.sharedInstance().getApplicationSupport(), String(describing: RecordAdding.self))
+        let url = URL(fileURLWithPath: path)
+        do {
+            if FileManager.default.fileExists(atPath: path) {
+                let data =  try Data(contentsOf: url)
+                let jsonData = try AESHelper.sharedInstance().aesCBCDecrypt(data: data, keyData: AppManager.sharedInstance().getEncryptKeyData())
+                let json: [String : Any]? = try? JSONSerialization.jsonObject(with: jsonData!, options: []) as! [String : Any]
+                obj = Record.convert(json!)
+                LogManager.DLog("conver from \(path)")
+            }else {
+                LogManager.DLog("new object ")
+                obj = RecordAdding()
+                obj?.save()
+            }
+        }catch {
+            LogManager.DLog("\(error)")
+        }
         return obj
     }
 }
@@ -37,28 +58,6 @@ class Record: RecordAdding {
     override class func convert(_ dict: [String: Any]) -> Record {
         let obj = Record()
         obj.setValuesForKeys(dict)
-        return obj
-    }
-    
-    override class func getObject() -> Record? {
-        var obj: Record? = nil
-        let path = String(format: "%@/%@", AppManager.sharedInstance().getApplicationSupport(), String(describing: Record.self))
-        let url = URL(fileURLWithPath: path)
-        do {
-            if FileManager.default.fileExists(atPath: path) {
-                let data =  try Data(contentsOf: url)
-                let jsonData = try AESHelper.sharedInstance().aesCBCDecrypt(data: data, keyData: AppManager.sharedInstance().getEncryptKeyData())
-                let json: [String : Any]? = try? JSONSerialization.jsonObject(with: jsonData!, options: []) as! [String : Any]
-                obj = Record.convert(json!)
-                LogManager.DLog("conver from \(path)")
-            }else {
-                LogManager.DLog("new object ")
-                obj = Record()
-                obj?.save()
-            }
-        }catch {
-            LogManager.DLog("\(error)")
-        }
         return obj
     }
 }

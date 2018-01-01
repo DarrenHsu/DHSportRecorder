@@ -94,58 +94,71 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         let cumulativeTime = String(format: "%02d:%02d:%02d", intev! / 3600,(intev! % 3600) / 60 , intev! % 60)
         elapseedLabel?.text = cumulativeTime
         
-        self.app.record?.locality = object?.locality
-        self.app.record?.maxSpeed = NSNumber(value: (object?.hightSpeed)!)
-        self.app.record?.avgSpeed = NSNumber(value: (object?.averageSpeed)!)
-        self.app.record?.distance = NSNumber(value: (object?.cumulativeKM)!)
+        if object?.locality != nil {
+            self.app.addRecord?.locality = object?.locality
+        }
+        
+        self.app.addRecord?.maxSpeed = NSNumber(value: (object?.hightSpeed)!)
+        self.app.addRecord?.avgSpeed = NSNumber(value: (object?.averageSpeed)!)
+        self.app.addRecord?.distance = NSNumber(value: (object?.cumulativeKM)!)
     }
     
     // MARK: - DHLocationDelegate Methods
     func receiveStart(_ location: DHLocation!) {
         self.syncData()
         
-        if let record = Record.getObject() {
-            self.app.record = record
-            self.app.record?.name = location.locationName
-            self.app.record?.lineUserId = self.app.user?.lineUserId
+        if let record = RecordAdding.getObject() {
+            self.app.addRecord = record
+            self.app.addRecord?.name = location.locationName
+            self.app.addRecord?.lineUserId = self.app.user?.lineUserId
             
-            if self.app.record?.imglocations == nil {
-                self.app.record?.locations = []
+            if self.app.addRecord?.imglocations == nil {
+                self.app.addRecord?.locations = []
             }
-            self.app.record?.locations?.removeAll()
+            self.app.addRecord?.locations?.removeAll()
             
-            if self.app.record?.imglocations == nil {
-                self.app.record?.imglocations = []
+            if self.app.addRecord?.imglocations == nil {
+                self.app.addRecord?.imglocations = []
             }
-            self.app.record?.imglocations?.removeAll()
+            self.app.addRecord?.imglocations?.removeAll()
             
             let date = Date()
-            self.app.record?.startDate = date.stringDate("yyyy/MM/dd")
-            self.app.record?.startTime = date.stringDate("HH:mm")
+            self.app.addRecord?.startTime = date.toJSONformat()
         }
     }
     
     func receiveWillStop(_ location: DHLocation!) {
         let date = Date()
-        self.app.record?.endTime = date.stringDate("HH:mm")
-        self.app.record?.save()
-        self.app.record?.removeSource()
+        self.app.addRecord?.endTime = date.toJSONformat()
+        self.app.addRecord?.save()
+        self.app.addRecord?.removeSource()
     }
     
     func receiveStop(_ location: DHLocation!) {
         self.syncData()
+        
+        self.startAnimating()
+        FeedManager.sharedInstance().addtRecord(self.app.addRecord!, success: { (r) in
+            self.stopAnimating()
+        }) { (msg) in
+            self.stopAnimating()
+            self.ui.showAlert(msg, controller: self)
+        }
     }
     
     func receiveChangeTime(_ location: DHLocation!) {
         self.syncData()
+
+        self.app.addRecord?.locations?.append([25.050146557784323, 121.55926211243681])
     }
     
     func receiveChange(_ location: DHLocation!) {
         self.syncData()
         
         if location.currentLocation != nil {
-            self.app.record?.locations?.append([NSNumber(value: location.currentLocation.coordinate.latitude),
-                                                NSNumber(value: location.currentLocation.coordinate.longitude)])
+            self.app.addRecord?.locations?.append([25.050146557784323, 121.55926211243681])
+//            self.app.addRecord?.locations?.append([NSNumber(value: location.currentLocation.coordinate.latitude),
+//                                                NSNumber(value: location.currentLocation.coordinate.longitude)])
         }
     }
     

@@ -10,5 +10,7 @@ import UIKit
 
 extension Notification.Name  {
     static let needReloadRoute = Notification.Name("needReloadRoute")
+    static let loadHistoryFinished = Notification.Name("loadHistoryFinished")
     static let loadRouteFinished = Notification.Name("loadRouteFinished")
+    static let loadRecordFinished = Notification.Name("loadRecordFinished")
 }

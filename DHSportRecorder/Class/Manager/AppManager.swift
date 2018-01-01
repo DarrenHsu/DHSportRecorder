@@ -25,7 +25,7 @@ class AppManager: NSObject {
     
     public var user: User?
     public var setupUser: UserAdding?
-    public var record: RecordAdding?
+    public var addRecord: RecordAdding?
     
     public func getDocumentPath() -> String {
         let directory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]

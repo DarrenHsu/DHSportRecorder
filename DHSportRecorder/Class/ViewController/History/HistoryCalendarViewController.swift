@@ -69,7 +69,7 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
             scrollView.contentOffset = ui.contentOffSet
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .loadRouteFinished, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .loadHistoryFinished, object: nil)
         ui.addObserver(self, forKeyPath: "contentOffSet" , options: [.new, .old], context: nil)
     }
     
@@ -89,7 +89,7 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
             DispatchQueue.main.async {
                 for scrollView in self.dayScrollViews {
                     for v in scrollView.subviews {
-                        if v is HistoryView {
+                        if v is HistoryView || v is HistoryRecordView {
                             v.removeFromSuperview()
                         }
                     }
@@ -114,7 +114,7 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
                         let s = route.startTime?.transferToString(Date.JSONFormat, format2: "HH")
                         let e = route.endTime?.transferToString(Date.JSONFormat, format2: "HH")
                         let y: Int = Int(s!)!
-                        let height: Int = Int(e!)! - Int(s!)!
+                        let height: Int = Int(e!)! - Int(s!)! < 1 ? 1 : Int(e!)! - Int(s!)!
                         DispatchQueue.main.async {
                             let rect = CGRect(x: 5,
                                               y: Int(y * self.hourViewHeight + 1),
@@ -122,7 +122,29 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
                                               height: Int(height * self.hourViewHeight - 1))
  
                             let historyView :HistoryView = .fromNib()
+                            historyView.historyObject = route
                             historyView.nameLabel.text = route.name
+                            historyView.frame = rect
+                            scrollView.addSubview(historyView)
+                        }
+                    }
+                }
+                
+                if let records = self.history.recordDict[key] {
+                    for record in records {
+                        let s = record.startTime?.transferToString(Date.JSONFormat, format2: "HH")
+                        let e = record.endTime?.transferToString(Date.JSONFormat, format2: "HH")
+                        let y: Int = Int(s!)!
+                        let height: Int = Int(e!)! - Int(s!)! < 1 ? 1 : Int(e!)! - Int(s!)!
+                        DispatchQueue.main.async {
+                            let rect = CGRect(x: 5,
+                                              y: Int(y * self.hourViewHeight + 1),
+                                              width: Int(scrollView.frame.size.width - 10),
+                                              height: Int(height * self.hourViewHeight - 1))
+                            
+                            let historyView :HistoryRecordView = .fromNib()
+                            historyView.nameLabel.text = record.name
+                            historyView.historyObject = record
                             historyView.frame = rect
                             scrollView.addSubview(historyView)
                         }
@@ -143,6 +165,11 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
     // MARK: - UIScrollViewDelegate Methods
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         ui.contentOffSet = scrollView.contentOffset
+        
+        if scrollView.contentOffset.y < -120 {
+            NotificationCenter.default.post(name: .needReloadRoute, object: nil)
+        }
+        
         for sview in dayScrollViews {
             if sview == scrollView {
                 continue
