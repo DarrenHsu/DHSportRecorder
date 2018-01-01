@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Popover
 
 class PickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate, UIPopoverPresentationControllerDelegate {
     
@@ -19,13 +20,27 @@ class PickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate, UIPopove
     
     var presentController: PickerViewController?
     
+    var popover: Popover!
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        let options = [
+            .type(.up),
+            .cornerRadius(15),
+            .animationIn(0.3),
+            ] as [PopoverOption]
+        
+        popover = Popover(options: options)
+    }
+    
     @IBAction func cancelPressed(_ sender: UIButton) {
-        presentController?.dismiss(animated: true, completion: nil)
+        popover.dismiss()
     }
     
     @IBAction func submitPressed(_ sender: UIButton) {
         didSelectedStringAndIndex?(self.aryList[self.indexSelected], self.indexSelected)
-        presentController?.dismiss(animated: true, completion: nil)
+        popover.dismiss()
     }
 
     class func presentPicker(_ sourceView: UIView, defaultIndex: Int? = nil, dataList: [String], handleSelected: @escaping (String, Int)->()) {
@@ -38,34 +53,15 @@ class PickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate, UIPopove
             pickerView.picker.selectRow(defaultIndex!, inComponent: 0, animated: false)
         }
         
-        if let topController = self.topViewController() {
-            var frame = pickerView.frame
-            frame.size.width = topController.view.frame.size.width
-            frame.origin.y = topController.view.frame.size.height
-            
-            pickerView.frame = frame
-            topController.view.addSubview(pickerView)
-            
-            UIView.animate(withDuration: 0.5, animations: {
-                pickerView.frame.origin.y = topController.view.frame.size.height - frame.size.height
-            })
-        }
-        
-//        self.presentSelf(pickerView, sourceView: sourceView)
+        presentSelf(pickerView, sourceView: sourceView)
     }
     
      class func presentSelf(_ pickerView: PickerView, sourceView: UIView) {
-        pickerView.presentController = PickerViewController()
-        pickerView.presentController?.view = pickerView
-        pickerView.presentController?.modalPresentationStyle = .popover
-        pickerView.presentController?.popoverPresentationController?.delegate = pickerView
-        pickerView.presentController?.popoverPresentationController?.sourceView = sourceView
-        pickerView.presentController?.popoverPresentationController?.sourceRect = sourceView.bounds
-        pickerView.presentController?.preferredContentSize = pickerView.frame.size
-        
-        if let topController = self.topViewController() {
-            topController.present(pickerView.presentController!, animated: true, completion: nil)
+        let rect = pickerView.frame
+        pickerView.popover.willShowHandler = {() in
+            pickerView.frame = rect
         }
+        pickerView.popover.show(pickerView, fromView: sourceView)
     }
     
     fileprivate class func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {

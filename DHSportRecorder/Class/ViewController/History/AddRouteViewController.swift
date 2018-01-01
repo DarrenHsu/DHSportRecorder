@@ -102,7 +102,7 @@ class AddRouteViewController: BaseViewController, UITextFieldDelegate {
         }else {
             list.append(contentsOf: history.getStartTimeList())
         }
-        let index = route.endTime != nil ? list.index(of: route.endTime!) : 0
+        let index = endTimeField.text != nil && !(endTimeField.text?.isEmpty)! ? list.index(of: endTimeField.text!) : 0
         PickerView.presentPicker(field, defaultIndex: index, dataList: list) { (timeStr, index) in
             self.eDate = Date.getDateFromString("\(self.date.stringDate(self.format1)) \(timeStr)", format: self.format3)
             self.setDefaultData()

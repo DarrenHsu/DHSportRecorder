@@ -15,4 +15,5 @@ target "DHSportRecorder" do
     pod "SwiftyJSON"
     pod "LineSDK"
     pod "NVActivityIndicatorView"
+    pod "Popover"
 end
