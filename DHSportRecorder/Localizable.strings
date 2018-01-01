@@ -21,6 +21,11 @@
 "Message:Input Route Date" = "請輸入行程日期";
 "Message:Input Route StartTime" = "請輸入行程開始時間";
 "Message:Input Route EndTime" = "請輸入行程(大約)結束時間";
+"Message:Item Edit" = "請選擇以下功能來編輯";
+"Message:Check Remove" = "是否要刪除資料?";
+
+"Item:Remove" = "刪除";
+"Item:Cancel" = "取消";
 
 "UI:Year" = "年";
 "UI:Month" = "月";

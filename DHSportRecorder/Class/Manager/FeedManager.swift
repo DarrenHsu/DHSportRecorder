@@ -133,6 +133,27 @@ class FeedManager: NSObject {
 
 // MARK: - Request Process
 extension FeedManager {
+    fileprivate func processResponse(_ response: DataResponse<Any>, success: ((String)->Void)? = nil , failure: (NSNumber, String)->Void) {
+        printResponse((response.request?.httpMethod)!, response: response)
+        
+        if response.error != nil {
+            failure(-999, LString("Message:Request error"))
+            return
+        }
+        
+        let json = JSON(data: response.data!)
+        let message = json["message"].stringValue
+        if let code = json["code"].number {
+            if  code != 0 {
+                failure(code, message)
+                return
+            }else {
+                success?(message)
+                return
+            }
+        }
+    }
+    
     fileprivate func processResponse(_ response: DataResponse<Any>, success: (([[String: Any]], String)->Void)? = nil , failure: (NSNumber, String)->Void) {
         printResponse((response.request?.httpMethod)!, response: response)
         
@@ -215,7 +236,7 @@ extension FeedManager {
     
     public func removeRoute(_ id: String, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
         self.requestDelete("\(FeedManager.ROUTE_API)/\(id)").responseJSON { (response) in
-            self.processResponse(response, success: { (objs, message) in
+            self.processResponse(response, success: { (message) in
                 success(message)
             }, failure: { (code, message) in
                 failure(message)
@@ -261,7 +282,7 @@ extension FeedManager {
     
     public func removeRecord(_ id: String, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
         self.requestDelete("\(FeedManager.RECORD_API)/\(id)").responseJSON { (response) in
-            self.processResponse(response, success: { (objs, message) in
+            self.processResponse(response, success: { (message) in
                 success(message)
             }, failure: { (code, message) in
                 failure(message)
@@ -312,7 +333,7 @@ extension FeedManager {
     
     public func removeUser(_ id: String, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
         self.requestDelete("\(FeedManager.USER_API)/\(id)").responseJSON { (response) in
-            self.processResponse(response, success: { (objs, message) in
+            self.processResponse(response, success: { (message) in
                 AppManager.sharedInstance().user?.removeSource()
                 success(message)
             }, failure: { (code, message) in

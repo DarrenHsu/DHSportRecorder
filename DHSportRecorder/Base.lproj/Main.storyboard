@@ -1835,7 +1835,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OXl-ss-plZ"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Route Detail" id="ZXJ-3j-YtY"/>
+                    <navigationItem key="navigationItem" title="Route Detail" id="ZXJ-3j-YtY">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="pTO-Vj-2gz">
+                            <connections>
+                                <action selector="editPressed:" destination="bAs-wk-38n" id="f2O-e6-Vri"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="baseView" destination="spV-NB-5u4" id="eeS-b4-9M5"/>
@@ -2041,7 +2047,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="opf-54-GsG"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Record Detail" id="doA-8y-UUF"/>
+                    <navigationItem key="navigationItem" title="Record Detail" id="doA-8y-UUF">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="d5J-f2-ZnK">
+                            <connections>
+                                <action selector="editPressed:" destination="e9X-wt-bwZ" id="WMF-NQ-a6r"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="avgSpeedLabel" destination="aW1-8h-y8G" id="rom-mL-FM2"/>

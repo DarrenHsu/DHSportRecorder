@@ -23,6 +23,26 @@ class HistoryDetailViewController: BaseViewController {
     var format1: String = "yyyy/MM/dd"
     var format2: String = "HH:ss"
     
+    @IBAction func editPressed(_ item: UIBarButtonItem) {
+        ui.showActionSheet(self.view, controller: self, title: LString("Message:Item Edit"), actionTitles: [LString("Item:Remove"), LString("Item:Cancel")], actions: [{(UIAlertAction) in
+            self.ui.showAlert(LString("Message:Check Remove"), controller: self, submit: {() in
+                
+                self.startAnimating()
+                self.feed.removeRoute((self.route?._id)!, success: { (msg) in
+                    self.stopAnimating()
+                    self.dismiss(animated: true, completion: nil)
+                    self.navigationController?.popViewController(animated: true)
+                    NotificationCenter.default.post(name: .needReloadRoute, object: nil)
+                }, failure: { (msg) in
+                    self.stopAnimating()
+                    self.ui.showAlert(msg, controller: self)
+                })
+                
+            }, cancel: nil)
+            }, {(action: UIAlertAction) in
+            }])
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

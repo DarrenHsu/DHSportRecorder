@@ -100,10 +100,6 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
             self.app.addRecord?.locality = object?.locality
         }
         
-        object?.hightSpeed = 50.1
-        object?.averageSpeed = 40.3
-        object?.cumulativeKM = 20.5
-        
         self.app.addRecord?.maxSpeed = NSNumber(value: Double((object?.hightSpeed)!))
         self.app.addRecord?.avgSpeed = NSNumber(value: Double((object?.averageSpeed)!))
         self.app.addRecord?.distance = NSNumber(value: Double((object?.cumulativeKM)!))
@@ -115,6 +111,7 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         
         if let record = RecordAdding.getObject() {
             self.app.addRecord = record
+            self.app.addRecord?.recordId = String.getUUID()
             self.app.addRecord?.name = location.locationName
             self.app.addRecord?.lineUserId = self.app.user?.lineUserId
             

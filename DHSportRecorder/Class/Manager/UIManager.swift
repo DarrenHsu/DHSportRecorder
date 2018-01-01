@@ -56,4 +56,30 @@ class UIManager: NSObject {
         alert.addAction(okCallaction)
         controller.present(alert, animated: true, completion: nil)
     }
+    
+    func showActionSheet(_ sender: UIView, controller: UIViewController, title: String, message: String? = nil, actionTitles: [String], actions: [(UIAlertAction)->Void]) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        alertController.modalPresentationStyle = .popover
+        
+        for i in 0..<actionTitles.count {
+            let action = actions[i]
+            let title = actionTitles[i]
+            let alertAction = UIAlertAction(title: title, style: .default, handler: action)
+            if title == LString("Item:Cancel") {
+                alertAction.setValue(UIColor.blue, forKey: "titleTextColor")
+            }else if title == LString("Item:Remove") {
+                alertAction.setValue(UIColor.red, forKey: "titleTextColor")
+            }else {
+                alertAction.setValue(UIColor.black, forKey: "titleTextColor")
+            }
+            
+            alertController.addAction(alertAction)
+        }
+        
+        if let presenter = alertController.popoverPresentationController {
+            presenter.sourceView = sender;
+            presenter.sourceRect = sender.bounds;
+        }
+        controller.present(alertController, animated: true, completion: nil)
+    }
 }

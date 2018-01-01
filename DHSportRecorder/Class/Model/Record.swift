@@ -10,6 +10,7 @@ import UIKit
 
 class RecordAdding: ModelObject {
     var lineUserId: String?
+    var recordId: String?
     var locality: String?
     var name: String?
     var distance: NSNumber?
