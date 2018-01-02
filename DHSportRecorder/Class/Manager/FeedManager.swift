@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import AlamofireImage
 import SwiftyJSON
 
 class FeedManager: NSObject {
@@ -197,6 +198,19 @@ extension FeedManager {
         let objclass = ModelObject.stringClassFromString(objName) as! ModelObject.Type
         let obj = objclass.convert(dict)
         return obj
+    }
+}
+
+extension FeedManager {
+    fileprivate static let STREET_VIEW = "https://maps.googleapis.com/maps/api/streetview"
+    
+    public func loadGoogleMapImage(_ lat: CLLocationDegrees, lon: CLLocationDegrees, width: Int, height: Int, success: @escaping (UIImage) -> Void) {
+        let url = "\(FeedManager.STREET_VIEW)?size=\(width)x\(height)&location=\(lat),\(lon)&fov=20&heading=75&pitch=5"
+        Alamofire.request(url).responseImage { (response) in
+            if let image = response.result.value {
+                success(image)
+            }
+        }
     }
 }
 

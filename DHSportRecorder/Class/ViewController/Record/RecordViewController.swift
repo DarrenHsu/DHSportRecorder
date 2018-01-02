@@ -28,7 +28,10 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     @IBOutlet weak var heightLabel: UILabel?
     @IBOutlet weak var avgSpeedLabel: UILabel?
     
-    var tmp: Double = 0.001
+    var tmp: Double = 0.0001
+    var startDate: Date!
+    var saveInterval: Int = 10
+    var saveDistance: Int = 100
     
     @IBAction func startRecordPressed(sender: UIButton) {
         let object = DHLocation.shard()
@@ -125,15 +128,13 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
             }
             self.app.addRecord?.imglocations?.removeAll()
             
-            let date = Date()
-            self.app.addRecord?.startTime = date.toJSONformat()
+            startDate = Date()
+            self.app.addRecord?.startTime = startDate.toJSONformat()
         }
     }
     
     func receiveWillStop(_ location: DHLocation!) {
-        let date = Date()
-        
-        self.app.addRecord?.endTime = date.toJSONformat()
+        self.app.addRecord?.endTime = Date().toJSONformat()
         
         self.startAnimating()
         FeedManager.sharedInstance().addtRecord(self.app.addRecord!, success: { (r) in
@@ -148,6 +149,40 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     }
     
     func receiveChangeTime(_ location: DHLocation!) {
+        self.syncData()
+
+        tmp += 0.0001
+        
+        let lat: Double = 25.050143075261012
+        let long: Double = 121.55928204761648 + tmp
+        
+        self.app.addRecord?.locations?.append([NSNumber(value: lat), NSNumber(value: long)])
+        
+        let interval: Int = Int(Date().timeIntervalSince(startDate))
+        if interval % saveInterval == 0 {
+            if let location = self.app.addRecord?.locations?.last {
+                if let index = self.app.addRecord?.imglocations?.last {
+                    let l: [NSNumber]! = self.app.addRecord?.locations![index]
+                    let loaA = CLLocation(latitude: CLLocationDegrees(truncating: location[0]), longitude: CLLocationDegrees(truncating: location[1]))
+                    let loaB = CLLocation(latitude: CLLocationDegrees(truncating: l[0]), longitude: CLLocationDegrees(truncating: l[1]))
+                    let distance = loaA.distance(from: loaB)
+                    if Int(distance) >= saveDistance {
+                        self.app.addRecord?.imglocations?.append((self.app.addRecord?.locations?.count)! - 1)
+                    }
+                }else {
+                    let l: [NSNumber]! = self.app.addRecord?.locations![0]
+                    let loaA = CLLocation(latitude: CLLocationDegrees(truncating: location[0]), longitude: CLLocationDegrees(truncating: location[1]))
+                    let loaB = CLLocation(latitude: CLLocationDegrees(truncating: l[0]), longitude: CLLocationDegrees(truncating: l[1]))
+                    let distance = loaA.distance(from: loaB)
+                    if Int(distance) >= saveDistance {
+                        self.app.addRecord?.imglocations?.append((self.app.addRecord?.locations?.count)! - 1)
+                    }
+                }
+            }
+        }
+    }
+    
+    func receiveStop(_ location: DHLocation!) {
         self.syncData()
     }
     
@@ -165,6 +200,4 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     func receiveError(_ location: DHLocation!) {
         self.syncData()
     }
-    
-    
 }

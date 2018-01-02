@@ -102,10 +102,6 @@ static DHLocation *locationObject = nil;
 		}
 	}
     
-    self.hightSpeed = 40.7789876;
-    self.averageSpeed = 30.99856789;
-    self.cumulativeKM = 3.5386;
-    
     for (id<DHLocationDelegate> delegate in _delegates) {
         if ([delegate respondsToSelector:@selector(receiveChangeTime:)]) {
             [delegate receiveChangeTime:self];

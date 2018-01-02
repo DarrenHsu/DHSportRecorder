@@ -92,6 +92,8 @@ class HistoryRecordDetailViewController: BaseViewController {
         mapBaseView?.addSubview(mapView!)
         
         DHMap.draw(mapView, coordinates: record?.locations)
+        
+        loadRecordImage()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -106,6 +108,34 @@ class HistoryRecordDetailViewController: BaseViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func loadRecordImage() {
+        do {
+            var icon = try UIImage(data: Data(contentsOf: URL(fileURLWithPath: self.line.getLocalicturePath())))
+            icon = icon?.resizeImage(newWidth: 50)
+            icon = icon?.circleMasked
+            
+            var location: [NSNumber]! = record?.locations!.last
+            var lat: CLLocationDegrees = CLLocationDegrees(truncating: location[0])
+            var lon: CLLocationDegrees = CLLocationDegrees(truncating: location[1])
+            DHMap.draw(self.mapView, markIcon: icon, title: "", snippet: "", latitude: lat, longtitude: lon)
+            
+            icon = icon?.alpha(0.3)
+            location = record?.locations!.first
+            lat = CLLocationDegrees(truncating: location[0])
+            lon = CLLocationDegrees(truncating: location[1])
+            DHMap.draw(self.mapView, markIcon: icon, title: "", snippet: "", latitude: lat, longtitude: lon)
+        }catch {}
+
+        for index in (record?.imglocations)! {
+            let location: [NSNumber]! = record?.locations![index]
+            let lat: CLLocationDegrees = CLLocationDegrees(truncating: location[0])
+            let lon: CLLocationDegrees = CLLocationDegrees(truncating: location[1])
+            feed.loadGoogleMapImage(lat, lon: lon, width: 160, height: 240, success: { (image) in
+                DHMap.draw(self.mapView, markIcon: image, title: "", snippet: "", latitude: lat, longtitude: lon)
+            })
+        }
     }
     
 }

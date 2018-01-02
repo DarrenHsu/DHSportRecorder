@@ -12,6 +12,7 @@ target "DHSportRecorder" do
     pod "LFLiveKit"
     pod "SDWebImage"
     pod "Alamofire"
+    pod "AlamofireImage"
     pod "SwiftyJSON"
     pod "LineSDK"
     pod "NVActivityIndicatorView"
