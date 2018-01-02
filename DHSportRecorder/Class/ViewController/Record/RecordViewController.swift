@@ -29,6 +29,9 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     @IBOutlet weak var avgSpeedLabel: UILabel?
     
     var tmp: Double = 0.0001
+    let lat: Double = 25.050143075261012
+    let long: Double = 121.55928204761648
+
     var startDate: Date!
     var saveInterval: Int = 10
     var saveDistance: Int = 100
@@ -151,13 +154,6 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     func receiveChangeTime(_ location: DHLocation!) {
         self.syncData()
 
-        tmp += 0.0001
-        
-        let lat: Double = 25.050143075261012
-        let long: Double = 121.55928204761648 + tmp
-        
-        self.app.addRecord?.locations?.append([NSNumber(value: lat), NSNumber(value: long)])
-        
         let interval: Int = Int(Date().timeIntervalSince(startDate))
         if interval % saveInterval == 0 {
             if let location = self.app.addRecord?.locations?.last {

@@ -111,22 +111,24 @@ class HistoryRecordDetailViewController: BaseViewController {
     }
     
     func loadRecordImage() {
-        do {
-            var icon = try UIImage(data: Data(contentsOf: URL(fileURLWithPath: self.line.getLocalicturePath())))
-            icon = icon?.resizeImage(newWidth: 50)
-            icon = icon?.circleMasked
-            
-            var location: [NSNumber]! = record?.locations!.last
-            var lat: CLLocationDegrees = CLLocationDegrees(truncating: location[0])
-            var lon: CLLocationDegrees = CLLocationDegrees(truncating: location[1])
-            DHMap.draw(self.mapView, markIcon: icon, title: "", snippet: "", latitude: lat, longtitude: lon)
-            
-            icon = icon?.alpha(0.3)
-            location = record?.locations!.first
-            lat = CLLocationDegrees(truncating: location[0])
-            lon = CLLocationDegrees(truncating: location[1])
-            DHMap.draw(self.mapView, markIcon: icon, title: "", snippet: "", latitude: lat, longtitude: lon)
-        }catch {}
+        if self.app.addRecord?.locations?.first != nil {
+            do {
+                var icon = try UIImage(data: Data(contentsOf: URL(fileURLWithPath: self.line.getLocalicturePath())))
+                icon = icon?.resizeImage(newWidth: 50)
+                icon = icon?.circleMasked
+                
+                var location: [NSNumber]! = record?.locations!.last
+                var lat: CLLocationDegrees = CLLocationDegrees(truncating: location[0])
+                var lon: CLLocationDegrees = CLLocationDegrees(truncating: location[1])
+                DHMap.draw(self.mapView, markIcon: icon, title: "", snippet: "", latitude: lat, longtitude: lon)
+                
+                icon = icon?.alpha(0.5)
+                location = record?.locations!.first
+                lat = CLLocationDegrees(truncating: location[0])
+                lon = CLLocationDegrees(truncating: location[1])
+                DHMap.draw(self.mapView, markIcon: icon, title: "", snippet: "", latitude: lat, longtitude: lon)
+            }catch {}
+        }
 
         for index in (record?.imglocations)! {
             let location: [NSNumber]! = record?.locations![index]
