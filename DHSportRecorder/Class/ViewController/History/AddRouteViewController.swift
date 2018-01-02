@@ -24,7 +24,7 @@ class AddRouteViewController: BaseViewController, UITextFieldDelegate {
     var eDate: Date?
     
     var format1: String = "yyyy/MM/dd"
-    var format2: String = "HH:ss"
+    var format2: String = "HH:mm"
     var format3: String = "yyyy/MM/dd HH:ss"
     
     @IBAction func donePressed(_ sender: UIBarItem) {

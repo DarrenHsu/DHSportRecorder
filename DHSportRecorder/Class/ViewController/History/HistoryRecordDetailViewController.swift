@@ -31,7 +31,7 @@ class HistoryRecordDetailViewController: BaseViewController {
     var record: Record?
     
     let format1: String = "yyyy/MM/dd"
-    let format2: String = "HH:ss"
+    let format2: String = "HH:mm"
     
     @IBAction func editPressed(_ item: UIBarButtonItem) {
         ui.showActionSheet(self.view, controller: self, title: LString("Message:Item Edit"), actionTitles: [LString("Item:Remove"), LString("Item:Cancel")], actions: [{(UIAlertAction) in
@@ -111,7 +111,7 @@ class HistoryRecordDetailViewController: BaseViewController {
     }
     
     func loadRecordImage() {
-        if self.app.addRecord?.locations?.first != nil {
+        if record?.locations?.first != nil {
             do {
                 var icon = try UIImage(data: Data(contentsOf: URL(fileURLWithPath: self.line.getLocalicturePath())))
                 icon = icon?.resizeImage(newWidth: 50)
@@ -122,7 +122,7 @@ class HistoryRecordDetailViewController: BaseViewController {
                 var lon: CLLocationDegrees = CLLocationDegrees(truncating: location[1])
                 DHMap.draw(self.mapView, markIcon: icon, title: "", snippet: "", latitude: lat, longtitude: lon)
                 
-                icon = icon?.alpha(0.5)
+                icon = icon?.alpha(0.4)
                 location = record?.locations!.first
                 lat = CLLocationDegrees(truncating: location[0])
                 lon = CLLocationDegrees(truncating: location[1])

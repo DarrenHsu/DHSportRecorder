@@ -21,7 +21,7 @@ class HistoryDetailViewController: BaseViewController {
     var route: Route?
     
     var format1: String = "yyyy/MM/dd"
-    var format2: String = "HH:ss"
+    var format2: String = "HH:mm"
     
     @IBAction func editPressed(_ item: UIBarButtonItem) {
         ui.showActionSheet(self.view, controller: self, title: LString("Message:Item Edit"), actionTitles: [LString("Item:Remove"), LString("Item:Cancel")], actions: [{(UIAlertAction) in

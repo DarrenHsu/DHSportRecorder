@@ -18,6 +18,7 @@ class RecordAdding: ModelObject {
     var endTime: String?
     var avgSpeed: NSNumber?
     var maxSpeed: NSNumber?
+    var altitude: NSNumber?
     var locations: [[NSNumber]]?
     var imglocations: [Int]?
     
@@ -36,7 +37,7 @@ class RecordAdding: ModelObject {
                 let data =  try Data(contentsOf: url)
                 let jsonData = try AESHelper.sharedInstance().aesCBCDecrypt(data: data, keyData: AppManager.sharedInstance().getEncryptKeyData())
                 let json: [String : Any]? = try? JSONSerialization.jsonObject(with: jsonData!, options: []) as! [String : Any]
-                obj = Record.convert(json!)
+                obj = RecordAdding.convert(json!)
                 LogManager.DLog("conver from \(path)")
             }else {
                 LogManager.DLog("new object ")

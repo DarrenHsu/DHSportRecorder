@@ -34,7 +34,8 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
 
     var startDate: Date!
     var saveInterval: Int = 10
-    var saveDistance: Int = 100
+    var cacheInterval: Int = 60
+    var cacheDistance: Int = 500
     
     @IBAction func startRecordPressed(sender: UIButton) {
         let object = DHLocation.shard()
@@ -109,6 +110,8 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         self.app.addRecord?.maxSpeed = NSNumber(value: Double((object?.hightSpeed)!))
         self.app.addRecord?.avgSpeed = NSNumber(value: Double((object?.averageSpeed)!))
         self.app.addRecord?.distance = NSNumber(value: Double((object?.cumulativeKM)!))
+        self.app.addRecord?.altitude = NSNumber(value: Double((object?.altitude)!))
+        self.app.addRecord?.endTime = Date().toJSONformat()
     }
     
     // MARK: - DHLocationDelegate Methods
@@ -117,22 +120,54 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         
         if let record = RecordAdding.getObject() {
             self.app.addRecord = record
-            self.app.addRecord?.recordId = String.getUUID()
-            self.app.addRecord?.name = location.locationName
-            self.app.addRecord?.lineUserId = self.app.user?.lineUserId
-            
-            if self.app.addRecord?.imglocations == nil {
-                self.app.addRecord?.locations = []
+            if record.recordId == nil {
+                LogManager.DLog("record not exist")
+                self.app.addRecord?.recordId = location.locationID
+                self.app.addRecord?.name = location.locationName
+                self.app.addRecord?.lineUserId = self.app.user?.lineUserId
+                
+                if self.app.addRecord?.imglocations == nil {
+                    self.app.addRecord?.locations = []
+                }
+                self.app.addRecord?.locations?.removeAll()
+                
+                if self.app.addRecord?.imglocations == nil {
+                    self.app.addRecord?.imglocations = []
+                }
+                self.app.addRecord?.imglocations?.removeAll()
+                
+                startDate = Date()
+                self.app.addRecord?.startTime = startDate.toJSONformat()
+            }else {
+                LogManager.DLog("record exist")
+                location.locationName = record.name
+                location.locationID = record.recordId
+                location.locality = record.locality
+                if let distance = record.distance {
+                    location.cumulativeKM = distance.floatValue
+                }
+                if let maxSpeed = record.maxSpeed {
+                    location.hightSpeed = maxSpeed.floatValue
+                }
+                if let avgSpeed = record.avgSpeed {
+                    location.averageSpeed = avgSpeed.floatValue
+                }
+                if let altitude = record.altitude {
+                    location.altitude = altitude.doubleValue
+                }
+                
+                let sdate = Date.getDateFromString(record.startTime!, format: Date.JSONFormat)
+                let edate = Date.getDateFromString(record.endTime!, format: Date.JSONFormat)
+                location.cumulativeMS = edate.timeIntervalSince(sdate)
+                location.cumulativeTimeInternal = UInt32(edate.timeIntervalSince(sdate))
+                
+                startDate = sdate
+                
+                for loa in record.locations! {
+                    let l = CLLocation(latitude: CLLocationDegrees(truncating: loa[0]), longitude: CLLocationDegrees(truncating: loa[1]))
+                    location.coordinates.add(l)
+                }
             }
-            self.app.addRecord?.locations?.removeAll()
-            
-            if self.app.addRecord?.imglocations == nil {
-                self.app.addRecord?.imglocations = []
-            }
-            self.app.addRecord?.imglocations?.removeAll()
-            
-            startDate = Date()
-            self.app.addRecord?.startTime = startDate.toJSONformat()
         }
     }
     
@@ -155,24 +190,33 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         self.syncData()
 
         let interval: Int = Int(Date().timeIntervalSince(startDate))
+        
         if interval % saveInterval == 0 {
-            if let location = self.app.addRecord?.locations?.last {
-                if let index = self.app.addRecord?.imglocations?.last {
-                    let l: [NSNumber]! = self.app.addRecord?.locations![index]
-                    let loaA = CLLocation(latitude: CLLocationDegrees(truncating: location[0]), longitude: CLLocationDegrees(truncating: location[1]))
-                    let loaB = CLLocation(latitude: CLLocationDegrees(truncating: l[0]), longitude: CLLocationDegrees(truncating: l[1]))
-                    let distance = loaA.distance(from: loaB)
-                    if Int(distance) >= saveDistance {
-                        self.app.addRecord?.imglocations?.append((self.app.addRecord?.locations?.count)! - 1)
-                    }
-                }else {
-                    let l: [NSNumber]! = self.app.addRecord?.locations![0]
-                    let loaA = CLLocation(latitude: CLLocationDegrees(truncating: location[0]), longitude: CLLocationDegrees(truncating: location[1]))
-                    let loaB = CLLocation(latitude: CLLocationDegrees(truncating: l[0]), longitude: CLLocationDegrees(truncating: l[1]))
-                    let distance = loaA.distance(from: loaB)
-                    if Int(distance) >= saveDistance {
-                        self.app.addRecord?.imglocations?.append((self.app.addRecord?.locations?.count)! - 1)
-                    }
+            self.app.addRecord?.save()
+        }
+        
+        if interval % cacheInterval != 0 {
+            return
+        }
+        
+        if let location = self.app.addRecord?.locations?.last {
+            if let index = self.app.addRecord?.imglocations?.last {
+                let l: [NSNumber]! = self.app.addRecord?.locations![index]
+                let loaA = CLLocation(latitude: CLLocationDegrees(truncating: location[0]), longitude: CLLocationDegrees(truncating: location[1]))
+                let loaB = CLLocation(latitude: CLLocationDegrees(truncating: l[0]), longitude: CLLocationDegrees(truncating: l[1]))
+                let distance = loaA.distance(from: loaB)
+                if Int(distance) >= cacheDistance {
+                    self.app.addRecord?.imglocations?.append((self.app.addRecord?.locations?.count)! - 1)
+                    LogManager.DLog("add img location")
+                }
+            }else {
+                let l: [NSNumber]! = self.app.addRecord?.locations?.first
+                let loaA = CLLocation(latitude: CLLocationDegrees(truncating: location[0]), longitude: CLLocationDegrees(truncating: location[1]))
+                let loaB = CLLocation(latitude: CLLocationDegrees(truncating: l[0]), longitude: CLLocationDegrees(truncating: l[1]))
+                let distance = loaA.distance(from: loaB)
+                if Int(distance) >= cacheDistance {
+                    self.app.addRecord?.imglocations?.append((self.app.addRecord?.locations?.count)! - 1)
+                    LogManager.DLog("add img location")
                 }
             }
         }
