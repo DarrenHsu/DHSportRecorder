@@ -132,17 +132,15 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     
     func receiveWillStop(_ location: DHLocation!) {
         let date = Date()
+        
         self.app.addRecord?.endTime = date.toJSONformat()
-        self.app.addRecord?.save()
-        self.app.addRecord?.removeSource()
-    }
-    
-    func receiveStop(_ location: DHLocation!) {
-        self.syncData()
         
         self.startAnimating()
         FeedManager.sharedInstance().addtRecord(self.app.addRecord!, success: { (r) in
             self.stopAnimating()
+            self.app.addRecord?.save()
+            self.app.addRecord?.removeSource()
+            NotificationCenter.default.post(name: .needReloadRoute, object: nil)
         }) { (msg) in
             self.stopAnimating()
             self.ui.showAlert(msg, controller: self)
