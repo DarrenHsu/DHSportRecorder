@@ -49,6 +49,17 @@ class RecordAdding: ModelObject {
         }
         return obj
     }
+    
+    func getDHLocationCoordinates() -> [DHLocationCoordinate] {
+        var locationCoordinate: [DHLocationCoordinate] = []
+        for location in locations! {
+            let l = DHLocationCoordinate()
+            l.latitude = CLLocationDegrees(truncating: location[0])
+            l.longitude = CLLocationDegrees(truncating: location[1])
+            locationCoordinate.append(l)
+        }
+        return locationCoordinate
+    }
 }
 
 class Record: RecordAdding {

@@ -24,10 +24,8 @@
 + (GMSMutablePath *) drawMap:(GMSMapView *) map coordinates:(NSArray *) coordinates {
     GMSMutablePath *path = [GMSMutablePath path];
     
-    for (NSArray *dhcoordinate in coordinates) {
-        NSNumber *lat = dhcoordinate[0];
-        NSNumber *lon = dhcoordinate[1];
-        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(lat.doubleValue, lon.doubleValue);
+    for (DHLocationCoordinate *dhcoordinate in coordinates) {
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(dhcoordinate.latitude, dhcoordinate.longitude);
         [path addCoordinate:coordinate];
     }
     

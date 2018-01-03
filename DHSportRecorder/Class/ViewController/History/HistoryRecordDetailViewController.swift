@@ -91,7 +91,7 @@ class HistoryRecordDetailViewController: BaseViewController {
         maxSpeedLabel.text = String(format: "%.01f", (record?.maxSpeed)!.doubleValue)
         avgSpeedLabel.text = String(format: "%.01f", (record?.avgSpeed)!.doubleValue)
         
-        DHMap.draw(mapView, coordinates: record?.locations)
+        DHMap.draw(mapView, coordinates: record?.getDHLocationCoordinates())
         
         loadRecordImage()
     }
