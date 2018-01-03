@@ -65,14 +65,6 @@ class HistoryRecordDetailViewController: BaseViewController {
         mapBaseView?.layer.masksToBounds = true
         mapBaseView?.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
         
-        nameLabel.text = record?.name
-        localitlyLabel.text = record?.locality
-        dateLabel.text = record?.startTime?.transferToString(Date.JSONFormat, format2: format1)
-        timeLabel.text = "\(String(describing: (record?.startTime?.transferToString(Date.JSONFormat, format2: format2))!)) ~ \(String(describing: (record?.endTime?.transferToString(Date.JSONFormat, format2: format2))!))"
-        distanceLabel.text = String(format: "%.01f", (record?.distance)!.doubleValue)
-        maxSpeedLabel.text = String(format: "%.01f", (record?.maxSpeed)!.doubleValue)
-        avgSpeedLabel.text = String(format: "%.01f", (record?.avgSpeed)!.doubleValue)
-        
         GMSServices.provideAPIKey(GIDSignInManager.sharedInstance().getAPIKey())
         
         let clm = CLLocationManager()
@@ -90,6 +82,14 @@ class HistoryRecordDetailViewController: BaseViewController {
         mapView?.accessibilityElementsHidden = true
         mapView?.alpha = 0
         mapBaseView?.addSubview(mapView!)
+        
+        nameLabel.text = record?.name
+        localitlyLabel.text = record?.locality
+        dateLabel.text = record?.startTime?.transferToString(Date.JSONFormat, format2: format1)
+        timeLabel.text = "\(String(describing: (record?.startTime?.transferToString(Date.JSONFormat, format2: format2))!)) ~ \(String(describing: (record?.endTime?.transferToString(Date.JSONFormat, format2: format2))!))"
+        distanceLabel.text = String(format: "%.01f", (record?.distance)!.doubleValue)
+        maxSpeedLabel.text = String(format: "%.01f", (record?.maxSpeed)!.doubleValue)
+        avgSpeedLabel.text = String(format: "%.01f", (record?.avgSpeed)!.doubleValue)
         
         DHMap.draw(mapView, coordinates: record?.locations)
         
