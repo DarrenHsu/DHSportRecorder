@@ -67,20 +67,20 @@ extension YTLive  {
             .responseData { response in
                 self.processSuccess(response, success: success, failure: failure)
         }
+    }
+    
+    func LiveStreamDelete(_ id: String?, accessToken: String?, success: ((LiveStream) -> Void)?, failure: (() -> Void)?) {
+        guard accessToken != nil else {
+            failure?()
+            return
+        }
         
-        func LiveStreamDelete(_ id: String?, accessToken: String?, success: ((LiveStream) -> Void)?, failure: (() -> Void)?) {
-            guard accessToken != nil else {
-                failure?()
-                return
-            }
-            
-            Alamofire.request("\(YouTubeLiveStreamURL)?id=\(id!)&key=\(self.clientId)",
-                method: .delete,
-                headers: getHeaders(accessToken!))
-                .validate()
-                .responseData { response in
-                    self.processSuccess(response, success: success, failure: failure)
-            }
+        Alamofire.request("\(YouTubeLiveStreamURL)?id=\(id!)&key=\(self.clientId)",
+            method: .delete,
+            headers: getHeaders(accessToken!))
+            .validate()
+            .responseData { response in
+                self.processSuccess(response, success: success, failure: failure)
         }
     }
 

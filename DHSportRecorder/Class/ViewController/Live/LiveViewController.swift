@@ -98,7 +98,8 @@ class LiveViewController: BaseViewController, GIDSignInUIDelegate {
     }
 }
 
-extension LiveViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+// MARK: - UIScrollViewDelegate
+extension LiveViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == self.tableView {
             if scrollView.contentOffset.y < -120 {
@@ -106,7 +107,10 @@ extension LiveViewController: UITableViewDelegate, UITableViewDataSource, UIScro
             }
         }
     }
-    
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+extension LiveViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.broadcasts.count
     }
@@ -158,6 +162,26 @@ extension LiveViewController: UITableViewDelegate, UITableViewDataSource, UIScro
             self.present(controller, animated: true, completion: nil)
         default:
             break
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let broadcast = broadcasts[indexPath.row]
+            self.startAnimating()
+            YTLive.shard().liveBroadcastDelete(broadcast.id!, accessToken: self.gi.accessToken, success: { () in
+                self.broadcasts.remove(at: indexPath.row)
+                tableView.reloadData()
+                self.stopAnimating()
+            }, failure: {
+                self.stopAnimating()
+            })
+
         }
     }
 }

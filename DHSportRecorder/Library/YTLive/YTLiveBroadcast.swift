@@ -116,7 +116,7 @@ extension YTLive {
         }
     }
     
-    func liveBroadcastDelete(_ id: String, accessToken: String?, success: ((LiveBroadcast) -> Void)?, failure: (() -> Void)?) {
+    func liveBroadcastDelete(_ id: String, accessToken: String?, success: (() -> Void)?, failure: (() -> Void)?) {
         guard accessToken != nil else {
             failure?()
             return
@@ -140,8 +140,18 @@ extension YTLive {
         }
         
         let json = JSON(data: response.data!)
-        let liveBoradcast = LiveBroadcast.conver(dict: json.object as! [String : Any])
-        success?(liveBoradcast)
+        if let object: [String: Any] = json.object as? [String : Any] {
+            let liveBoradcast = LiveBroadcast.conver(dict: object)
+            success?(liveBoradcast)
+        }
+    }
+    
+    fileprivate func processSuccess(_ response: DataResponse<Data>, success: (() -> Void)?, failure: (() -> Void)?) {
+        guard self.checkResponseCorrect(response, failure: failure) else {
+            return
+        }
+        
+        success?()
     }
     
     fileprivate func processSuccess(_ response: DataResponse<Data>, success: (([LiveBroadcast]) -> Void)?, failure: (() -> Void)?) {

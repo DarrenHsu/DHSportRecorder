@@ -98,6 +98,10 @@ class YTLive: NSObject {
                         str += "RESPONSE: \(json.debugDescription)\n"
                     }
                 }
+                
+                if json.string != nil {
+                    str += "RESPONSE: \(json.debugDescription)\n"
+                }
             }
         }
         
