@@ -20,7 +20,7 @@ class LiveViewController: BaseViewController, GIDSignInUIDelegate {
     var broadcasts: [LiveBroadcast] = []
     var isLoading = false
     
-    @IBAction func createBroadcast(sender: UIButton) {
+    @IBAction func createBroadcast(_ sender: UIBarButtonItem) {
         let startDate = Helpers.dateAfter(Date(), after: (hour: 0, minute: 0, second: 0))
         let endDate = Helpers.dateAfter(Date(), after: (hour: 1, minute: 0, second: 0))
         
