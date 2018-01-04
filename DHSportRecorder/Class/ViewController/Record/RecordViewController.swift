@@ -10,23 +10,23 @@ import UIKit
 
 class RecordViewController: BaseViewController, DHLocationDelegate {
     
-    @IBOutlet weak var recordFrame: UIView?
+    @IBOutlet weak var recordFrame: UIView!
     
-    @IBOutlet weak var profileFrame: UIView?
-    @IBOutlet weak var pictureImg: UIImageView?
-    @IBOutlet weak var nameLabel: UILabel?
+    @IBOutlet weak var profileFrame: UIView!
+    @IBOutlet weak var pictureImg: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
 
-    @IBOutlet weak var playButton: UIButton?
-    @IBOutlet weak var startLocationImageView: UIImageView?
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var startLocationImageView: UIImageView!
 
-    @IBOutlet weak var cityLabel: UILabel?
-    @IBOutlet weak var reocrdNameLabel: UILabel?
-    @IBOutlet weak var distanceLabel: UILabel?
-    @IBOutlet weak var currentSpeedLabel: UILabel?
-    @IBOutlet weak var elapseedLabel: UILabel?
-    @IBOutlet weak var maxSpeedLabel: UILabel?
-    @IBOutlet weak var heightLabel: UILabel?
-    @IBOutlet weak var avgSpeedLabel: UILabel?
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var reocrdNameLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var currentSpeedLabel: UILabel!
+    @IBOutlet weak var elapseedLabel: UILabel!
+    @IBOutlet weak var maxSpeedLabel: UILabel!
+    @IBOutlet weak var heightLabel: UILabel!
+    @IBOutlet weak var avgSpeedLabel: UILabel!
     
     var tmp: Double = 0.0001
     let lat: Double = 25.050143075261012
@@ -50,14 +50,10 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        recordFrame?.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
-        recordFrame?.layer.borderWidth = 1
-        recordFrame?.layer.cornerRadius = 15
-        recordFrame?.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
+        setGeneralStyle(recordFrame)
+        setGeneralStyle(profileFrame)
         
-        profileFrame?.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
-        profileFrame?.layer.borderWidth = 1
-        profileFrame?.layer.cornerRadius = 15
+        recordFrame.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
         
         DHLocation.shard().registerDelegate(self)
         
@@ -89,19 +85,19 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
             playButton?.setImage(UIImage(named: "ic_record_off"), for: UIControlState.normal)
         }
     
-        reocrdNameLabel?.text = object?.locationName
-        cityLabel?.text = object?.locality
+        reocrdNameLabel.text = object?.locationName
+        cityLabel.text = object?.locality
         
-        distanceLabel?.text = String(format: "%.01f", (object?.cumulativeKM)!)
-        currentSpeedLabel?.text = String(format: "%.01f", (object?.currentSpeed)!)
-        heightLabel?.text = String(format: "%.01f", (object?.altitude)!)
-        maxSpeedLabel?.text = String(format: "%.01f", (object?.hightSpeed)!)
-        avgSpeedLabel?.text = String(format: "%.01f", (object?.averageSpeed)!)
-        startLocationImageView?.image = UIImage(named: (object?.locationOn)! ? "ic_gps_on" : "ic_gps_off")
+        distanceLabel.text = String(format: "%.01f", (object?.cumulativeKM)!)
+        currentSpeedLabel.text = String(format: "%.01f", (object?.currentSpeed)!)
+        heightLabel.text = String(format: "%.01f", (object?.altitude)!)
+        maxSpeedLabel.text = String(format: "%.01f", (object?.hightSpeed)!)
+        avgSpeedLabel.text = String(format: "%.01f", (object?.averageSpeed)!)
+        startLocationImageView.image = UIImage(named: (object?.locationOn)! ? "ic_gps_on" : "ic_gps_off")
         
         let intev = object?.cumulativeTimeInternal;
         let cumulativeTime = String(format: "%02d:%02d:%02d", intev! / 3600,(intev! % 3600) / 60 , intev! % 60)
-        elapseedLabel?.text = cumulativeTime
+        elapseedLabel.text = cumulativeTime
         
         if object?.locality != nil {
             self.app.addRecord?.locality = object?.locality

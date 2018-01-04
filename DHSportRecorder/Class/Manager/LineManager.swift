@@ -11,6 +11,8 @@ import LineSDK
 
 class LineManager: NSObject {
 
+    public static let LINE_BOT_URL = "https://line.me/R/ti/p/M3qgSZXFH3"
+    
     private static var _manager: LineManager?
     
     public static func sharedInstance() -> LineManager {

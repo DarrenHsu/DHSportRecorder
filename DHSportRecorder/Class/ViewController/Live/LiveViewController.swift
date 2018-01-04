@@ -181,7 +181,6 @@ extension LiveViewController: UITableViewDelegate, UITableViewDataSource {
             }, failure: {
                 self.stopAnimating()
             })
-
         }
     }
 }

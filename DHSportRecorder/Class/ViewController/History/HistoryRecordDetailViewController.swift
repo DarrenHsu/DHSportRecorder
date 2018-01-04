@@ -56,14 +56,8 @@ class HistoryRecordDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dataBaseView?.layer.cornerRadius = 15
-        dataBaseView?.layer.borderWidth = 1
-        dataBaseView?.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
-        
-        mapBaseView?.layer.cornerRadius = 15
-        mapBaseView?.layer.borderWidth = 1
-        mapBaseView?.layer.masksToBounds = true
-        mapBaseView?.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+        setGeneralStyle(dataBaseView)
+        setGeneralStyle(mapBaseView)
         
         GMSServices.provideAPIKey(GIDSignInManager.sharedInstance().getAPIKey())
         

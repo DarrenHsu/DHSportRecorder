@@ -11,9 +11,9 @@ import GoogleMaps
 
 class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDelegate {
 
-    @IBOutlet weak var mapBaseView: UIView?
-    @IBOutlet weak var lockBaseView: UIView?
-    @IBOutlet weak var lockSwitch: UISwitch?
+    @IBOutlet weak var mapBaseView: UIView!
+    @IBOutlet weak var lockBaseView: UIView!
+    @IBOutlet weak var lockSwitch: UISwitch!
     
     private var mapView: GMSMapView?
     private var marker: GMSMarker?
@@ -27,9 +27,6 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
         super.viewDidLoad()
 
         GMSServices.provideAPIKey(GIDSignInManager.sharedInstance().getAPIKey())
-        
-        lockSwitch?.tintColor = UIColor.black
-        lockSwitch?.onTintColor = UIColor.black
         
         var camera: GMSCameraPosition? = nil
         
@@ -52,21 +49,19 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
             icon = icon?.circleMasked
         }catch {}
 
-        mapBaseView?.layer.cornerRadius = 15
-        mapBaseView?.layer.borderWidth = 1
-        mapBaseView?.layer.masksToBounds = true
-        mapBaseView?.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
-
-        lockBaseView?.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1)
-        lockBaseView?.layer.cornerRadius = 15
-        lockBaseView?.layer.borderWidth = 1
-        lockBaseView?.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+        setGeneralStyle(mapBaseView)
+        setGeneralStyle(lockBaseView)
         
-        mapView = GMSMapView.map(withFrame: (mapBaseView?.bounds)!, camera: camera!)
+        lockSwitch.tintColor = UIColor.black
+        lockSwitch.onTintColor = UIColor.black
+        
+        lockBaseView.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1)
+        
+        mapView = GMSMapView.map(withFrame: mapBaseView.bounds, camera: camera!)
         mapView?.isMyLocationEnabled = true
         mapView?.accessibilityElementsHidden = true
         mapView?.addObserver(self, forKeyPath: "myLocation", options: [.old, .new], context: nil)
-        mapBaseView?.addSubview(mapView!)
+        mapBaseView.addSubview(mapView!)
         
         path = DHMap.draw(mapView, coordinates: object?.coordinates as! [Any])
         snippet = String(format: "%@ $@", "Tester", "record")
@@ -80,7 +75,7 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        mapView?.frame = (mapBaseView?.bounds)!
+        mapView?.frame = mapBaseView.bounds
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -102,7 +97,7 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
             marker = DHMap.draw(mapView, markIcon: icon, title: "Titile", snippet: snippet, latitude: (mapView?.camera.target.latitude)!, longtitude: (mapView?.camera.target.longitude)!)
         }
         
-        if (lockSwitch?.isOn)! {
+        if lockSwitch.isOn {
             let camera = GMSCameraPosition.camera(withTarget: (mapView?.myLocation?.coordinate)!, zoom: 19)
             mapView?.moveCamera(GMSCameraUpdate.setCamera(camera))
         }

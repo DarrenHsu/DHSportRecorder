@@ -46,9 +46,7 @@ class HistoryDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        baseView.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
-        baseView.layer.borderWidth = 1
-        baseView.layer.cornerRadius = 15
+        setGeneralStyle(baseView)
         baseView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
         
         do {
