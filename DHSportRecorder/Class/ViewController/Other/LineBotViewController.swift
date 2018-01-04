@@ -11,7 +11,8 @@ import UIKit
 class LineBotViewController: BaseViewController {
     
     @IBOutlet var baseView: [UIView]!
-    @IBOutlet var versionLabel: UILabel!
+    @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var botImageView: UIImageView!
     
     @IBAction func addPressed(_ sender: UIButton) {
         guard let url = URL(string: LineManager.LINE_BOT_URL) else {
@@ -35,6 +36,10 @@ class LineBotViewController: BaseViewController {
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             versionLabel.text = version
         }
+        
+        var image = UIImage(named: "ic_health")
+        image = image?.resizeImage(newWidth: botImageView.frame.size.width)
+        botImageView.image = image?.circleMasked
     }
 
     override func didReceiveMemoryWarning() {
