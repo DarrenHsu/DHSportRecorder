@@ -68,7 +68,7 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
         mapView?.addObserver(self, forKeyPath: "myLocation", options: [.old, .new], context: nil)
         mapBaseView?.addSubview(mapView!)
         
-        path = DHMap.draw(mapView, coordinates: object?.coordinates as! [DHLocationCoordinate]!)
+        path = DHMap.draw(mapView, coordinates: object?.coordinates as! [Any])
         snippet = String(format: "%@ $@", "Tester", "record")
     }
     

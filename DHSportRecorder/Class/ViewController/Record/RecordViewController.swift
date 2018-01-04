@@ -164,8 +164,10 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
                 startDate = sdate
                 
                 for loa in record.locations! {
-                    let l = CLLocation(latitude: CLLocationDegrees(truncating: loa[0]), longitude: CLLocationDegrees(truncating: loa[1]))
-                    location.coordinates.add(l)
+                    let coordinate = DHLocationCoordinate()
+                    coordinate.latitude = CLLocationDegrees(truncating: loa[0])
+                    coordinate.longitude = CLLocationDegrees(truncating: loa[1])
+                    location.coordinates.add(coordinate)
                 }
             }
         }
