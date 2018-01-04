@@ -63,7 +63,9 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
         mapView?.addObserver(self, forKeyPath: "myLocation", options: [.old, .new], context: nil)
         mapBaseView.addSubview(mapView!)
         
-        path = DHMap.draw(mapView, coordinates: object?.coordinates as! [Any])
+        if object?.coordinates.count != nil {
+            path = DHMap.draw(mapView, coordinates: object?.coordinates as! [Any])
+        }
         snippet = String(format: "%@ $@", "Tester", "record")
     }
     
@@ -97,7 +99,7 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
             marker = DHMap.draw(mapView, markIcon: icon, title: "Titile", snippet: snippet, latitude: (mapView?.camera.target.latitude)!, longtitude: (mapView?.camera.target.longitude)!)
         }
         
-        if lockSwitch.isOn {
+        if lockSwitch.isOn && mapView?.myLocation != nil {
             let camera = GMSCameraPosition.camera(withTarget: (mapView?.myLocation?.coordinate)!, zoom: 19)
             mapView?.moveCamera(GMSCameraUpdate.setCamera(camera))
         }
@@ -113,7 +115,7 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
         guard location.currentLocation != nil else {
             return
         }
-        
+
         let coordinate = location.currentLocation.coordinate
         DHMap.add(mapView, path: path as! GMSMutablePath, latitude: coordinate.latitude, longtitude: coordinate.longitude)
         self.addMarker()
