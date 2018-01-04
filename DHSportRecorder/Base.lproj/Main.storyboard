@@ -2115,7 +2115,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="這是一個建康平台的研究計畫的Line機器人小幫手，使用於台灣國立中正大學，雲端運算與物聯網碩士專班的研究計畫，在此提供一個自動告知群組行程，及向好友發佈您的健康紀錄的功能。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8D-0i-Lz3">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="這是一個建康平台研究計畫中的「Line機器人」小幫手，使用於台灣國立中正大學，雲端運算與物聯網碩士在職專班的研究計畫，並提供一個自動告知群組行程，及向好友發佈您的健康紀錄的好幫手。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8D-0i-Lz3">
                                                 <rect key="frame" x="19" y="165" width="243" height="169"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
