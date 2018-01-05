@@ -61,7 +61,7 @@ class ProfileViewController: BaseViewController {
             self.app.user?.save()
             self.applicaiton.goRecordController()
         }) { (msg) in
-            self.startAnimating()
+            self.stopAnimating()
             self.setDefaultValue()
         }
         

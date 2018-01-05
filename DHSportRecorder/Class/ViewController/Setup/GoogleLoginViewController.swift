@@ -24,6 +24,8 @@ class GoogleLoginViewController: BaseViewController, GIDSignInUIDelegate {
         signInButton.center = view.center
         self.view.addSubview(signInButton)
         
+        gi.signOut()
+        
         self.startAnimating()
         gi.authorization(controller: self) { (success) in
             self.stopAnimating()

@@ -66,6 +66,10 @@ class GIDSignInManager: NSObject, GIDSignInDelegate {
         return clientId!
     }
     
+    func signOut() {
+        GIDSignIn.sharedInstance().signOut()
+    }
+    
     func authorization(controller: GIDSignInUIDelegate, result: @escaping (Bool) -> Void) {
         authResult = result
         

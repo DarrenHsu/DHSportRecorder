@@ -2092,7 +2092,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.80410796403884888" green="0.94778352975845337" blue="0.81556838750839233" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="5AA-hm-AWS"/>
                                     <constraint firstAttribute="width" constant="312" id="ptA-pr-s5F"/>
