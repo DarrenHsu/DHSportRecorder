@@ -14,7 +14,10 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
     @IBOutlet var dayLabel: [UILabel]!
     @IBOutlet var dayView: [UIView]!
     
-    var hourViewHeight: Int = 80
+    let hourViewHeight: Int = 120
+    let temMinuteHight: Int = 20
+    let minuteHight: Int = 2
+    
     var index: Int = 0
     var today: Date = Date()
     var weekDay: Int!
@@ -59,14 +62,13 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
             scrollView.layer.borderWidth = 0.5
             
             var y: CGFloat = 0
-            for _ in 0...23 {
+            for _ in 0..<(history.endHour - history.startHour) {
                 y += CGFloat(hourViewHeight)
                 let v = UIView(frame: CGRect(x: 2, y: y, width: scrollView.frame.size.width - 4, height: 1))
                 v.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
                 scrollView.addSubview(v)
             }
             scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: y)
-            scrollView.contentOffset = ui.contentOffSet
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .loadHistoryFinished, object: nil)
@@ -93,6 +95,7 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
                             v.removeFromSuperview()
                         }
                     }
+                    scrollView.contentOffset = self.ui.contentOffSet
                 }
             }
             
@@ -108,20 +111,24 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
                     date = self.today
                 }
                 
+                /* Route */
                 let key = date.stringDate("yyyyMMdd")
                 if let routes = self.history.routeDict[key] {
                     for route in routes {
                         let s = route.startTime?.transferToString(Date.JSONFormat, format2: "HH")
+                        let m = route.startTime?.transferToString(Date.JSONFormat, format2: "mm")
                         let e = route.endTime?.transferToString(Date.JSONFormat, format2: "HH")
-                        let y: Int = Int(s!)!
-                        let height: Int = Int(e!)! - Int(s!)! < 1 ? 1 : Int(e!)! - Int(s!)!
+                        let y: Int = Int(s!)! - self.history.startHour
+                        let s1 = Int(s!)! - self.history.startHour
+                        let e1 = Int(e!)! - self.history.startHour
+                        let height: Int = e1 - s1 < 1 ? 1 : e1 - s1
                         DispatchQueue.main.async {
                             let rect = CGRect(x: 5,
-                                              y: Int(y * self.hourViewHeight + 1),
+                                              y: Int(y * self.hourViewHeight + 1) + Int(Int(m!)! / 10 * self.temMinuteHight),
                                               width: Int(scrollView.frame.size.width - 10),
                                               height: Int(height * self.hourViewHeight - 1))
  
-                            let historyView :HistoryView = .fromNib()
+                            let historyView: HistoryView = .fromNib()
                             historyView.nameLabel.text = route.name
                             historyView.frame = rect
                             historyView.click = {() in
@@ -134,19 +141,22 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
                     }
                 }
                 
+                /* Record */
                 if let records = self.history.recordDict[key] {
                     for record in records {
                         let s = record.startTime?.transferToString(Date.JSONFormat, format2: "HH")
+                        let sm = record.startTime?.transferToString(Date.JSONFormat, format2: "mm")
                         let e = record.endTime?.transferToString(Date.JSONFormat, format2: "HH")
-                        let y: Int = Int(s!)!
-                        let height: Int = Int(e!)! - Int(s!)! < 1 ? 1 : Int(e!)! - Int(s!)!
+                        let em = record.endTime?.transferToString(Date.JSONFormat, format2: "mm")
+                        let y: Int = Int(s!)! - self.history.startHour
+                        let height: Int = (Int(e!)! * self.hourViewHeight + Int(em!)! * self.minuteHight) - (Int(s!)! * self.hourViewHeight + Int(sm!)! * self.minuteHight)
                         DispatchQueue.main.async {
                             let rect = CGRect(x: 5,
-                                              y: Int(y * self.hourViewHeight + 1),
+                                              y: Int(y * self.hourViewHeight + 1) + Int(sm!)!,
                                               width: Int(scrollView.frame.size.width - 10),
-                                              height: Int(height * self.hourViewHeight - 1))
+                                              height: height < self.temMinuteHight ? self.temMinuteHight : height)
                             
-                            let historyView :HistoryRecordView = .fromNib()
+                            let historyView: HistoryRecordView = .fromNib()
                             historyView.nameLabel.text = record.name
                             historyView.frame = rect
                             historyView.click = {() in

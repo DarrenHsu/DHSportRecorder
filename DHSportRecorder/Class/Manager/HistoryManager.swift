@@ -28,12 +28,15 @@ class HistoryManager: NSObject {
     
     fileprivate var isLoadHistory = false
     
+    public let startHour: Int = 5
+    public let endHour: Int = 23
+    
     private lazy var aryTimeList : [String] = {
         var aryTime : [String] = []
         
-        for h in (0...23) {
+        for h in (startHour...endHour) {
             for m in (0...1) {
-                if !(h == 23 && m == 1) {
+                if !(h == endHour && m == 1) {
                     aryTime.append("\(String(format: "%02d", h)):\(String(format: "%02d", m * 30))")
                 }
             }

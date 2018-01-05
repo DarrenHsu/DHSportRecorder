@@ -65,13 +65,13 @@ class HistoryViewController: BaseViewController {
 extension HistoryViewController: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 24
+        return history.endHour - history.startHour
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! HistoryTimeCell
-        cell.startLabel.text = String(format: "%02d:\n00", indexPath.row)
-        cell.endLabel.text = String(format: "%02d:\n59", indexPath.row)
+        cell.startLabel.text = String(format: "%02d:\n00", indexPath.row + history.startHour)
+        cell.endLabel.text = String(format: "%02d:\n59", indexPath.row + history.startHour)
         cell.selectionStyle = .none
         return cell
     }

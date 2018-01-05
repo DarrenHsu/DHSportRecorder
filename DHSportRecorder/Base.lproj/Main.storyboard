@@ -981,7 +981,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4YE-Yx-R7h">
                                 <rect key="frame" x="0.0" y="169" width="35" height="449"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="i5x-HN-nBU">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="i5x-HN-nBU">
                                         <rect key="frame" x="0.0" y="-21" width="35" height="469"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
@@ -1851,7 +1851,7 @@
             </objects>
             <point key="canvasLocation" x="5660" y="1741.9790104947529"/>
         </scene>
-        <!--Record Detail-->
+        <!--軌跡實況-->
         <scene sceneID="rhw-CM-Exz">
             <objects>
                 <viewController storyboardIdentifier="HistoryRecordDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="e9X-wt-bwZ" customClass="HistoryRecordDetailViewController" customModule="DHSportRecorder" customModuleProvider="target" sceneMemberID="viewController">
@@ -2042,7 +2042,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="opf-54-GsG"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Record Detail" id="doA-8y-UUF">
+                    <navigationItem key="navigationItem" title="軌跡實況" id="doA-8y-UUF">
                         <barButtonItem key="rightBarButtonItem" title="編輯" id="d5J-f2-ZnK">
                             <connections>
                                 <action selector="editPressed:" destination="e9X-wt-bwZ" id="WMF-NQ-a6r"/>

@@ -16,7 +16,7 @@ class DatePickerView: PickerView {
     
     @IBAction override func submitPressed(_ sender: UIButton) {
         didSelectedDate?(datePicker.date)
-        presentController?.dismiss(animated: true, completion: nil)
+        popover.dismiss()
     }
     
     class func presentPicker(_ sourceView: UIView, defaultDate: Date? = nil, handleSelected: @escaping (Date)->()) {
