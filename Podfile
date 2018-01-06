@@ -17,4 +17,5 @@ target "DHSportRecorder" do
     pod "LineSDK"
     pod "NVActivityIndicatorView"
     pod "Popover"
+    pod "Firebase/Core"
 end
