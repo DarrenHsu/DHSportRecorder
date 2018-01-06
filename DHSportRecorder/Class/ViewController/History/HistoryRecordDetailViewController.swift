@@ -40,7 +40,6 @@ class HistoryRecordDetailViewController: BaseViewController {
                 self.startAnimating()
                 self.feed.removeRecord((self.record?._id)!, success: { (msg) in
                     self.stopAnimating()
-                    self.dismiss(animated: true, completion: nil)
                     self.navigationController?.popViewController(animated: true)
                     NotificationCenter.default.post(name: .needReloadRoute, object: nil)
                 }, failure: { (msg) in

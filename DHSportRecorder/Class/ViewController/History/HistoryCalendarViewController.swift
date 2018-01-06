@@ -22,6 +22,8 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
     var today: Date = Date()
     var weekDay: Int!
     
+    var isReload = true
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
         ui.removeObserver(self, forKeyPath: "contentOffSet")
@@ -73,12 +75,16 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .loadHistoryFinished, object: nil)
         ui.addObserver(self, forKeyPath: "contentOffSet" , options: [.new, .old], context: nil)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        reloadData()
+        if isReload {
+            reloadData()
+            isReload = false
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -88,19 +94,24 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
     
     @objc func reloadData() {
         DispatchQueue.global(qos: .userInitiated).async {
-            DispatchQueue.main.async {
-                for scrollView in self.dayScrollViews {
-                    for v in scrollView.subviews {
-                        if v is HistoryView || v is HistoryRecordView {
-                            v.removeFromSuperview()
-                        }
-                    }
-                    scrollView.contentOffset = self.ui.contentOffSet
-                }
-            }
-            
             for i in 0..<self.dayScrollViews.count {
                 let scrollView = self.dayScrollViews[i]
+                DispatchQueue.main.async {
+                    for v in scrollView.subviews {
+                        if v is HistoryView {
+                            print("\(v)")
+                            v.removeFromSuperview()
+                            continue
+                        }
+                        if v is HistoryRecordView {
+                            print("\(v)")
+                            v.removeFromSuperview()
+                            continue
+                        }
+                    }
+                    
+                    scrollView.contentOffset = self.ui.contentOffSet
+                }
                 
                 var date: Date
                 if i < self.weekDay {
@@ -152,7 +163,7 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
                         let height: Int = (Int(e!)! * self.hourViewHeight + Int(em!)! * self.minuteHight) - (Int(s!)! * self.hourViewHeight + Int(sm!)! * self.minuteHight)
                         DispatchQueue.main.async {
                             let rect = CGRect(x: 5,
-                                              y: Int(y * self.hourViewHeight + 1) + Int(sm!)!,
+                                              y: Int(y * self.hourViewHeight + 1) + Int(sm!)! * self.minuteHight,
                                               width: Int(scrollView.frame.size.width - 10),
                                               height: height < self.temMinuteHight ? self.temMinuteHight : height)
                             
