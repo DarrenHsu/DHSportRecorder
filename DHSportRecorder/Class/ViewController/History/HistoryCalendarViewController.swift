@@ -106,11 +106,7 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
                 let scrollView = self.dayScrollViews[i]
                 DispatchQueue.main.async {
                     for v in scrollView.subviews {
-                        if v is HistoryView {
-                            v.removeFromSuperview()
-                            continue
-                        }
-                        if v is HistoryRecordView {
+                        if v is HistoryView || v is HistoryRecordView {
                             v.removeFromSuperview()
                             continue
                         }
