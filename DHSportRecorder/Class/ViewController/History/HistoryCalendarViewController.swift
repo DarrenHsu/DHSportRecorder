@@ -92,6 +92,14 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "contentOffSet" {
+            for scrollView in dayScrollViews {
+                scrollView.contentOffset = ui.contentOffSet
+            }
+        }
+    }
+    
     @objc func reloadData() {
         DispatchQueue.global(qos: .userInitiated).async {
             for i in 0..<self.dayScrollViews.count {
@@ -99,12 +107,10 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
                 DispatchQueue.main.async {
                     for v in scrollView.subviews {
                         if v is HistoryView {
-                            print("\(v)")
                             v.removeFromSuperview()
                             continue
                         }
                         if v is HistoryRecordView {
-                            print("\(v)")
                             v.removeFromSuperview()
                             continue
                         }
@@ -126,19 +132,8 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
                 let key = date.stringDate("yyyyMMdd")
                 if let routes = self.history.routeDict[key] {
                     for route in routes {
-                        let s = route.startTime?.transferToString(Date.JSONFormat, format2: "HH")
-                        let m = route.startTime?.transferToString(Date.JSONFormat, format2: "mm")
-                        let e = route.endTime?.transferToString(Date.JSONFormat, format2: "HH")
-                        let y: Int = Int(s!)! - self.history.startHour
-                        let s1 = Int(s!)! - self.history.startHour
-                        let e1 = Int(e!)! - self.history.startHour
-                        let height: Int = e1 - s1 < 1 ? 1 : e1 - s1
+                        let rect = self.getRect(route.startTime!, endTime: route.endTime!, width: scrollView.frame.size.width)
                         DispatchQueue.main.async {
-                            let rect = CGRect(x: 5,
-                                              y: Int(y * self.hourViewHeight + 1) + Int(Int(m!)! / 10 * self.temMinuteHight),
-                                              width: Int(scrollView.frame.size.width - 10),
-                                              height: Int(height * self.hourViewHeight - 1))
- 
                             let historyView: HistoryView = .fromNib()
                             historyView.nameLabel.text = route.name
                             historyView.frame = rect
@@ -155,18 +150,8 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
                 /* Record */
                 if let records = self.history.recordDict[key] {
                     for record in records {
-                        let s = record.startTime?.transferToString(Date.JSONFormat, format2: "HH")
-                        let sm = record.startTime?.transferToString(Date.JSONFormat, format2: "mm")
-                        let e = record.endTime?.transferToString(Date.JSONFormat, format2: "HH")
-                        let em = record.endTime?.transferToString(Date.JSONFormat, format2: "mm")
-                        let y: Int = Int(s!)! - self.history.startHour
-                        let height: Int = (Int(e!)! * self.hourViewHeight + Int(em!)! * self.minuteHight) - (Int(s!)! * self.hourViewHeight + Int(sm!)! * self.minuteHight)
+                        let rect = self.getRect(record.startTime!, endTime: record.endTime!, width: scrollView.frame.size.width)
                         DispatchQueue.main.async {
-                            let rect = CGRect(x: 5,
-                                              y: Int(y * self.hourViewHeight + 1) + Int(sm!)! * self.minuteHight,
-                                              width: Int(scrollView.frame.size.width - 10),
-                                              height: height < self.temMinuteHight ? self.temMinuteHight : height)
-                            
                             let historyView: HistoryRecordView = .fromNib()
                             historyView.nameLabel.text = record.name
                             historyView.frame = rect
@@ -183,12 +168,19 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
         }
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "contentOffSet" {
-            for scrollView in dayScrollViews {
-                scrollView.contentOffset = ui.contentOffSet
-            }
-        }
+    func getRect(_ startTime: String, endTime: String, width: CGFloat) -> CGRect {
+        let s = startTime.transferToString(Date.JSONFormat, format2: "HH")
+        let sm = startTime.transferToString(Date.JSONFormat, format2: "mm")
+        let e = endTime.transferToString(Date.JSONFormat, format2: "HH")
+        let em = endTime.transferToString(Date.JSONFormat, format2: "mm")
+        let y: Int = (Int(s)! - self.history.startHour) * 60 + Int(sm)!
+        let s1 = (Int(s)! - self.history.startHour) * 60 + Int(sm)!
+        let e1 = (Int(e)! - self.history.startHour) * 60 + Int(em)!
+        let height: Int = e1 - s1 < 10 ? 10 : e1 - s1
+        return CGRect(x: 5,
+                          y: y * self.minuteHight,
+                          width: Int(width - 10),
+                          height: height * self.minuteHight)
     }
     
     // MARK: - UIScrollViewDelegate Methods
