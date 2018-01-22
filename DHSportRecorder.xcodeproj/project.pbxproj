@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CFE2D38B32B6EB1D4A3BB565 /* Pods_DHSportRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30F682FEFF2D3DDF61F8728 /* Pods_DHSportRecorder.framework */; };
+		D001F6082015777F0074373C /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001F6072015777F0074373C /* UIViewExtension.swift */; };
 		D01954EA1FF1283D00CF6B0A /* AddRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01954E91FF1283D00CF6B0A /* AddRouteViewController.swift */; };
 		D01954F01FF1318000CF6B0A /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01954EC1FF1317F00CF6B0A /* PickerView.swift */; };
 		D01954F11FF1318000CF6B0A /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01954ED1FF1317F00CF6B0A /* DatePickerView.swift */; };
@@ -87,6 +88,7 @@
 /* Begin PBXFileReference section */
 		29C4EC531CB941A36504A4E1 /* Pods-DHSportRecorder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.debug.xcconfig"; sourceTree = "<group>"; };
 		70868086652D1A08B24673F2 /* Pods-DHSportRecorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.release.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.release.xcconfig"; sourceTree = "<group>"; };
+		D001F6072015777F0074373C /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		D01954E91FF1283D00CF6B0A /* AddRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRouteViewController.swift; sourceTree = "<group>"; };
 		D01954EC1FF1317F00CF6B0A /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		D01954ED1FF1317F00CF6B0A /* DatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
@@ -339,7 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				D09BB53A1FD7CEA6002B9CE5 /* Model */,
-				D09339CF1FB29B7400EC0700 /* category */,
+				D09339CF1FB29B7400EC0700 /* Category */,
 				D09339D41FB29B7400EC0700 /* Extension */,
 				D09339D71FB29B7400EC0700 /* Helpers */,
 				D09339DB1FB29B7400EC0700 /* Manager */,
@@ -349,7 +351,7 @@
 			path = Class;
 			sourceTree = "<group>";
 		};
-		D09339CF1FB29B7400EC0700 /* category */ = {
+		D09339CF1FB29B7400EC0700 /* Category */ = {
 			isa = PBXGroup;
 			children = (
 				D09339D01FB29B7400EC0700 /* UIControl+YYAdd.h */,
@@ -357,12 +359,13 @@
 				D09339D21FB29B7400EC0700 /* UIView+YYAdd.h */,
 				D09339D31FB29B7400EC0700 /* UIView+YYAdd.m */,
 			);
-			path = category;
+			path = Category;
 			sourceTree = "<group>";
 		};
 		D09339D41FB29B7400EC0700 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				D001F6072015777F0074373C /* UIViewExtension.swift */,
 				D09339D51FB29B7400EC0700 /* DateExtension.swift */,
 				D09339D61FB29B7400EC0700 /* StringExtension.swift */,
 				D08E26621FB424C60065C19B /* UIImageExtension.swift */,
@@ -635,6 +638,7 @@
 				D0BD508A1FF9F2D800208260 /* HistoryDetailViewController.swift in Sources */,
 				D0C5724B1FD9329300C31C8C /* AESHelper.swift in Sources */,
 				D08717AC1FB2B56B00A7784A /* StreamViewController.swift in Sources */,
+				D001F6082015777F0074373C /* UIViewExtension.swift in Sources */,
 				D039AA671FFE1287003D2672 /* LineBotViewController.swift in Sources */,
 				D09F31251FEE60BC0047DD4F /* HistoryCalendarViewController.swift in Sources */,
 				D0BD508C1FFA055000208260 /* HistoryRecordDetailViewController.swift in Sources */,
