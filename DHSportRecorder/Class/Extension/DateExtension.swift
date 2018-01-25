@@ -30,10 +30,6 @@ extension Date {
         let dateFormatterDate = DateFormatter()
         dateFormatterDate.dateFormat = Date.JSONFormat
         let dateStr = dateFormatterDate.string(from: self)
-//        let startDateStr = String(dateStr.characters.map {
-//            $0 == " " ? "T" : $0
-//        })
-//        let startDate = startDateStr
         return dateStr
     }
     

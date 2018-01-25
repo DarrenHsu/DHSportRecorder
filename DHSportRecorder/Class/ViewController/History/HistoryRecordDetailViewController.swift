@@ -34,21 +34,32 @@ class HistoryRecordDetailViewController: BaseViewController {
     let format2: String = "HH:mm"
     
     @IBAction func editPressed(_ item: UIBarButtonItem) {
-        ui.showActionSheet(self.view, controller: self, title: LString("Message:Item Edit"), actionTitles: [LString("Item:Remove"), LString("Item:Cancel")], actions: [{(UIAlertAction) in
-            self.ui.showAlert(LString("Message:Check Remove"), controller: self, submit: {() in
-                
+        ui.showActionSheet(self.view, controller: self, title: LString("Message:Item Edit"), actionTitles: [LString("Item:PushMessage"), LString("Item:Remove"), LString("Item:Cancel")], actions: [
+            {(action: UIAlertAction) in
                 self.startAnimating()
-                self.feed.removeRecord((self.record?._id)!, success: { (msg) in
+                self.feed.pushRecord((self.record?.recordId)!, success: { (msg) in
                     self.stopAnimating()
-                    self.navigationController?.popViewController(animated: true)
-                    NotificationCenter.default.post(name: .needReloadRoute, object: nil)
+                    self.ui.showAlert(msg, controller: self)
                 }, failure: { (msg) in
                     self.stopAnimating()
                     self.ui.showAlert(msg, controller: self)
                 })
-                
-            }, cancel: nil)
-            }, {(action: UIAlertAction) in
+            },
+            {(UIAlertAction) in
+                self.ui.showAlert(LString("Message:Check Remove"), controller: self, submit: {() in
+                    
+                    self.startAnimating()
+                    self.feed.removeRecord((self.record?._id)!, success: { (msg) in
+                        self.stopAnimating()
+                        self.navigationController?.popViewController(animated: true)
+                        NotificationCenter.default.post(name: .needReloadRoute, object: nil)
+                    }, failure: { (msg) in
+                        self.stopAnimating()
+                        self.ui.showAlert(msg, controller: self)
+                    })
+                }, cancel: nil)
+            },
+            {(action: UIAlertAction) in
             }])
     }
 

@@ -25,7 +25,9 @@
 "Message:Check Remove" = "是否要刪除資料?";
 
 "Item:Remove" = "刪除";
+"Item:PushMessage" = "發送至Line";
 "Item:Cancel" = "取消";
+
 
 "UI:Year" = "年";
 "UI:Month" = "月";
