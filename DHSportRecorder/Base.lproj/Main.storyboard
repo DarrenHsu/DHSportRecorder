@@ -1964,7 +1964,7 @@
                         <outlet property="dateLabel" destination="7AC-Gb-LJ4" id="wVa-uT-7tM"/>
                         <outlet property="nameLabel" destination="GKj-at-myw" id="bW2-oH-QMS"/>
                         <outlet property="pictureImg" destination="1i0-Fk-emg" id="6cc-sh-2kz"/>
-                        <outlet property="recordTabel" destination="kfE-sx-ycA" id="eAv-SV-M3E"/>
+                        <outlet property="recordTable" destination="kfE-sx-ycA" id="OVg-5k-3DN"/>
                         <outlet property="routeNameLabel" destination="9e9-WR-C0m" id="l5W-v5-jYb"/>
                         <outlet property="timeLabel" destination="zdM-FG-Qbo" id="rkW-gd-CGA"/>
                     </connections>

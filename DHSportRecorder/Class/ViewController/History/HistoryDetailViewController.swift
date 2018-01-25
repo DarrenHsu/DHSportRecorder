@@ -17,7 +17,7 @@ class HistoryDetailViewController: BaseViewController {
     @IBOutlet weak var routeNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var recordTabel: UITableView!
+    @IBOutlet weak var recordTable: UITableView!
     
     var route: Route?
     var records: [Record]?
@@ -63,8 +63,26 @@ class HistoryDetailViewController: BaseViewController {
         timeLabel.text = "\(String(describing: (route?.startTime?.transferToString(Date.JSONFormat, format2: format2))!)) ~ \(String(describing: (route?.endTime?.transferToString(Date.JSONFormat, format2: format2))!))"
         
         let key = route?.startTime?.transferToString(Date.JSONFormat, format2: "yyyyMMdd")
-        records = history.recordDict[key!]
-        setGeneralStyle(recordTabel)
+        if let rs = history.recordDict[key!] {
+            for record in rs {
+                let stime = Date.getDateFromString(record.startTime!, format: Date.JSONFormat)
+                let etime = Date.getDateFromString(record.endTime!, format: Date.JSONFormat)
+                let rstime = Date.getDateFromString((route?.startTime!)!, format: Date.JSONFormat)
+                let retime = Date.getDateFromString((route?.endTime!)!, format: Date.JSONFormat)
+                if (rstime <= stime &&  etime <= retime) ||
+                    (stime >= rstime &&  stime <= retime) ||
+                    (etime <= rstime &&  etime >= retime) ||
+                    (stime <= rstime &&  rstime <= etime) {
+                    if records == nil {
+                        records = []
+                    }
+                    records?.append(record)
+                }
+            }
+        }
+        
+        setGeneralStyle(recordTable)
+        recordTable.isHidden = records == nil || records!.count == 0
     }
 }
 
