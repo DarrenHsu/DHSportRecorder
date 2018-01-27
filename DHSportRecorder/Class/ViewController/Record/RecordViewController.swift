@@ -166,11 +166,16 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
                     location.coordinates.add(coordinate)
                 }
             }
+            
+
+            pushMessage("注意", message: "\((app.user?.name)!) 開始移動囉!");
         }
     }
     
     func receiveWillStop(_ location: DHLocation!) {
         self.app.addRecord?.endTime = Date().toJSONformat()
+        
+        pushMessage("注意", message: "\((app.user?.name)!) 結束移動了!移動了\(String(format: "%.01f", (self.app.addRecord?.distance)!.doubleValue))公里!");
         
         self.startAnimating()
         FeedManager.sharedInstance().addtRecord(self.app.addRecord!, success: { (r) in
@@ -206,6 +211,7 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
                 if Int(distance) >= cacheDistance {
                     self.app.addRecord?.imglocations?.append((self.app.addRecord?.locations?.count)! - 1)
                     LogManager.DLog("add img location")
+                    pushMessage("注意", message: "\((app.user?.name)!) 目前移動了\(String(format: "%.01f", (self.app.addRecord?.distance)!.doubleValue))公里!");
                 }
             }else {
                 let l: [NSNumber]! = self.app.addRecord?.locations?.first
@@ -215,6 +221,7 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
                 if Int(distance) >= cacheDistance {
                     self.app.addRecord?.imglocations?.append((self.app.addRecord?.locations?.count)! - 1)
                     LogManager.DLog("add img location")
+                    pushMessage("注意", message: "\((app.user?.name)!) 目前移動了\(String(format: "%.01f", (self.app.addRecord?.distance)!.doubleValue))公里!");
                 }
             }
         }
@@ -237,5 +244,11 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     
     func receiveError(_ location: DHLocation!) {
         self.syncData()
+    }
+    
+    func pushMessage(_ type: String, message: String) {
+        feed.pushMessage((app.user?.lineUserId)!, message: "\(type)：\(message)", success: { (msg) in
+        }) { (msg) in
+        }
     }
 }

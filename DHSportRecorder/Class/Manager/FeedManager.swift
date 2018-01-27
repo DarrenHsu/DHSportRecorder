@@ -360,6 +360,7 @@ extension FeedManager {
 extension FeedManager {
     fileprivate static let LINEWEBHOOK_API = "\(SERVER_NAME)/api/linebot"
     fileprivate static let PUSH_RECORD_API = "\(LINEWEBHOOK_API)/push/record"
+    fileprivate static let PUSH_MESSAGE_API = "\(LINEWEBHOOK_API)/push/message"
     
     public func pushRecord(_ recordId: String, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
         self.requestGet("\(FeedManager.PUSH_RECORD_API)/\(recordId)").responseJSON { (response) in
@@ -370,4 +371,16 @@ extension FeedManager {
             })
         }
     }
+    
+    public func pushMessage(_ lineUserId: String, message: String, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
+        self.requestPost("\(FeedManager.PUSH_MESSAGE_API)", parameters: ["lineUserId": lineUserId, "msg": message]).responseJSON { (response) in
+            self.processResponse(response, success: { (message) in
+                success(message)
+            }, failure: { (code, message) in
+                failure(message)
+            })
+        }
+    }
+    
+    
 }
