@@ -20,8 +20,6 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var doneBarItem: UIBarButtonItem?
     @IBOutlet weak var profileView: UIView?
     
-    var orignalRect: CGRect?
-    
     @IBAction func donePressed() {
         self.view.endEditing(true)
         
@@ -64,17 +62,8 @@ class ProfileViewController: BaseViewController {
             self.stopAnimating()
             self.setDefaultValue()
         }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        self.orignalRect = self.profileView?.frame
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -115,29 +104,4 @@ class ProfileViewController: BaseViewController {
         
         self.doneBarItem?.isEnabled = true
     }
-    
-    @objc func keyboardDidHide(notification: Notification) {
-        var frame = self.view.frame
-        frame.origin.y = 0
-        
-        UIView.animate(withDuration: 0.28, animations: {
-            self.view.frame = frame
-        }, completion: nil)
-    }
-    
-    @objc func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo
-        let krect = (userInfo![UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
-        
-        let pframe = self.profileView?.frame
-        
-        var frame = self.view.frame
-        frame.origin.y = -abs((pframe?.origin.y)! + (pframe?.size.height)! - (krect?.origin.y)!)
-        
-        UIView.animate(withDuration: 0.28, animations: {
-            self.view.frame = frame
-        }, completion: nil)
-    }
-    
-
 }

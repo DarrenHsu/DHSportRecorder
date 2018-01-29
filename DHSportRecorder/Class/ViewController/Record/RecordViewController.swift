@@ -35,7 +35,7 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     var startDate: Date!
     var saveInterval: Int = 10
     var cacheInterval: Int = 60
-    var cacheDistance: Int = 500
+    var cacheDistance: Int = 1000
     
     @IBAction func startRecordPressed(sender: UIButton) {
         let object = DHLocation.shard()
@@ -168,14 +168,14 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
             }
             
 
-            pushMessage("注意", message: "\((app.user?.name)!) 開始移動囉!");
+            pushMessage("訊息", message: "\((app.user?.name)!) 開始移動囉!");
         }
     }
     
     func receiveWillStop(_ location: DHLocation!) {
         self.app.addRecord?.endTime = Date().toJSONformat()
         
-        pushMessage("注意", message: "\((app.user?.name)!) 結束移動了!移動了\(String(format: "%.01f", (self.app.addRecord?.distance)!.doubleValue))公里!");
+        pushMessage("訊息", message: "\((app.user?.name)!) 結束移動了，共\(String(format: "%.01f", (self.app.addRecord?.distance)!.doubleValue))公里!");
         
         self.startAnimating()
         FeedManager.sharedInstance().addtRecord(self.app.addRecord!, success: { (r) in
@@ -211,7 +211,7 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
                 if Int(distance) >= cacheDistance {
                     self.app.addRecord?.imglocations?.append((self.app.addRecord?.locations?.count)! - 1)
                     LogManager.DLog("add img location")
-                    pushMessage("注意", message: "\((app.user?.name)!) 目前移動了\(String(format: "%.01f", (self.app.addRecord?.distance)!.doubleValue))公里!");
+                    pushMessage("訊息", message: "\((app.user?.name)!) 目前正在移動中，已移動了\(String(format: "%.01f", (self.app.addRecord?.distance)!.doubleValue))公里!");
                 }
             }else {
                 let l: [NSNumber]! = self.app.addRecord?.locations?.first
@@ -221,7 +221,7 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
                 if Int(distance) >= cacheDistance {
                     self.app.addRecord?.imglocations?.append((self.app.addRecord?.locations?.count)! - 1)
                     LogManager.DLog("add img location")
-                    pushMessage("注意", message: "\((app.user?.name)!) 目前移動了\(String(format: "%.01f", (self.app.addRecord?.distance)!.doubleValue))公里!");
+                    pushMessage("訊息", message: "\((app.user?.name)!) 目前正在移動中，已移動了\(String(format: "%.01f", (self.app.addRecord?.distance)!.doubleValue))公里!");
                 }
             }
         }

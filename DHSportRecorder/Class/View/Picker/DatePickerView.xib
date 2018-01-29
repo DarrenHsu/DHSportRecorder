@@ -72,6 +72,7 @@
                     <date key="date" timeIntervalSinceReferenceDate="535619876.39169502">
                         <!--2017-12-22 07:17:56 +0000-->
                     </date>
+                    <locale key="locale" localeIdentifier="zh_TW"/>
                 </datePicker>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

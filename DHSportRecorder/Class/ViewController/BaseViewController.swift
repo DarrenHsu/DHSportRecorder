@@ -19,11 +19,20 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable {
     let app = AppManager.sharedInstance()
     let history = HistoryManager.sharedInstance()
 
+    var editingView: UIView!
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NVActivityIndicatorView.DEFAULT_TYPE = .ballPulse
         NVActivityIndicatorView.DEFAULT_BLOCKER_SIZE = CGSize(width: 100, height: 100)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,4 +47,32 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable {
         v.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
     }
     
+    // MARK: - KeyboardNotification
+    @objc func keyboardWillShow(notification: Notification) {
+        guard editingView != nil else {
+            return
+        }
+        
+        let frame: CGRect = self.view.convert(editingView.frame, from: editingView.superview)
+        let eFrame: CGRect = (applicaiton.window?.convert(frame, from: self.view))!
+        let sFrame: CGRect = (applicaiton.window?.convert(self.view.frame, from: self.view.superview))!
+        let kbFrame = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
+        
+        guard eFrame.origin.y + eFrame.size.height >= kbFrame.origin.y else {
+            return
+        }
+        
+        let height: CGFloat = CGFloat(-(eFrame.origin.y + eFrame.size.height - kbFrame.origin.y - sFrame.origin.y + 20))
+        
+        UIView.animate(withDuration: 0.25) {
+            self.view.frame = CGRect(x: 0.0, y: height, width: self.view.frame.width, height: self.view.frame.height)
+            self.editingView = nil
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        UIView.animate(withDuration: 0.25) {
+            self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        }
+    }
 }
