@@ -35,7 +35,7 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     var startDate: Date!
     var saveInterval: Int = 10
     var cacheInterval: Int = 60
-    var cacheDistance: Float = 500
+    var cacheDistance: Float = 0.5
     var tempDistance: Float = 0
     
     @IBAction func startRecordPressed(sender: UIButton) {
