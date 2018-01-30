@@ -13,7 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DatePickerView" customModule="DHSportRecorder" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+            <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="huJ-JV-RQV">
@@ -68,7 +68,7 @@
                     </constraints>
                 </view>
                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ywZ-t5-6Ad">
-                    <rect key="frame" x="0.0" y="44" width="300" height="256"/>
+                    <rect key="frame" x="0.0" y="44" width="300" height="156"/>
                     <date key="date" timeIntervalSinceReferenceDate="535619876.39169502">
                         <!--2017-12-22 07:17:56 +0000-->
                     </date>

@@ -35,7 +35,8 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     var startDate: Date!
     var saveInterval: Int = 10
     var cacheInterval: Int = 60
-    var cacheDistance: Int = 1000
+    var cacheDistance: Float = 500
+    var tempDistance: Float = 0
     
     @IBAction func startRecordPressed(sender: UIButton) {
         let object = DHLocation.shard()
@@ -167,15 +168,14 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
                 }
             }
             
-
-            pushMessage("訊息", message: "\((app.user?.name)!) 開始移動囉!");
+            feed.pushMessage((app.user?.lineUserId)!, message: String(format: LString("LINE:StarMoving"), (app.user?.name)!))
         }
     }
     
     func receiveWillStop(_ location: DHLocation!) {
         self.app.addRecord?.endTime = Date().toJSONformat()
         
-        pushMessage("訊息", message: "\((app.user?.name)!) 結束移動了，共\(String(format: "%.01f", (self.app.addRecord?.distance)!.doubleValue))公里!");
+        feed.pushMessage((app.user?.lineUserId)!, message: String(format: LString("LINE:StopMoving"), (app.user?.name)!, (self.app.addRecord?.distance)!.doubleValue))
         
         self.startAnimating()
         FeedManager.sharedInstance().addtRecord(self.app.addRecord!, success: { (r) in
@@ -201,30 +201,6 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         if interval % cacheInterval != 0 {
             return
         }
-        
-        if let location = self.app.addRecord?.locations?.last {
-            if let index = self.app.addRecord?.imglocations?.last {
-                let l: [NSNumber]! = self.app.addRecord?.locations![index]
-                let loaA = CLLocation(latitude: CLLocationDegrees(truncating: location[0]), longitude: CLLocationDegrees(truncating: location[1]))
-                let loaB = CLLocation(latitude: CLLocationDegrees(truncating: l[0]), longitude: CLLocationDegrees(truncating: l[1]))
-                let distance = loaA.distance(from: loaB)
-                if Int(distance) >= cacheDistance {
-                    self.app.addRecord?.imglocations?.append((self.app.addRecord?.locations?.count)! - 1)
-                    LogManager.DLog("add img location")
-                    pushMessage("訊息", message: "\((app.user?.name)!) 目前正在移動中，已移動了\(String(format: "%.01f", (self.app.addRecord?.distance)!.doubleValue))公里!");
-                }
-            }else {
-                let l: [NSNumber]! = self.app.addRecord?.locations?.first
-                let loaA = CLLocation(latitude: CLLocationDegrees(truncating: location[0]), longitude: CLLocationDegrees(truncating: location[1]))
-                let loaB = CLLocation(latitude: CLLocationDegrees(truncating: l[0]), longitude: CLLocationDegrees(truncating: l[1]))
-                let distance = loaA.distance(from: loaB)
-                if Int(distance) >= cacheDistance {
-                    self.app.addRecord?.imglocations?.append((self.app.addRecord?.locations?.count)! - 1)
-                    LogManager.DLog("add img location")
-                    pushMessage("訊息", message: "\((app.user?.name)!) 目前正在移動中，已移動了\(String(format: "%.01f", (self.app.addRecord?.distance)!.doubleValue))公里!");
-                }
-            }
-        }
     }
     
     func receiveStop(_ location: DHLocation!) {
@@ -240,15 +216,18 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
                 NSNumber(value: location.currentLocation.coordinate.longitude)
                 ])
         }
+        
+        if location.cumulativeKM - tempDistance >= cacheDistance {
+            if (self.app.addRecord?.locations?.last) != nil {
+                self.app.addRecord?.imglocations?.append((self.app.addRecord?.locations?.count)! - 1)
+            }
+            
+            feed.pushMessage((app.user?.lineUserId)!, message: String(format: LString("LINE:Moving"), (app.user?.name)!, (self.app.addRecord?.distance)!.doubleValue))
+            tempDistance = location.cumulativeKM
+        }
     }
     
     func receiveError(_ location: DHLocation!) {
         self.syncData()
-    }
-    
-    func pushMessage(_ type: String, message: String) {
-        feed.pushMessage((app.user?.lineUserId)!, message: "\(type)：\(message)", success: { (msg) in
-        }) { (msg) in
-        }
     }
 }

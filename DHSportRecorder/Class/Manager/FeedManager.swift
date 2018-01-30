@@ -382,5 +382,9 @@ extension FeedManager {
         }
     }
     
-    
+    public func pushMessage(_ lineUserId: String, message: String) {
+        self.pushMessage(lineUserId, message: "\(message)", success: { (msg) in
+        }) { (msg) in
+        }
+    }
 }

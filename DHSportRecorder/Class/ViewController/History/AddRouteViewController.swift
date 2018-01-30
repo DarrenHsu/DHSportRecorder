@@ -28,6 +28,8 @@ class AddRouteViewController: BaseViewController, UITextFieldDelegate {
     var format3: String = "yyyy/MM/dd HH:mm"
     
     @IBAction func donePressed(_ sender: UIBarItem) {
+        self.view.endEditing(true)
+        
         routeNameField.endEditing(true)
         route.name = routeNameField.text
         route.lineUserId = app.user?.lineUserId

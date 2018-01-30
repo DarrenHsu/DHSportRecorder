@@ -62,6 +62,8 @@ class ProfileViewController: BaseViewController {
             self.stopAnimating()
             self.setDefaultValue()
         }
+        
+        self.editingView = profileView
     }
     
     override func didReceiveMemoryWarning() {

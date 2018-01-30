@@ -28,7 +28,11 @@
 "Item:PushMessage" = "發送至Line";
 "Item:Cancel" = "取消";
 
-
 "UI:Year" = "年";
 "UI:Month" = "月";
 "UI:Day" = "日";
+
+"LINE:Title" = "訊息";
+"LINE:StopMoving" = "%@ 結束運動並移動了 %.01f 公里了";
+"LINE:StarMoving" = "%@ 開始運動囉!";
+"LINE:Moving" = "%@ 目前已活動了 %.01f 公里";
