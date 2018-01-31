@@ -86,22 +86,6 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
             isReload = false
         }
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        if dayScrollViews != nil {
-            dayScrollViews.removeAll()
-        }
-        
-        if dayLabel != nil {
-            dayLabel.removeAll()
-        }
-        
-        if dayView != nil {
-            dayView.removeAll()
-        }
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
