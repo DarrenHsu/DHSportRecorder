@@ -42,6 +42,17 @@ class Route: RouteAdding {
     var modifyAt: String?
     var createdAt: String?
     
+    func copyWithUpdating() -> RouteUpdating {
+        let dict = self.toDict()
+        let updateing = RouteUpdating()
+        var updatingDict = updateing.toDict()
+        for key in updatingDict.keys {
+            updatingDict[key] = dict[key]
+        }
+        
+        return RouteUpdating.convert(updatingDict)
+    }
+    
     override class func convert(_ dict: [String: Any]) -> Route {
         let obj = Route()
         obj.setValuesForKeys(dict)

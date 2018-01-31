@@ -229,7 +229,7 @@ extension FeedManager {
     }
     
     public func updatetRoute(_ route: RouteUpdating, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
-        self.requestPut("\(FeedManager.ROUTE_API)/\(String(describing: route._id))", parameters: route.toDict()).responseJSON { (response) in
+        self.requestPut("\(FeedManager.ROUTE_API)/\(String(describing: route._id!))", parameters: route.toDict()).responseJSON { (response) in
             self.processResponse(response, success: { (objs, message) in
                 success(message)
             }, failure: { (code, message) in

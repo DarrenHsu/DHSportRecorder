@@ -28,6 +28,8 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.endEditing(false)
+        
         NVActivityIndicatorView.DEFAULT_TYPE = .ballPulse
         NVActivityIndicatorView.DEFAULT_BLOCKER_SIZE = CGSize(width: 100, height: 100)
         

@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		CFE2D38B32B6EB1D4A3BB565 /* Pods_DHSportRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30F682FEFF2D3DDF61F8728 /* Pods_DHSportRecorder.framework */; };
 		D001F6082015777F0074373C /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001F6072015777F0074373C /* UIViewExtension.swift */; };
-		D01954EA1FF1283D00CF6B0A /* AddRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01954E91FF1283D00CF6B0A /* AddRouteViewController.swift */; };
 		D01954F01FF1318000CF6B0A /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01954EC1FF1317F00CF6B0A /* PickerView.swift */; };
 		D01954F11FF1318000CF6B0A /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01954ED1FF1317F00CF6B0A /* DatePickerView.swift */; };
 		D01954F21FF1318000CF6B0A /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D01954EE1FF1317F00CF6B0A /* DatePickerView.xib */; };
 		D01954F31FF1318000CF6B0A /* PickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D01954EF1FF1317F00CF6B0A /* PickerView.xib */; };
 		D01954F71FF1319D00CF6B0A /* LFLivePreview.m in Sources */ = {isa = PBXBuildFile; fileRef = D01954F51FF1319D00CF6B0A /* LFLivePreview.m */; };
+		D02634822021B93D0063DFD0 /* AddRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02634802021B93D0063DFD0 /* AddRouteViewController.swift */; };
+		D02634832021B93D0063DFD0 /* EditRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02634812021B93D0063DFD0 /* EditRouteViewController.swift */; };
 		D02EC1891FD64F4D00ED965B /* FeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02EC1881FD64F4D00ED965B /* FeedManager.swift */; };
 		D039AA671FFE1287003D2672 /* LineBotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039AA661FFE1287003D2672 /* LineBotViewController.swift */; };
 		D045067A1FEF47C100E45C35 /* HistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04506791FEF47C100E45C35 /* HistoryManager.swift */; };
@@ -89,13 +90,14 @@
 		29C4EC531CB941A36504A4E1 /* Pods-DHSportRecorder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.debug.xcconfig"; sourceTree = "<group>"; };
 		70868086652D1A08B24673F2 /* Pods-DHSportRecorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.release.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.release.xcconfig"; sourceTree = "<group>"; };
 		D001F6072015777F0074373C /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		D01954E91FF1283D00CF6B0A /* AddRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRouteViewController.swift; sourceTree = "<group>"; };
 		D01954EC1FF1317F00CF6B0A /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		D01954ED1FF1317F00CF6B0A /* DatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		D01954EE1FF1317F00CF6B0A /* DatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerView.xib; sourceTree = "<group>"; };
 		D01954EF1FF1317F00CF6B0A /* PickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerView.xib; sourceTree = "<group>"; };
 		D01954F51FF1319D00CF6B0A /* LFLivePreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFLivePreview.m; sourceTree = "<group>"; };
 		D01954F61FF1319D00CF6B0A /* LFLivePreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFLivePreview.h; sourceTree = "<group>"; };
+		D02634802021B93D0063DFD0 /* AddRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRouteViewController.swift; sourceTree = "<group>"; };
+		D02634812021B93D0063DFD0 /* EditRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRouteViewController.swift; sourceTree = "<group>"; };
 		D02EC1881FD64F4D00ED965B /* FeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedManager.swift; sourceTree = "<group>"; };
 		D039AA661FFE1287003D2672 /* LineBotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineBotViewController.swift; sourceTree = "<group>"; };
 		D04506791FEF47C100E45C35 /* HistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManager.swift; sourceTree = "<group>"; };
@@ -202,6 +204,15 @@
 			path = LFLive;
 			sourceTree = "<group>";
 		};
+		D026347F2021B93D0063DFD0 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				D02634802021B93D0063DFD0 /* AddRouteViewController.swift */,
+				D02634812021B93D0063DFD0 /* EditRouteViewController.swift */,
+			);
+			path = Route;
+			sourceTree = "<group>";
+		};
 		D057F8AA1FB2DFB7001AE86C /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,7 +248,6 @@
 				D09F31241FEE60BC0047DD4F /* HistoryCalendarViewController.swift */,
 				D0BD50891FF9F2D800208260 /* HistoryDetailViewController.swift */,
 				D0BD508B1FFA055000208260 /* HistoryRecordDetailViewController.swift */,
-				D01954E91FF1283D00CF6B0A /* AddRouteViewController.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -410,6 +420,7 @@
 		D09339E21FB29B7400EC0700 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				D026347F2021B93D0063DFD0 /* Route */,
 				D0E0FB591FD5772C0012A16D /* Setup */,
 				D057F8B51FB2F92D001AE86C /* History */,
 				D057F8B61FB2F92D001AE86C /* Other */,
@@ -618,7 +629,6 @@
 			files = (
 				D09339F81FB29B7400EC0700 /* LogManager.swift in Sources */,
 				D0C8B5491FD66E3E0023E28D /* LineManager.swift in Sources */,
-				D01954EA1FF1283D00CF6B0A /* AddRouteViewController.swift in Sources */,
 				D09BB53E1FD7CED1002B9CE5 /* Record.swift in Sources */,
 				D09339F91FB29B7400EC0700 /* UIManager.swift in Sources */,
 				D09339F71FB29B7400EC0700 /* GIDSignInManager.swift in Sources */,
@@ -650,6 +660,7 @@
 				D057F8B81FB2F939001AE86C /* HistoryViewController.swift in Sources */,
 				D09339EE1FB29B7400EC0700 /* YTLiveStreams.swift in Sources */,
 				D09339F01FB29B7400EC0700 /* UIControl+YYAdd.m in Sources */,
+				D02634822021B93D0063DFD0 /* AddRouteViewController.swift in Sources */,
 				D09339EC1FB29B7400EC0700 /* YTLive.swift in Sources */,
 				D08717A81FB2B55400A7784A /* LiveViewController.swift in Sources */,
 				D01954F71FF1319D00CF6B0A /* LFLivePreview.m in Sources */,
@@ -657,6 +668,7 @@
 				D07736601FDA65DB00BB50F6 /* ModelObject.swift in Sources */,
 				D0E0FB5F1FD577C40012A16D /* GoogleLoginViewController.swift in Sources */,
 				D09339AF1FB29AC200EC0700 /* AppDelegate.swift in Sources */,
+				D02634832021B93D0063DFD0 /* EditRouteViewController.swift in Sources */,
 				D09339F31FB29B7400EC0700 /* StringExtension.swift in Sources */,
 				D05D16581FF6448000B63F05 /* HistoryView.swift in Sources */,
 				D08E26631FB424C60065C19B /* UIImageExtension.swift in Sources */,

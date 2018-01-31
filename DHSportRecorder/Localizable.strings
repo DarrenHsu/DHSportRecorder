@@ -24,6 +24,7 @@
 "Message:Item Edit" = "請選擇以下功能來編輯";
 "Message:Check Remove" = "是否要刪除資料?";
 
+"Item:Edit" = "編輯";
 "Item:Remove" = "刪除";
 "Item:PushMessage" = "發送至Line";
 "Item:Cancel" = "取消";

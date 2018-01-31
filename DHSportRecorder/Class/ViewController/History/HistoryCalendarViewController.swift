@@ -86,6 +86,22 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
             isReload = false
         }
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if dayScrollViews != nil {
+            dayScrollViews.removeAll()
+        }
+        
+        if dayLabel != nil {
+            dayLabel.removeAll()
+        }
+        
+        if dayView != nil {
+            dayView.removeAll()
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -128,15 +144,15 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
                 let key = date.stringDate("yyyyMMdd")
                 if let routes = self.history.routeDict[key] {
                     for route in routes {
-                        let rect = self.getRect(route.startTime!, endTime: route.endTime!, width: scrollView.frame.size.width)
                         DispatchQueue.main.async {
+                            let rect = self.getRect(route.startTime!, endTime: route.endTime!, width: scrollView.frame.size.width)
                             let historyView: HistoryView = .fromNib()
                             historyView.nameLabel.text = route.name
                             historyView.frame = rect
-                            historyView.click = {() in
-                                let controller = self.storyboard?.instantiateViewController(withIdentifier: "HistoryDetailViewController") as! HistoryDetailViewController
+                            historyView.click = { [weak self]() in
+                                let controller = self?.storyboard?.instantiateViewController(withIdentifier: "HistoryDetailViewController") as! HistoryDetailViewController
                                 controller.route = route
-                                self.navigationController?.pushViewController(controller, animated: true)
+                                self?.navigationController?.pushViewController(controller, animated: true)
                             }
                             scrollView.addSubview(historyView)
                         }
@@ -146,15 +162,15 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
                 /* Record */
                 if let records = self.history.recordDict[key] {
                     for record in records {
-                        let rect = self.getRect(record.startTime!, endTime: record.endTime!, width: scrollView.frame.size.width)
                         DispatchQueue.main.async {
+                            let rect = self.getRect(record.startTime!, endTime: record.endTime!, width: scrollView.frame.size.width)
                             let historyView: HistoryRecordView = .fromNib()
                             historyView.nameLabel.text = record.name
                             historyView.frame = rect
-                            historyView.click = {() in
-                                let controller = self.storyboard?.instantiateViewController(withIdentifier: "HistoryRecordDetailViewController") as! HistoryRecordDetailViewController
+                            historyView.click = { [weak self]() in
+                                let controller = self?.storyboard?.instantiateViewController(withIdentifier: "HistoryRecordDetailViewController") as! HistoryRecordDetailViewController
                                 controller.record = record
-                                self.navigationController?.pushViewController(controller, animated: true)
+                                self?.navigationController?.pushViewController(controller, animated: true)
                             }
                             scrollView.addSubview(historyView)
                         }
