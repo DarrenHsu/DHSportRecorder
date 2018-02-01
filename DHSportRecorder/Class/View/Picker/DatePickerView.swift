@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Popover
 
 class DatePickerView: PickerView {
 
@@ -19,7 +20,7 @@ class DatePickerView: PickerView {
         popover.dismiss()
     }
     
-    class func presentPicker(_ sourceView: UIView, defaultDate: Date? = nil, handleSelected: @escaping (Date)->()) {
+    class func presentPicker(_ sourceView: UIView, defaultDate: Date? = nil, popoverType: PopoverType? = nil, handleSelected: @escaping (Date)->()) {
         let pickerView: DatePickerView = UINib(nibName: "DatePickerView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! DatePickerView
         pickerView.didSelectedDate = handleSelected
         
@@ -27,6 +28,6 @@ class DatePickerView: PickerView {
             pickerView.datePicker.date = defaultDate!
         }
         
-        self.presentSelf(pickerView, sourceView: sourceView)
+        self.presentSelf(pickerView, sourceView: sourceView, popoverType: popoverType)
     }
 }

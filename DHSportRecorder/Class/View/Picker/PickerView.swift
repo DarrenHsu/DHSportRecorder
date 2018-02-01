@@ -32,26 +32,29 @@ class PickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate, UIPopove
     }
 
     class func presentPicker(_ sourceView: UIView, defaultIndex: Int? = nil, dataList: [String], popoverType: PopoverType? = nil, handleSelected: @escaping (String, Int)->()) {
-        let options = [
-            .type(popoverType != nil ? popoverType! : .up),
-            .cornerRadius(15),
-            .animationIn(0.3),
-            ] as [PopoverOption]
-        
         let pickerView: PickerView = UINib(nibName: "PickerView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! PickerView
         pickerView.aryList = dataList
         pickerView.didSelectedStringAndIndex = handleSelected
-        pickerView.popover = Popover(options: options)
         
         if defaultIndex != nil {
             pickerView.indexSelected = defaultIndex!
             pickerView.picker.selectRow(defaultIndex!, inComponent: 0, animated: false)
         }
         
-        presentSelf(pickerView, sourceView: sourceView)
+        presentSelf(pickerView, sourceView: sourceView, popoverType: popoverType)
     }
     
-     class func presentSelf(_ pickerView: PickerView, sourceView: UIView) {
+     class func presentSelf(_ pickerView: PickerView, sourceView: UIView, popoverType: PopoverType?) {
+        if pickerView.popover == nil {
+            let options = [
+                .type(popoverType != nil ? popoverType! : .up),
+                .cornerRadius(15),
+                .animationIn(0.3),
+                ] as [PopoverOption]
+            
+            pickerView.popover = Popover(options: options)
+        }
+        
         let rect = pickerView.frame
         pickerView.popover.willShowHandler = {() in
             pickerView.frame = rect

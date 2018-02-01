@@ -2406,6 +2406,7 @@
                         <outletCollection property="baseView" destination="alR-Jv-p1c" collectionClass="NSMutableArray" id="uvu-AS-DQA"/>
                         <outletCollection property="baseView" destination="Dcx-3q-Msv" collectionClass="NSMutableArray" id="Uv5-lt-RC7"/>
                         <outletCollection property="baseView" destination="S3f-XG-5vB" collectionClass="NSMutableArray" id="d8J-3D-brr"/>
+                        <outletCollection property="baseView" destination="LlH-hA-9vj" collectionClass="NSMutableArray" id="sO9-HD-E20"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o92-dh-tDV" userLabel="First Responder" sceneMemberID="firstResponder"/>

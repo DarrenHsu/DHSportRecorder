@@ -48,12 +48,12 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="uw4-Lk-bdo"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.9103512167930603" green="0.87270718812942505" blue="0.96363025903701782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="eSh-Yd-Vgw" secondAttribute="trailing" constant="10" id="1Hc-Sx-sr8"/>
                         <constraint firstAttribute="height" constant="44" id="V0J-LM-Cj4"/>
