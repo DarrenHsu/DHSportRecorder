@@ -17,7 +17,6 @@
 		D02634822021B93D0063DFD0 /* AddRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02634802021B93D0063DFD0 /* AddRouteViewController.swift */; };
 		D02634832021B93D0063DFD0 /* EditRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02634812021B93D0063DFD0 /* EditRouteViewController.swift */; };
 		D02EC1891FD64F4D00ED965B /* FeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02EC1881FD64F4D00ED965B /* FeedManager.swift */; };
-		D039AA671FFE1287003D2672 /* LineBotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039AA661FFE1287003D2672 /* LineBotViewController.swift */; };
 		D045067A1FEF47C100E45C35 /* HistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04506791FEF47C100E45C35 /* HistoryManager.swift */; };
 		D057F8AC1FB2DFC0001AE86C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057F8AB1FB2DFC0001AE86C /* MapViewController.swift */; };
 		D057F8B21FB2E15D001AE86C /* DHMap.m in Sources */ = {isa = PBXBuildFile; fileRef = D057F8AE1FB2E15D001AE86C /* DHMap.m */; };
@@ -99,7 +98,6 @@
 		D02634802021B93D0063DFD0 /* AddRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRouteViewController.swift; sourceTree = "<group>"; };
 		D02634812021B93D0063DFD0 /* EditRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRouteViewController.swift; sourceTree = "<group>"; };
 		D02EC1881FD64F4D00ED965B /* FeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedManager.swift; sourceTree = "<group>"; };
-		D039AA661FFE1287003D2672 /* LineBotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineBotViewController.swift; sourceTree = "<group>"; };
 		D04506791FEF47C100E45C35 /* HistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManager.swift; sourceTree = "<group>"; };
 		D057F8AB1FB2DFC0001AE86C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D057F8AE1FB2E15D001AE86C /* DHMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHMap.m; sourceTree = "<group>"; };
@@ -256,7 +254,6 @@
 			isa = PBXGroup;
 			children = (
 				D057F8B91FB2F943001AE86C /* OtherViewController.swift */,
-				D039AA661FFE1287003D2672 /* LineBotViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -649,7 +646,6 @@
 				D0C5724B1FD9329300C31C8C /* AESHelper.swift in Sources */,
 				D08717AC1FB2B56B00A7784A /* StreamViewController.swift in Sources */,
 				D001F6082015777F0074373C /* UIViewExtension.swift in Sources */,
-				D039AA671FFE1287003D2672 /* LineBotViewController.swift in Sources */,
 				D09F31251FEE60BC0047DD4F /* HistoryCalendarViewController.swift in Sources */,
 				D0BD508C1FFA055000208260 /* HistoryRecordDetailViewController.swift in Sources */,
 				D045067A1FEF47C100E45C35 /* HistoryManager.swift in Sources */,

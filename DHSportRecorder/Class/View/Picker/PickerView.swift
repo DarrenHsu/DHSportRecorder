@@ -22,18 +22,6 @@ class PickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate, UIPopove
     
     var popover: Popover!
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        let options = [
-            .type(.up),
-            .cornerRadius(15),
-            .animationIn(0.3),
-            ] as [PopoverOption]
-        
-        popover = Popover(options: options)
-    }
-    
     @IBAction func cancelPressed(_ sender: UIButton) {
         popover.dismiss()
     }
@@ -43,10 +31,17 @@ class PickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate, UIPopove
         popover.dismiss()
     }
 
-    class func presentPicker(_ sourceView: UIView, defaultIndex: Int? = nil, dataList: [String], handleSelected: @escaping (String, Int)->()) {
+    class func presentPicker(_ sourceView: UIView, defaultIndex: Int? = nil, dataList: [String], popoverType: PopoverType? = nil, handleSelected: @escaping (String, Int)->()) {
+        let options = [
+            .type(popoverType != nil ? popoverType! : .up),
+            .cornerRadius(15),
+            .animationIn(0.3),
+            ] as [PopoverOption]
+        
         let pickerView: PickerView = UINib(nibName: "PickerView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! PickerView
         pickerView.aryList = dataList
         pickerView.didSelectedStringAndIndex = handleSelected
+        pickerView.popover = Popover(options: options)
         
         if defaultIndex != nil {
             pickerView.indexSelected = defaultIndex!

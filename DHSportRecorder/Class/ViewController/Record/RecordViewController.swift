@@ -33,10 +33,9 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     let long: Double = 121.55928204761648
 
     var startDate: Date!
-    var saveInterval: Int = 10
-    var cacheInterval: Int = 60
-    var cacheDistance: Float = 0.5
-    var tempDistance: Float = 0
+    var saveInterval: Int = 5
+    var imgTempDistance: Float = 0
+    var pushTempDistance: Float = 0
     
     @IBAction func startRecordPressed(sender: UIButton) {
         let object = DHLocation.shard()
@@ -197,10 +196,6 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         if interval % saveInterval == 0 {
             self.app.addRecord?.save()
         }
-        
-        if interval % cacheInterval != 0 {
-            return
-        }
     }
     
     func receiveStop(_ location: DHLocation!) {
@@ -217,13 +212,19 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
                 ])
         }
         
-        if location.cumulativeKM - tempDistance >= cacheDistance {
+        /* save image distance */
+        if location.cumulativeKM - imgTempDistance >= app.imgDistance {
             if (self.app.addRecord?.locations?.last) != nil {
                 self.app.addRecord?.imglocations?.append((self.app.addRecord?.locations?.count)! - 1)
             }
             
+            imgTempDistance = location.cumulativeKM
+        }
+        
+        /* push line message distance */
+        if location.cumulativeKM - pushTempDistance >= app.pushDistance {
             feed.pushMessage((app.user?.lineUserId)!, message: String(format: LString("LINE:Moving"), (app.user?.name)!, (self.app.addRecord?.distance)!.doubleValue))
-            tempDistance = location.cumulativeKM
+            pushTempDistance = location.cumulativeKM
         }
     }
     
