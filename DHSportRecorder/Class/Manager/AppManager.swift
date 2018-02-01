@@ -56,7 +56,7 @@ class AppManager: NSObject {
     }
     
     public lazy var distancelist: [String] = {
-        return ["0.5","1.0", "3.0", "5.0", "10.0"]
+        return ["0.5","1.0", "2.0", "3.0", "5.0", "10.0"]
     }()
     
     public func getDocumentPath() -> String {
