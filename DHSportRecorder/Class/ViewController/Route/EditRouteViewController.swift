@@ -33,6 +33,12 @@ class EditRouteViewController: BaseViewController, UITextFieldDelegate {
         routeNameField.endEditing(true)
         route.name = routeNameField.text
         route.lineUserId = app.user?.lineUserId
+        
+        let dateStr = date.stringDate("yyyyMMdd")
+        let sTimeStr = sDate?.stringDate("HHmm")
+        let eTimeStr = eDate?.stringDate("HHmm")
+        sDate = Date.getDateFromString(String(format: "%@ %@", dateStr, sTimeStr!), format:"yyyyMMdd HHmm")
+        eDate = Date.getDateFromString(String(format: "%@ %@", dateStr, eTimeStr!), format:"yyyyMMdd HHmm")
         route.startTime = sDate?.toJSONformat()
         route.endTime = eDate?.toJSONformat()
         

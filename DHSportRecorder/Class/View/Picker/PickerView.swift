@@ -20,15 +20,19 @@ class PickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate, UIPopove
     
     var presentController: PickerViewController?
     
-    var popover: Popover!
+    var popover: Popover?
+    
+    deinit {
+        print("deinit")
+    }
     
     @IBAction func cancelPressed(_ sender: UIButton) {
-        popover.dismiss()
+        popover?.dismiss()
     }
     
     @IBAction func submitPressed(_ sender: UIButton) {
         didSelectedStringAndIndex?(self.aryList[self.indexSelected], self.indexSelected)
-        popover.dismiss()
+        popover?.dismiss()
     }
 
     class func presentPicker(_ sourceView: UIView, defaultIndex: Int? = nil, dataList: [String], popoverType: PopoverType? = nil, handleSelected: @escaping (String, Int)->()) {
@@ -56,10 +60,10 @@ class PickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate, UIPopove
         }
         
         let rect = pickerView.frame
-        pickerView.popover.willShowHandler = {() in
+        pickerView.popover?.willShowHandler = {() in
             pickerView.frame = rect
         }
-        pickerView.popover.show(pickerView, fromView: sourceView)
+        pickerView.popover?.show(pickerView, fromView: sourceView)
     }
     
     fileprivate class func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
