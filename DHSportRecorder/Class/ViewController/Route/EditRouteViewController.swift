@@ -27,10 +27,6 @@ class EditRouteViewController: BaseViewController, UITextFieldDelegate {
     var format2: String = "HH:mm"
     var format3: String = "yyyy/MM/dd HH:mm"
     
-    deinit {
-        print("deinit")
-    }
-    
     @IBAction func donePressed(_ sender: UIBarItem) {
         self.view.endEditing(true)
         

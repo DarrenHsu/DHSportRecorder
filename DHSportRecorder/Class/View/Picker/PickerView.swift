@@ -22,10 +22,6 @@ class PickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate, UIPopove
     
     var popover: Popover?
     
-    deinit {
-        print("deinit")
-    }
-    
     @IBAction func cancelPressed(_ sender: UIButton) {
         popover?.dismiss()
     }
@@ -63,6 +59,11 @@ class PickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate, UIPopove
         pickerView.popover?.willShowHandler = { [weak pickerView] () in
             pickerView?.frame = rect
         }
+        
+        pickerView.popover?.didDismissHandler = { [weak pickerView] () in
+            pickerView?.popover = nil
+        }
+        
         pickerView.popover?.show(pickerView, fromView: sourceView)
     }
     
