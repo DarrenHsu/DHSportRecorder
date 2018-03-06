@@ -27,6 +27,10 @@ class EditRouteViewController: BaseViewController, UITextFieldDelegate {
     var format2: String = "HH:mm"
     var format3: String = "yyyy/MM/dd HH:mm"
     
+    deinit {
+        print("deinit")
+    }
+    
     @IBAction func donePressed(_ sender: UIBarItem) {
         self.view.endEditing(true)
         
@@ -60,9 +64,9 @@ class EditRouteViewController: BaseViewController, UITextFieldDelegate {
     }
     
     @IBAction func datePressed(_ sender: UIButton) {
-        DatePickerView.presentPicker(sender, defaultDate: date) { (date) in
-            self.date = date
-            self.setDefaultData()
+        DatePickerView.presentPicker(sender, defaultDate: date) { [weak self] (date) in
+            self?.date = date
+            self?.setDefaultData()
         }
     }
     
@@ -70,12 +74,12 @@ class EditRouteViewController: BaseViewController, UITextFieldDelegate {
         var list: [String] = []
         list.append(contentsOf: history.getStartTimeList())
         let index = sDate?.stringDate(format2) != nil ? list.index(of: (sDate?.stringDate(format2))!) : 0
-        PickerView.presentPicker(sender, defaultIndex: index, dataList: list) { (timeStr, index) in
-            self.sDate = Date.getDateFromString("\(self.date.stringDate(self.format1)) \(timeStr)", format: self.format3)
-            let list = self.history.getEndTimeList(startTime: timeStr)
-            let eDateStr: String = list.count > 2 ? list[2] : list.last!
-            self.eDate = Date.getDateFromString("\(self.date.stringDate(self.format1)) \(eDateStr)", format: self.format3)
-            self.setDefaultData()
+        PickerView.presentPicker(sender, defaultIndex: index, dataList: list) { [weak self] (timeStr, index) in
+            self?.sDate = Date.getDateFromString("\(String(format: "%@", (self?.date.stringDate((self?.format1)!))!)) \(timeStr)", format: (self?.format3)!)
+            let list = self?.history.getEndTimeList(startTime: timeStr)
+            let eDateStr: String = list!.count > 2 ? list![2] : list!.last!
+            self?.eDate = Date.getDateFromString("\(String(format: "%@", (self?.date.stringDate((self?.format1)!))!)) \(eDateStr)", format: (self?.format3)!)
+            self?.setDefaultData()
         }
     }
     
@@ -87,9 +91,9 @@ class EditRouteViewController: BaseViewController, UITextFieldDelegate {
             list.append(contentsOf: history.getStartTimeList())
         }
         let index = endTimeField.text != nil && !(endTimeField.text?.isEmpty)! ? list.index(of: endTimeField.text!) : 0
-        PickerView.presentPicker(sender, defaultIndex: index, dataList: list) { (timeStr, index) in
-            self.eDate = Date.getDateFromString("\(self.date.stringDate(self.format1)) \(timeStr)", format: self.format3)
-            self.setDefaultData()
+        PickerView.presentPicker(sender, defaultIndex: index, dataList: list) { [weak self] (timeStr, index) in
+            self?.eDate = Date.getDateFromString("\(String(format: "%@", (self?.date.stringDate((self?.format1)!))!)) \(timeStr)", format: (self?.format3)!)
+            self?.setDefaultData()
         }
     }
     

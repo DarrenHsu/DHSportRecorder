@@ -11,7 +11,7 @@ import Popover
 
 class DatePickerView: PickerView {
 
-    @IBOutlet var datePicker: UIDatePicker!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     var didSelectedDate: ((_ date: Date) -> ())?
     

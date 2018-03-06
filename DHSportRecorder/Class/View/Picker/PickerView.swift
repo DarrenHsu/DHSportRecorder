@@ -11,7 +11,7 @@ import Popover
 
 class PickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate, UIPopoverPresentationControllerDelegate {
     
-    @IBOutlet var picker: UIPickerView!
+    @IBOutlet weak var picker: UIPickerView!
     
     var aryList: [String] = []
     var indexSelected: Int = 0
@@ -60,8 +60,8 @@ class PickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate, UIPopove
         }
         
         let rect = pickerView.frame
-        pickerView.popover?.willShowHandler = {() in
-            pickerView.frame = rect
+        pickerView.popover?.willShowHandler = { [weak pickerView] () in
+            pickerView?.frame = rect
         }
         pickerView.popover?.show(pickerView, fromView: sourceView)
     }

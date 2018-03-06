@@ -53,6 +53,8 @@ class ProfileViewController: BaseViewController {
         
         self.doneBarItem?.isEnabled = false
 
+        downloadProfilePhoto()
+        
         self.startAnimating()
         self.feed.listUser((self.app.setupUser?.lineUserId)!, success: {
             self.stopAnimating()
@@ -71,7 +73,7 @@ class ProfileViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setDefaultValue() {
+    func downloadProfilePhoto() {
         if self.line.profile != nil {
             if let pictureURL: URL = self.line.profile?.pictureURL {
                 self.feed.downloadFile(pictureURL, destination: URL(fileURLWithPath: self.line.getLocalicturePath()), success: { () in
@@ -82,7 +84,9 @@ class ProfileViewController: BaseViewController {
                 })
             }
         }
-        
+    }
+    
+    func setDefaultValue() {
         if let user = self.app.user {
             if user.name != nil {
                 nameLabel?.text = user.name!
