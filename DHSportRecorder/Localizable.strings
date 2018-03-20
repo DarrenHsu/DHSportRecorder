@@ -35,5 +35,5 @@
 
 "LINE:Title" = "訊息";
 "LINE:StopMoving" = "%@ 結束運動，且移動了 %.01f 公里!";
-"LINE:StarMoving" = "%@ 開始運動囉!";
-"LINE:Moving" = "%@ 目前已活動了 %.01f 公里";
+"LINE:StarMoving" = "%@ 開始移動!";
+"LINE:Moving" = "%@ 目前已移動了 %.01f 公里";
