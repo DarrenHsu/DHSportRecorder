@@ -91,11 +91,12 @@ extension YTLive {
         guard self.checkResponseCorrect(response, failure: failure) else {
             return
         }
-        
-        let json = JSON(data: response.data!)
-        LogManager.DLog("\(json)")
-        let liveStream = LiveStream.conver(dict: json.object as! [String : Any])
-        success?(liveStream)
+        do {
+            let json = try JSON(data: response.data!)
+            LogManager.DLog("\(json)")
+            let liveStream = LiveStream.conver(dict: json.object as! [String : Any])
+            success?(liveStream)
+        } catch {}
     }
     
     fileprivate func processSuccess(_ response: DataResponse<Data>, success: (([LiveStream]) -> Void)?, failure: (() -> Void)?) {
@@ -103,17 +104,19 @@ extension YTLive {
             return
         }
         
-        let json = JSON(data: response.data!)
-        LogManager.DLog("\(json)")
-        if let items = json.dictionaryObject!["items"] {
-            var results: [LiveStream] = []
-            for item in items as! [[String : Any]] {
-                let liveBroadcast = LiveStream.conver(dict: item)
-                results.append(liveBroadcast)
+        do {
+            let json = try JSON(data: response.data!)
+            LogManager.DLog("\(json)")
+            if let items = json.dictionaryObject!["items"] {
+                var results: [LiveStream] = []
+                for item in items as! [[String : Any]] {
+                    let liveBroadcast = LiveStream.conver(dict: item)
+                    results.append(liveBroadcast)
+                }
+                success?(results)
+            }else {
+                failure?()
             }
-            success?(results)
-        }else {
-            failure?()
-        }
+        } catch {}
     }
 }

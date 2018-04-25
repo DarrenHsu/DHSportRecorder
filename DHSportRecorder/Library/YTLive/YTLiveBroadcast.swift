@@ -139,7 +139,7 @@ extension YTLive {
             return
         }
         
-        let json = JSON(data: response.data!)
+        let json = try! JSON(data: response.data!)
         if let object: [String: Any] = json.object as? [String : Any] {
             let liveBoradcast = LiveBroadcast.conver(dict: object)
             success?(liveBoradcast)
@@ -159,7 +159,7 @@ extension YTLive {
             return
         }
         
-        let json = JSON(data: response.data!)
+        let json = try! JSON(data: response.data!)
         if let items = json.dictionaryObject!["items"] {
             var results: [LiveBroadcast] = []
             for item in items as! [[String : Any]] {

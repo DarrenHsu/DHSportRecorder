@@ -47,7 +47,7 @@ class YTLive: NSObject {
     }
     
     func getHeaders(_ accessToken: String) -> [String : String]? {
-        return merge(one: ["Content-Type": "application/json"], ["Authorization":"Bearer \(accessToken)"])
+        return merge(one: ["Content-Type": "application/json"], ["Authorization": "Bearer \(accessToken)"])
     }
     
     func getJSONString(_ dict: [String : Any]) -> String {
@@ -70,7 +70,7 @@ class YTLive: NSObject {
             str += "\(error)\n"
         }else {
             if  let data = response.data {
-                let json: JSON = JSON(data: data)
+                let json: JSON = try! JSON(data: data)
                 if json.array != nil {
                     if json.count > PrintCount {
                         str += "RESPONSE: \n"
@@ -117,7 +117,7 @@ class YTLive: NSObject {
             return false
         }
         
-        let json = JSON(data: data)
+        let json = try! JSON(data: data)
         let error = json["error"].dictionaryObject
         if error != nil {
             failure?()

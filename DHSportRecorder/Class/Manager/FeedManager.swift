@@ -55,7 +55,7 @@ class FeedManager: NSObject {
             str += "\(error)\n"
         }else {
             if  let data = response.data {
-                let json: JSON = JSON(data: data)
+                let json: JSON = try! JSON(data: data)
                 
                 if json.dictionary != nil {
                     if let code: JSON = json.dictionary?["code"] {
@@ -142,7 +142,7 @@ extension FeedManager {
             return
         }
         
-        let json = JSON(data: response.data!)
+        let json = try! JSON(data: response.data!)
         let message = json["message"].stringValue
         if let code = json["code"].number {
             if  code != 0 {
@@ -163,7 +163,7 @@ extension FeedManager {
             return
         }
         
-        let json = JSON(data: response.data!)
+        let json = try! JSON(data: response.data!)
         let message = json["message"].stringValue
         if let code = json["code"].number {
             if  code != 0 {
