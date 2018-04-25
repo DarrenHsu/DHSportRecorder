@@ -61,7 +61,6 @@ class LiveViewController: BaseViewController, GIDSignInUIDelegate {
         
         self.startAnimating()
         gi.authorization(controller: self) { (success) in
-            self.stopAnimating()
             self.tableView?.isHidden = !success
             
             if success {
@@ -70,6 +69,7 @@ class LiveViewController: BaseViewController, GIDSignInUIDelegate {
             } else {
                 self.ui.showAlert(LString("Message:Google Auth Failure"), controller: self)
             }
+            self.stopAnimating()
         }
     }
     

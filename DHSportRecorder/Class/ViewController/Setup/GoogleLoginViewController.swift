@@ -26,9 +26,7 @@ class GoogleLoginViewController: BaseViewController, GIDSignInUIDelegate {
         
         gi.signOut()
         
-        self.startAnimating()
         gi.authorization(controller: self) { (success) in
-            self.stopAnimating()
             self.signInButton.isHidden = success
             self.loginSuccessView?.isHidden = !success
             self.nextBarItem?.isEnabled = true
@@ -40,10 +38,10 @@ class GoogleLoginViewController: BaseViewController, GIDSignInUIDelegate {
                 }
             }
         }
-        
+
         nextBarItem?.isEnabled = false
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

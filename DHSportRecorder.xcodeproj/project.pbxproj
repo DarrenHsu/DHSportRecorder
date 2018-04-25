@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CFE2D38B32B6EB1D4A3BB565 /* Pods_DHSportRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30F682FEFF2D3DDF61F8728 /* Pods_DHSportRecorder.framework */; };
 		D001F6082015777F0074373C /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001F6072015777F0074373C /* UIViewExtension.swift */; };
 		D01954F01FF1318000CF6B0A /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01954EC1FF1317F00CF6B0A /* PickerView.swift */; };
 		D01954F11FF1318000CF6B0A /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01954ED1FF1317F00CF6B0A /* DatePickerView.swift */; };
@@ -69,6 +68,7 @@
 		D0E0FB5D1FD577B70012A16D /* LineLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E0FB5C1FD577B70012A16D /* LineLoginViewController.swift */; };
 		D0E0FB5F1FD577C40012A16D /* GoogleLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E0FB5E1FD577C40012A16D /* GoogleLoginViewController.swift */; };
 		D0E0FB611FD577FE0012A16D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E0FB601FD577FE0012A16D /* ProfileViewController.swift */; };
+		E04A2AE9614AB0DE4EF1D57F /* Pods_DHSportRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 672AA82D128CC621276F64DC /* Pods_DHSportRecorder.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -85,8 +85,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		29C4EC531CB941A36504A4E1 /* Pods-DHSportRecorder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.debug.xcconfig"; sourceTree = "<group>"; };
-		70868086652D1A08B24673F2 /* Pods-DHSportRecorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.release.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.release.xcconfig"; sourceTree = "<group>"; };
+		672AA82D128CC621276F64DC /* Pods_DHSportRecorder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DHSportRecorder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		98FD468F444B9EB9186DEAF2 /* Pods-DHSportRecorder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.release.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.release.xcconfig"; sourceTree = "<group>"; };
 		D001F6072015777F0074373C /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		D01954EC1FF1317F00CF6B0A /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		D01954ED1FF1317F00CF6B0A /* DatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 		D0E0FB5C1FD577B70012A16D /* LineLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineLoginViewController.swift; sourceTree = "<group>"; };
 		D0E0FB5E1FD577C40012A16D /* GoogleLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLoginViewController.swift; sourceTree = "<group>"; };
 		D0E0FB601FD577FE0012A16D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		E30F682FEFF2D3DDF61F8728 /* Pods_DHSportRecorder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DHSportRecorder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D91A6312F550DB68B784CBA0 /* Pods-DHSportRecorder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHSportRecorder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DHSportRecorder/Pods-DHSportRecorder.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,20 +164,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFE2D38B32B6EB1D4A3BB565 /* Pods_DHSportRecorder.framework in Frameworks */,
+				E04A2AE9614AB0DE4EF1D57F /* Pods_DHSportRecorder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		46302C95EB1F2E27F3065331 /* Pods */ = {
+		8AA0F8F55FD2DC0C5FACF53A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				29C4EC531CB941A36504A4E1 /* Pods-DHSportRecorder.debug.xcconfig */,
-				70868086652D1A08B24673F2 /* Pods-DHSportRecorder.release.xcconfig */,
+				672AA82D128CC621276F64DC /* Pods_DHSportRecorder.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D01954EB1FF1317F00CF6B0A /* Picker */ = {
@@ -282,8 +281,8 @@
 			children = (
 				D09339AD1FB29AC200EC0700 /* DHSportRecorder */,
 				D09339AC1FB29AC200EC0700 /* Products */,
-				46302C95EB1F2E27F3065331 /* Pods */,
-				E85148DF9CACC0E3FF929A99 /* Frameworks */,
+				DDF0F69117D2BEFEB65688DA /* Pods */,
+				8AA0F8F55FD2DC0C5FACF53A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -449,12 +448,13 @@
 			path = Setup;
 			sourceTree = "<group>";
 		};
-		E85148DF9CACC0E3FF929A99 /* Frameworks */ = {
+		DDF0F69117D2BEFEB65688DA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E30F682FEFF2D3DDF61F8728 /* Pods_DHSportRecorder.framework */,
+				D91A6312F550DB68B784CBA0 /* Pods-DHSportRecorder.debug.xcconfig */,
+				98FD468F444B9EB9186DEAF2 /* Pods-DHSportRecorder.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -572,6 +572,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/XCDYouTubeKit/XCDYouTubeKit.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -587,6 +588,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCDYouTubeKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -606,7 +608,9 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -806,7 +810,7 @@
 		};
 		D09339BE1FB29AC200EC0700 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 29C4EC531CB941A36504A4E1 /* Pods-DHSportRecorder.debug.xcconfig */;
+			baseConfigurationReference = D91A6312F550DB68B784CBA0 /* Pods-DHSportRecorder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -827,7 +831,7 @@
 		};
 		D09339BF1FB29AC200EC0700 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 70868086652D1A08B24673F2 /* Pods-DHSportRecorder.release.xcconfig */;
+			baseConfigurationReference = 98FD468F444B9EB9186DEAF2 /* Pods-DHSportRecorder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
