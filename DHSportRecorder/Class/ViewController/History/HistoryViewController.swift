@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HistoryViewController: BaseViewController {
     
@@ -26,6 +27,8 @@ class HistoryViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Analytics.logEvent(Analytics_Recorder, parameters: [:])
         
         reloadData()
         

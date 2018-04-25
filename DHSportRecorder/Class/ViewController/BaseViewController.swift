@@ -22,7 +22,6 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable {
     var editingView: UIView!
     
     deinit {
-        LogManager.DLog("\(NSStringFromClass(type(of: self))) deinit")
         NotificationCenter.default.removeObserver(self)
     }
     
