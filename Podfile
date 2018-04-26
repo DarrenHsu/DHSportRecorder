@@ -19,4 +19,6 @@ target 'DHSportRecorder' do
     pod 'Popover'
     pod 'Firebase'
     pod 'FirebaseCore'
+    pod 'Fabric'
+    pod 'Crashlytics'
 end
