@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class AddRouteViewController: BaseViewController, UITextFieldDelegate {
     
@@ -89,6 +90,8 @@ class AddRouteViewController: BaseViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Analytics.logEvent(Analytics_History_Route_Add, parameters: [Analytics_User : String(format: "%@", (app.user?._id)!) as Any])
 
         baseView.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
         baseView.layer.borderWidth = 1
@@ -107,7 +110,7 @@ class AddRouteViewController: BaseViewController, UITextFieldDelegate {
         setDefaultData()
         editingView = baseView
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

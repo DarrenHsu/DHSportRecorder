@@ -8,6 +8,7 @@
 
 import UIKit
 import Popover
+import Firebase
 
 class HistoryDetailViewController: BaseViewController {
 
@@ -54,6 +55,8 @@ class HistoryDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Analytics.logEvent(Analytics_History_Route, parameters: [Analytics_User : String(format: "%@", (app.user?._id)!) as Any])
         
         setGeneralStyle(baseView)
         baseView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)

@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleSignIn
+import Firebase
 
 class GoogleLoginViewController: BaseViewController, GIDSignInUIDelegate {
 
@@ -18,6 +19,8 @@ class GoogleLoginViewController: BaseViewController, GIDSignInUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Analytics.logEvent(Analytics_Setup_Google, parameters: [:])
 
         loginSuccessView?.isHidden = true
         

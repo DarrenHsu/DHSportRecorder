@@ -12,6 +12,7 @@ import UIKit
 import MediaPlayer
 import AVKit
 import XCDYouTubeKit
+import Firebase
 
 class LiveViewController: BaseViewController, GIDSignInUIDelegate {
     
@@ -52,6 +53,8 @@ class LiveViewController: BaseViewController, GIDSignInUIDelegate {
             self.stopAnimating()
             self.ui.showAlert(LString("Message:Add Broadcast Failure"), controller: self)
         }
+        
+        Analytics.logEvent(Analytics_Live_Add, parameters: [Analytics_User : String(format: "%@", (app.user?._id)!) as Any])
     }
     
     override func viewDidLoad() {
@@ -71,6 +74,12 @@ class LiveViewController: BaseViewController, GIDSignInUIDelegate {
             }
             self.stopAnimating()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        Analytics.logEvent(Analytics_Live, parameters: [Analytics_User : String(format: "%@", (app.user?._id)!) as Any])
     }
     
     override func didReceiveMemoryWarning() {

@@ -28,11 +28,15 @@ class HistoryViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Analytics.logEvent(Analytics_Recorder, parameters: [:])
-        
         reloadData()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .needReloadRoute, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        Analytics.logEvent(Analytics_Recorder, parameters: [Analytics_User : String(format: "%@", (app.user?._id)!) as Any])
     }
     
     override func viewDidAppear(_ animated: Bool) {

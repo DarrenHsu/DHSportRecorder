@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RecordViewController: BaseViewController, DHLocationDelegate {
     
@@ -42,6 +43,8 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         if object?.appCurrentActionTag == KATStopRecoding {
             let r = arc4random() % 100
             object?.start(withLocationName: String(format: "record %d", r), locationId: DHLocation.stringWithNewUUID())
+            
+            Analytics.logEvent(Analytics_Recorder_Start, parameters: [Analytics_User : String(format: "%@", (app.user?._id)!) as Any])
         } else if object?.appCurrentActionTag == KATPlayRecoding {
             object?.stop()
         }
@@ -58,6 +61,12 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         DHLocation.shard().registerDelegate(self)
         
         self.setDefaultValue()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        Analytics.logEvent(Analytics_Recorder, parameters: [Analytics_User : String(format: "%@", (app.user?._id)!) as Any])
     }
 
     override func didReceiveMemoryWarning() {

@@ -8,6 +8,7 @@
 
 import UIKit
 import LineSDK
+import Firebase
 
 class LineLoginViewController: BaseViewController, LineSDKLoginDelegate {
     
@@ -21,6 +22,8 @@ class LineLoginViewController: BaseViewController, LineSDKLoginDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Analytics.logEvent(Analytics_Setup_Line, parameters: [:])
 
         LineSDKLogin.sharedInstance().delegate = self
         
@@ -32,7 +35,6 @@ class LineLoginViewController: BaseViewController, LineSDKLoginDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     // MARK: LineSDKLoginDelegate
     func didLogin(_ login: LineSDKLogin, credential: LineSDKCredential?, profile: LineSDKProfile?, error: Error?) {

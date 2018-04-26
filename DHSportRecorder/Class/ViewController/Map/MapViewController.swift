@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import Firebase
 
 class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDelegate {
 
@@ -67,6 +68,12 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
             path = DHMap.draw(mapView, coordinates: object?.coordinates as! [Any])
         }
         snippet = String(format: "%@ $@", "Tester", "record")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        Analytics.logEvent(Analytics_Map, parameters: [Analytics_User : String(format: "%@", (app.user?._id)!) as Any])
     }
     
     override func didReceiveMemoryWarning() {

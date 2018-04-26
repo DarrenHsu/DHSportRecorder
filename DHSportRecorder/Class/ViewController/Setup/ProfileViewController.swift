@@ -8,6 +8,7 @@
 
 import UIKit
 import LineSDK
+import Firebase
 
 class ProfileViewController: BaseViewController {
     
@@ -48,6 +49,8 @@ class ProfileViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Analytics.logEvent(Analytics_Setup_DH, parameters: [:])
         
         nameLabel?.text = self.line.profile?.displayName
         

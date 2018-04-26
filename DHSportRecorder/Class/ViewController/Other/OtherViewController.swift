@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class OtherViewController: BaseViewController {
 
@@ -33,6 +34,8 @@ class OtherViewController: BaseViewController {
     }
     
     @IBAction func addPressed(_ sender: UIButton) {
+        Analytics.logEvent(Analytics_Other_Friend_Add, parameters: [Analytics_User : String(format: "%@", (app.user?._id)!) as Any])
+        
         guard let url = URL(string: LineManager.LINE_BOT_URL) else {
             return
         }
@@ -61,6 +64,12 @@ class OtherViewController: BaseViewController {
         
         imgDistanceLabel.text = String(format: "%.01f", app.imgDistance)
         pushDistanceLabel.text = String(format: "%.01f", app.pushDistance)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        Analytics.logEvent(Analytics_Other, parameters: [Analytics_User : String(format: "%@", (app.user?._id)!) as Any])
     }
     
     override func didReceiveMemoryWarning() {
