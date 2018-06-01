@@ -45,7 +45,6 @@ class AddRouteViewController: BaseViewController, UITextFieldDelegate {
         
         self.startAnimating()
         feed.addtRoute(route, success: { (route) in
-            self.stopAnimating()
             self.navigationController?.popViewController(animated: true)
             NotificationCenter.default.post(name: .needReloadRoute, object: nil)
         }) { (msg) in

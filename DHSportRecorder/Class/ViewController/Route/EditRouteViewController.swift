@@ -50,7 +50,6 @@ class EditRouteViewController: BaseViewController, UITextFieldDelegate {
         
         self.startAnimating()
         feed.updatetRoute(route, success: { (msg) in
-            self.stopAnimating()
             self.navigationController?.popToRootViewController(animated: true)
             NotificationCenter.default.post(name: .needReloadRoute, object: nil)
         }) { (msg) in
