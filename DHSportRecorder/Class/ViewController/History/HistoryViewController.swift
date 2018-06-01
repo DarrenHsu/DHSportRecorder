@@ -59,12 +59,12 @@ class HistoryViewController: BaseViewController {
     @objc func reloadData() {
         self.startAnimating()
         history.reloadHistory { (success, msg) in
-            self.stopAnimating()
             if success {
                 NotificationCenter.default.post(name: .loadHistoryFinished, object: nil)
             } else {
                 self.ui.showAlert(msg!, controller: self)
             }
+            self.stopAnimating()
         }
     }
 }

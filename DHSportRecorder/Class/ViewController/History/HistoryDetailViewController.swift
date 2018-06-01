@@ -27,8 +27,19 @@ class HistoryDetailViewController: BaseViewController {
     var format2: String = "HH:mm"
     
     @IBAction func editPressed(_ item: UIBarButtonItem) {
-        ui.showActionSheet(self.view, controller: self, title: LString("Message:Item Edit"), actionTitles: [LString("Item:Edit"), LString("Item:Remove"), LString("Item:Cancel")], actions: [
+        ui.showActionSheet(self.view, controller: self, title: LString("Message:Item Edit"), actionTitles: [LString("Item:PushMessage"), LString("Item:Edit"), LString("Item:Remove"), LString("Item:Cancel")], actions: [
             {(action: UIAlertAction) in
+                
+                self.startAnimating()
+                self.feed.pushRoute((self.app.user?.lineUserId)!, title: (self.route?.name)!, success: { (msg) in
+                    self.stopAnimating()
+                    self.ui.showAlert(msg, controller: self)
+                }, failure: { (msg) in
+                    self.stopAnimating()
+                    self.ui.showAlert(msg, controller: self)
+                })
+                
+            }, {(action: UIAlertAction) in
                 
                 let controller = self.storyboard?.instantiateViewController(withIdentifier: "EditRouteViewController") as! EditRouteViewController
                 controller.route = self.route?.copyWithUpdating()
@@ -106,7 +117,6 @@ extension HistoryDetailViewController: UITableViewDataSource, UITableViewDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! RecordTableCell
         
         let record = records![indexPath.row]
-        cell.nameLabel.text = record.name
         cell.localitlyLabel.text = record.locality
         cell.timeLabel.text = "\(String(describing: (record.startTime?.transferToString(Date.JSONFormat, format2: format2))!)) ~ \(String(describing: (record.endTime?.transferToString(Date.JSONFormat, format2: format2))!))"
         cell.distanceLabel.text = String(format: "%.01f", (record.distance)!.doubleValue)
@@ -123,7 +133,6 @@ extension HistoryDetailViewController: UITableViewDataSource, UITableViewDelegat
 }
 
 class RecordTableCell: UITableViewCell {
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var localitlyLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!

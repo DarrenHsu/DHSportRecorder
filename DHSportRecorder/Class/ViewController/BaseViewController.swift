@@ -46,7 +46,7 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable {
         v.layer.cornerRadius = 15
         v.layer.borderWidth = 1
         v.layer.masksToBounds = true
-        v.layer.borderColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+        v.layer.borderColor = #colorLiteral(red: 0.8320333958, green: 0.8320333958, blue: 0.8320333958, alpha: 1)
     }
     
     // MARK: - KeyboardNotification

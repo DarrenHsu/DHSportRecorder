@@ -96,7 +96,7 @@ class FeedManager: NSObject {
             })
     }
     
-    fileprivate func requestGet(_ url: String) -> DataRequest {
+    fileprivate func GET(_ url: String) -> DataRequest {
         return Alamofire.request(url,
             method: .get,
             encoding: JSONEncoding.default,
@@ -104,7 +104,7 @@ class FeedManager: NSObject {
             .validate()
     }
     
-    fileprivate func requestPost(_ url: String, parameters: Parameters) -> DataRequest {
+    fileprivate func POST(_ url: String, parameters: Parameters) -> DataRequest {
         return Alamofire.request(url,
             method: .post,
             parameters: parameters,
@@ -113,7 +113,7 @@ class FeedManager: NSObject {
             .validate()
     }
     
-    fileprivate func requestPut(_ url: String, parameters: Parameters) -> DataRequest {
+    fileprivate func PUT(_ url: String, parameters: Parameters) -> DataRequest {
         return Alamofire.request(url,
             method: .put,
             parameters: parameters,
@@ -122,7 +122,7 @@ class FeedManager: NSObject {
             .validate()
     }
     
-    fileprivate func requestDelete(_ url: String) -> DataRequest {
+    fileprivate func DELETE(_ url: String) -> DataRequest {
         return Alamofire.request(url,
             method: .delete,
             encoding: JSONEncoding.default,
@@ -219,7 +219,7 @@ extension FeedManager {
     fileprivate static let ROUTE_API = "\(SERVER_NAME)/api/route"
     
     public func addtRoute(_ route: RouteAdding, success: @escaping (Route)->Void, failure: @escaping (String)->Void) {
-        self.requestPost(FeedManager.ROUTE_API, parameters: route.toDict()).responseJSON { (response) in
+        self.POST(FeedManager.ROUTE_API, parameters: route.toDict()).responseJSON { (response) in
             self.processResponse(response, success: { (objs, message) in
                 success(self.processObject("Route", dict: objs[0]) as! Route)
             }, failure: { (code, msg) in
@@ -229,7 +229,7 @@ extension FeedManager {
     }
     
     public func updatetRoute(_ route: RouteUpdating, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
-        self.requestPut("\(FeedManager.ROUTE_API)/\(String(describing: route._id!))", parameters: route.toDict()).responseJSON { (response) in
+        self.PUT("\(FeedManager.ROUTE_API)/\(String(describing: route._id!))", parameters: route.toDict()).responseJSON { (response) in
             self.processResponse(response, success: { (objs, message) in
                 success(message)
             }, failure: { (code, message) in
@@ -239,7 +239,7 @@ extension FeedManager {
     }
     
     public func listRoute(_ lineUserId: String, success: @escaping ([Route])->Void, failure: @escaping (String)->Void) {
-        self.requestGet("\(FeedManager.ROUTE_API)/\(lineUserId)").responseJSON { (response) in
+        self.GET("\(FeedManager.ROUTE_API)/\(lineUserId)").responseJSON { (response) in
             self.processResponse(response, success: { (objs, message) in
                 success(self.processObject("Route", array: objs) as! [Route])
             }, failure: { (code, message) in
@@ -249,7 +249,7 @@ extension FeedManager {
     }
     
     public func removeRoute(_ id: String, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
-        self.requestDelete("\(FeedManager.ROUTE_API)/\(id)").responseJSON { (response) in
+        self.DELETE("\(FeedManager.ROUTE_API)/\(id)").responseJSON { (response) in
             self.processResponse(response, success: { (message) in
                 success(message)
             }, failure: { (code, message) in
@@ -264,7 +264,7 @@ extension FeedManager {
     fileprivate static let RECORD_API = "\(SERVER_NAME)/api/record"
     
     public func addtRecord(_ record: RecordAdding, success: @escaping (Record)->Void, failure: @escaping (String)->Void) {
-        self.requestPost(FeedManager.RECORD_API, parameters: record.toDict()).responseJSON { (response) in
+        self.POST(FeedManager.RECORD_API, parameters: record.toDict()).responseJSON { (response) in
             self.processResponse(response, success: { (objs, message) in
                 success(self.processObject("Record", dict: objs[0]) as! Record)
             }, failure: { (code, message) in
@@ -275,7 +275,7 @@ extension FeedManager {
     
     public func updatetRecord(_ record: RecordUpdating, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
         let urlStr = "\(FeedManager.RECORD_API)/\(String(describing: record._id))"
-        self.requestPut(urlStr, parameters: record.toDict()).responseJSON { (response) in
+        self.PUT(urlStr, parameters: record.toDict()).responseJSON { (response) in
             self.processResponse(response, success: { (objs, message) in
                 success(message)
             }, failure: { (code, message) in
@@ -285,7 +285,7 @@ extension FeedManager {
     }
     
     public func listRecord(_ lineUserId: String, success: @escaping ([Record])->Void, failure: @escaping (String)->Void) {
-        self.requestGet("\(FeedManager.RECORD_API)/\(lineUserId)").responseJSON { (response) in
+        self.GET("\(FeedManager.RECORD_API)/\(lineUserId)").responseJSON { (response) in
             self.processResponse(response, success: { (objs, message) in
                 success(self.processObject("Record", array: objs) as! [Record])
             }, failure: { (code, message) in
@@ -295,7 +295,7 @@ extension FeedManager {
     }
     
     public func removeRecord(_ id: String, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
-        self.requestDelete("\(FeedManager.RECORD_API)/\(id)").responseJSON { (response) in
+        self.DELETE("\(FeedManager.RECORD_API)/\(id)").responseJSON { (response) in
             self.processResponse(response, success: { (message) in
                 success(message)
             }, failure: { (code, message) in
@@ -310,7 +310,7 @@ extension FeedManager {
     fileprivate static let USER_API = "\(SERVER_NAME)/api/user"
     
     public func addtUser(_ user: UserAdding, success: @escaping ()->Void, failure: @escaping (String)->Void) {
-        self.requestPost(FeedManager.USER_API, parameters: user.toDict()).responseJSON { (response) in
+        self.POST(FeedManager.USER_API, parameters: user.toDict()).responseJSON { (response) in
             self.processResponse(response, success: { (objs, message) in
                 AppManager.sharedInstance().user = self.processObject("User", dict: objs[0]) as? User
                 success()
@@ -321,7 +321,7 @@ extension FeedManager {
     }
     
     public func updatetUser(_ user: UserUpdating, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
-        self.requestPut("\(FeedManager.USER_API)/\(String(describing: user._id))", parameters: user.toDict()).responseJSON { (response) in
+        self.PUT("\(FeedManager.USER_API)/\(String(describing: user._id))", parameters: user.toDict()).responseJSON { (response) in
             self.processResponse(response, success: { (objs, message) in
                 AppManager.sharedInstance().user = self.processObject("User", dict: objs[0]) as? User
                 success(message)
@@ -332,7 +332,7 @@ extension FeedManager {
     }
     
     public func listUser(_ lineUserId: String, success: @escaping ()->Void, failure: @escaping (String)->Void) {
-        self.requestGet("\(FeedManager.USER_API)/\(lineUserId)").responseJSON { (response) in
+        self.GET("\(FeedManager.USER_API)/\(lineUserId)").responseJSON { (response) in
             self.processResponse(response, success: { (objs, message) in
                 AppManager.sharedInstance().user = self.processObject("User", dict: objs[0]) as? User
                 success()
@@ -346,7 +346,7 @@ extension FeedManager {
     }
     
     public func removeUser(_ id: String, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
-        self.requestDelete("\(FeedManager.USER_API)/\(id)").responseJSON { (response) in
+        self.DELETE("\(FeedManager.USER_API)/\(id)").responseJSON { (response) in
             self.processResponse(response, success: { (message) in
                 AppManager.sharedInstance().user?.removeSource()
                 success(message)
@@ -357,13 +357,15 @@ extension FeedManager {
     }
 }
 
+// MARK: - LINE Request
 extension FeedManager {
     fileprivate static let LINEWEBHOOK_API = "\(SERVER_NAME)/api/linebot"
     fileprivate static let PUSH_RECORD_API = "\(LINEWEBHOOK_API)/push/record"
     fileprivate static let PUSH_MESSAGE_API = "\(LINEWEBHOOK_API)/push/message"
+    fileprivate static let PUSH_TEMPLETE_API = "\(LINEWEBHOOK_API)/push/templete"
     
     public func pushRecord(_ recordId: String, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
-        self.requestGet("\(FeedManager.PUSH_RECORD_API)/\(recordId)").responseJSON { (response) in
+        self.GET("\(FeedManager.PUSH_RECORD_API)/\(recordId)").responseJSON { (response) in
             self.processResponse(response, success: { (message) in
                 success(message)
             }, failure: { (code, message) in
@@ -373,7 +375,17 @@ extension FeedManager {
     }
     
     public func pushMessage(_ lineUserId: String, message: String, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
-        self.requestPost("\(FeedManager.PUSH_MESSAGE_API)", parameters: ["lineUserId": lineUserId, "msg": message]).responseJSON { (response) in
+        self.POST("\(FeedManager.PUSH_MESSAGE_API)", parameters: ["lineUserId": lineUserId, "msg": message]).responseJSON { (response) in
+            self.processResponse(response, success: { (message) in
+                success(message)
+            }, failure: { (code, message) in
+                failure(message)
+            })
+        }
+    }
+    
+    public func pushRoute(_ lineUserId: String, title: String, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
+        self.POST("\(FeedManager.PUSH_TEMPLETE_API)", parameters: ["lineUserId": lineUserId, "title": title]).responseJSON { (response) in
             self.processResponse(response, success: { (message) in
                 success(message)
             }, failure: { (code, message) in

@@ -71,8 +71,8 @@ class LiveViewController: BaseViewController, GIDSignInUIDelegate {
                 self.reloadBroadcast()
             } else {
                 self.ui.showAlert(LString("Message:Google Auth Failure"), controller: self)
+                self.stopAnimating()
             }
-            self.stopAnimating()
         }
     }
     
