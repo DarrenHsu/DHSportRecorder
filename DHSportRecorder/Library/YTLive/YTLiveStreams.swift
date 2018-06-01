@@ -91,12 +91,15 @@ extension YTLive {
         guard self.checkResponseCorrect(response, failure: failure) else {
             return
         }
+        
         do {
             let json = try JSON(data: response.data!)
             LogManager.DLog("\(json)")
             let liveStream = LiveStream.conver(dict: json.object as! [String : Any])
             success?(liveStream)
-        } catch {}
+        } catch {
+            failure?()
+        }
     }
     
     fileprivate func processSuccess(_ response: DataResponse<Data>, success: (([LiveStream]) -> Void)?, failure: (() -> Void)?) {
@@ -117,6 +120,8 @@ extension YTLive {
             }else {
                 failure?()
             }
-        } catch {}
+        } catch {
+            failure?()
+        }
     }
 }

@@ -122,7 +122,7 @@ extension YTLive {
             return
         }
         
-        Alamofire.request("\(YouTubeLiveBroadcastURL)?id=\(id)&part=id,snippet,contentDetails,status&key=\(self.clientId)",
+        Alamofire.request("\(YouTubeLiveBroadcastURL)?id=\(id)&key=\(self.clientId)",
             method: .delete,
             headers: getHeaders(accessToken!))
             .validate()

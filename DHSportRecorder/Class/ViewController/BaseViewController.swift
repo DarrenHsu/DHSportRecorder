@@ -30,7 +30,7 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable {
         
         self.view.endEditing(false)
         
-        NVActivityIndicatorView.DEFAULT_TYPE = .ballPulse
+        NVActivityIndicatorView.DEFAULT_TYPE = .lineScale
         NVActivityIndicatorView.DEFAULT_BLOCKER_SIZE = CGSize(width: 100, height: 100)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: .UIKeyboardWillShow, object: nil)

@@ -66,11 +66,13 @@ class YTLive: NSObject {
             str += "BODY: \(String(describing: String(data: (response.request?.httpBody)!, encoding: String.Encoding.utf8)!)) \n"
         }
         
-        if let error = response.error {
+        if response.response?.statusCode == 204 {
+            str += "No Content\n"
+        } else if let error = response.error {
             str += "\(error)\n"
         }else {
             if  let data = response.data {
-                let json: JSON = try! JSON(data: data)
+                var json: JSON = try! JSON(data: data)
                 if json.array != nil {
                     if json.count > PrintCount {
                         str += "RESPONSE: \n"
@@ -112,12 +114,16 @@ class YTLive: NSObject {
     func checkResponseCorrect(_ response: DataResponse<Data>, failure: (() -> Void)?) -> Bool {
         printResponse((response.request?.httpMethod)!, response: response)
         
+        if response.response?.statusCode == 204 {
+            return true
+        }
+        
         guard let data = response.data else {
             failure?()
             return false
         }
         
-        let json = try! JSON(data: data)
+        var json = try! JSON(data: data)
         let error = json["error"].dictionaryObject
         if error != nil {
             failure?()

@@ -40,7 +40,6 @@ class FeedManager: NSObject {
         let headers = ["Content-Type" : "application/json; charset=utf-8",
                        "Authorization" : self.getFeedAuth(str),
                        "verfy" : str]
-        
         return headers
     }
     
@@ -85,48 +84,41 @@ class FeedManager: NSObject {
         str += "---------------------------------------------------------\n"
         LogManager.DLog("\(str)")
     }
-    
-    public func downloadFile(_ source: URL, destination: URL, success: @escaping ()->Void ) {
-        let request = URLRequest(url: source)
-        Alamofire.download(request) { (url, response) -> (destinationURL: URL, options: DownloadRequest.DownloadOptions) in
-            return (destination, DownloadRequest.DownloadOptions.removePreviousFile)
-            }.validate().responseData(completionHandler: {(response) in
-                LogManager.DLog("\(response.description)")
-                success()
-            })
-    }
-    
+}
+
+// MARK: - HTTP Methods
+extension FeedManager {
     fileprivate func GET(_ url: String) -> DataRequest {
         return Alamofire.request(url,
-            method: .get,
-            encoding: JSONEncoding.default,
-            headers: getHeader(getVerfy()))
+                                 method: .get,
+                                 encoding: JSONEncoding.default,
+                                 headers: getHeader(getVerfy()))
             .validate()
     }
     
     fileprivate func POST(_ url: String, parameters: Parameters) -> DataRequest {
         return Alamofire.request(url,
-            method: .post,
-            parameters: parameters,
-            encoding: JSONEncoding.default,
-            headers: getHeader(getVerfy()))
+                                 method: .post,
+                                 parameters: parameters,
+                                 encoding: JSONEncoding.default,
+                                 headers: getHeader(getVerfy()))
             .validate()
     }
     
     fileprivate func PUT(_ url: String, parameters: Parameters) -> DataRequest {
         return Alamofire.request(url,
-            method: .put,
-            parameters: parameters,
-            encoding: JSONEncoding.default,
-            headers: getHeader(getVerfy()))
+                                 method: .put,
+                                 parameters: parameters,
+                                 encoding: JSONEncoding.default,
+                                 headers: getHeader(getVerfy()))
             .validate()
     }
     
     fileprivate func DELETE(_ url: String) -> DataRequest {
         return Alamofire.request(url,
-            method: .delete,
-            encoding: JSONEncoding.default,
-            headers: getHeader(getVerfy()))
+                                 method: .delete,
+                                 encoding: JSONEncoding.default,
+                                 headers: getHeader(getVerfy()))
             .validate()
     }
 }
@@ -211,6 +203,16 @@ extension FeedManager {
                 success(image)
             }
         }
+    }
+    
+    public func downloadFile(_ source: URL, destination: URL, success: @escaping ()->Void ) {
+        let request = URLRequest(url: source)
+        Alamofire.download(request) { (url, response) -> (destinationURL: URL, options: DownloadRequest.DownloadOptions) in
+            return (destination, DownloadRequest.DownloadOptions.removePreviousFile)
+            }.validate().responseData(completionHandler: {(response) in
+                LogManager.DLog("\(response.description)")
+                success()
+            })
     }
 }
 
