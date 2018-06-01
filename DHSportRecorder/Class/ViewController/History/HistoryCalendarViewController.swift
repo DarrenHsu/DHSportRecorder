@@ -14,9 +14,9 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
     @IBOutlet var dayLabel: [UILabel]!
     @IBOutlet var dayView: [UIView]!
     
-    let hourViewHeight: Int = 120
-    let temMinuteHight: Int = 20
-    let minuteHight: Int = 2
+    let minuteHight: Int = 1
+    let hourViewHeight: Int = 60
+    let temMinuteHight: Int =  10
     
     var index: Int = 0
     var today: Date = Date()
@@ -67,7 +67,7 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
             for _ in 0..<(history.endHour - history.startHour) {
                 y += CGFloat(hourViewHeight)
                 let v = UIView(frame: CGRect(x: 2, y: y, width: scrollView.frame.size.width - 4, height: 1))
-                v.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
+                v.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
                 scrollView.addSubview(v)
             }
             scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: y)
@@ -149,7 +149,6 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
                         DispatchQueue.main.async {
                             let rect = self.getRect(record.startTime!, endTime: record.endTime!, width: scrollView.frame.size.width)
                             let historyView: HistoryRecordView = .fromNib()
-                            historyView.nameLabel.text = record.name
                             historyView.frame = rect
                             historyView.click = { [weak self]() in
                                 let controller = self?.storyboard?.instantiateViewController(withIdentifier: "HistoryRecordDetailViewController") as! HistoryRecordDetailViewController

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +17,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFA-ZT-aSA">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="10" width="375" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="50" id="dyI-Ok-55m"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -29,14 +32,13 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.78519469499588013" green="0.078771539032459259" blue="0.34825700521469116" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="PZ5-yX-JMb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="9km-di-9Kd"/>
                 <constraint firstItem="fFA-ZT-aSA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="McS-F0-PVZ"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="fFA-ZT-aSA" secondAttribute="bottom" id="Q7B-v8-oNV"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PZ5-yX-JMb" secondAttribute="trailing" id="QdP-34-ktU"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="PZ5-yX-JMb" secondAttribute="bottom" id="TDd-Dj-jzA"/>
-                <constraint firstItem="fFA-ZT-aSA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gMh-rt-1ai"/>
+                <constraint firstItem="fFA-ZT-aSA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="gMh-rt-1ai"/>
                 <constraint firstItem="fFA-ZT-aSA" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="uSc-eR-I0N"/>
                 <constraint firstItem="PZ5-yX-JMb" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="wHL-hq-Hax"/>
             </constraints>
