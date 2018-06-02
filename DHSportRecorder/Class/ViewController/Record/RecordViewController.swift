@@ -13,6 +13,7 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     
     @IBOutlet weak var recordFrame: UIView!
     
+    @IBOutlet weak var baseImageView: UIImageView!
     @IBOutlet weak var profileFrame: UIView!
     @IBOutlet weak var pictureImg: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -53,10 +54,10 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setGeneralStyle(recordFrame)
-        setGeneralStyle(profileFrame)
-        
+        profileFrame.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
         recordFrame.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
+        
+        baseImageView.image = UIImageEffects.imageByApplyingDarkEffect(to: baseImageView.image)
         
         DHLocation.shard().registerDelegate(self)
         

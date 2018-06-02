@@ -16,6 +16,7 @@
 		D02634822021B93D0063DFD0 /* AddRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02634802021B93D0063DFD0 /* AddRouteViewController.swift */; };
 		D02634832021B93D0063DFD0 /* EditRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02634812021B93D0063DFD0 /* EditRouteViewController.swift */; };
 		D02EC1891FD64F4D00ED965B /* FeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02EC1881FD64F4D00ED965B /* FeedManager.swift */; };
+		D0444E6D20C2A8EE0076E34C /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = D0444E6B20C2A8EE0076E34C /* UIImageEffects.m */; };
 		D045067A1FEF47C100E45C35 /* HistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04506791FEF47C100E45C35 /* HistoryManager.swift */; };
 		D057F8AC1FB2DFC0001AE86C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057F8AB1FB2DFC0001AE86C /* MapViewController.swift */; };
 		D057F8B21FB2E15D001AE86C /* DHMap.m in Sources */ = {isa = PBXBuildFile; fileRef = D057F8AE1FB2E15D001AE86C /* DHMap.m */; };
@@ -98,6 +99,8 @@
 		D02634802021B93D0063DFD0 /* AddRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRouteViewController.swift; sourceTree = "<group>"; };
 		D02634812021B93D0063DFD0 /* EditRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRouteViewController.swift; sourceTree = "<group>"; };
 		D02EC1881FD64F4D00ED965B /* FeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedManager.swift; sourceTree = "<group>"; };
+		D0444E6B20C2A8EE0076E34C /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
+		D0444E6C20C2A8EE0076E34C /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
 		D04506791FEF47C100E45C35 /* HistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManager.swift; sourceTree = "<group>"; };
 		D057F8AB1FB2DFC0001AE86C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D057F8AE1FB2E15D001AE86C /* DHMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHMap.m; sourceTree = "<group>"; };
@@ -210,6 +213,15 @@
 			path = Route;
 			sourceTree = "<group>";
 		};
+		D0444E6A20C2A8E20076E34C /* UIImageEffect */ = {
+			isa = PBXGroup;
+			children = (
+				D0444E6C20C2A8EE0076E34C /* UIImageEffects.h */,
+				D0444E6B20C2A8EE0076E34C /* UIImageEffects.m */,
+			);
+			path = UIImageEffect;
+			sourceTree = "<group>";
+		};
 		D057F8AA1FB2DFB7001AE86C /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +327,7 @@
 		D09339C01FB29B7300EC0700 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				D0444E6A20C2A8E20076E34C /* UIImageEffect */,
 				D057F8AD1FB2E15D001AE86C /* DHLibrary */,
 				D09339C51FB29B7300EC0700 /* YTLive */,
 			);
@@ -681,6 +694,7 @@
 				D057F8B81FB2F939001AE86C /* HistoryViewController.swift in Sources */,
 				D09339EE1FB29B7400EC0700 /* YTLiveStreams.swift in Sources */,
 				D09339F01FB29B7400EC0700 /* UIControl+YYAdd.m in Sources */,
+				D0444E6D20C2A8EE0076E34C /* UIImageEffects.m in Sources */,
 				D02634822021B93D0063DFD0 /* AddRouteViewController.swift in Sources */,
 				D09339EC1FB29B7400EC0700 /* YTLive.swift in Sources */,
 				D08717A81FB2B55400A7784A /* LiveViewController.swift in Sources */,

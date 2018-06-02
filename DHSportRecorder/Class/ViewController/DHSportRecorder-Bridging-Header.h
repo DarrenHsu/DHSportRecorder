@@ -4,5 +4,6 @@
 
 #import <CommonCrypto/CommonCrypto.h>。
 #import "LFLivePreview.h"
+#import "UIImageEffects.h"
 #import "DHMap.h"
 #import "DHLocation.h"
