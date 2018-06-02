@@ -17,8 +17,8 @@ class HistoryView: UIView {
     override func awakeFromNib() {
         self.layer.cornerRadius = 15
         self.layer.masksToBounds = true
-        self.layer.borderColor = UIColor.black.cgColor
-        self.layer.borderWidth = 0.5
+//        self.layer.borderColor = UIColor.black.cgColor
+//        self.layer.borderWidth = 0.5
     }
     
     @IBAction func buttonPressed() {

@@ -69,14 +69,13 @@ class HistoryDetailViewController: BaseViewController {
         Analytics.logEvent(Analytics_History_Route, parameters: [Analytics_User : String(format: "%@", (app.user?._id)!) as Any])
         
         setGeneralStyle(baseView)
-        baseView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
         
         do {
             var picture = try UIImage(data: Data(contentsOf: URL(fileURLWithPath: self.line.getLocalicturePath())))
             picture = picture?.resizeImage(newWidth: 100)
             picture = picture?.circleMasked
             pictureImg?.image = picture
-        }catch {}
+        } catch {}
         
         nameLabel.text = app.user?.name
         routeNameLabel.text = route?.name

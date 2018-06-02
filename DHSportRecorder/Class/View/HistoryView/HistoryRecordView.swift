@@ -11,7 +11,7 @@ import UIKit
 class HistoryRecordView: HistoryView {
 
     override func awakeFromNib() {
-        self.layer.borderColor = UIColor.red.cgColor
-        self.layer.borderWidth = 0.5
+//        self.layer.borderColor = UIColor.red.cgColor
+//        self.layer.borderWidth = 0.5
     }
 }

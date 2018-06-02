@@ -66,10 +66,10 @@ class HistoryRecordDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        GMSServices.provideAPIKey(GIDSignInManager.sharedInstance().getAPIKey())
+        
         setGeneralStyle(dataBaseView)
         setGeneralStyle(mapBaseView)
-        
-        GMSServices.provideAPIKey(GIDSignInManager.sharedInstance().getAPIKey())
         
         let clm = CLLocationManager()
         clm.desiredAccuracy = kCLLocationAccuracyBestForNavigation
