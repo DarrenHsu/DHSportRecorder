@@ -71,6 +71,7 @@ extension HistoryManager {
         
         reloadRoute { (success, msg) in
             if success {
+                complete!(success, msg)
                 self.reloadRecords { (success, msg) in
                     self.isLoadHistory = false
                     complete!(success, msg)
