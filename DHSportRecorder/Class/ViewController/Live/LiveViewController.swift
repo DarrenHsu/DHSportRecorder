@@ -22,8 +22,8 @@ class LiveViewController: BaseViewController, GIDSignInUIDelegate {
     var isLoading = false
     
     @IBAction func createBroadcast(_ sender: UIBarButtonItem) {
-        let startDate = Helpers.dateAfter(Date(), after: (hour: 0, minute: 0, second: 0))
-        let endDate = Helpers.dateAfter(Date(), after: (hour: 1, minute: 0, second: 0))
+        let startDate = DateHelpers.dateAfter(Date(), after: (hour: 0, minute: 0, second: 0))
+        let endDate = DateHelpers.dateAfter(Date(), after: (hour: 1, minute: 0, second: 0))
         
         let dateFormatterDate = DateFormatter()
         dateFormatterDate.dateFormat = "yyyy-MM-dd HH:mm"
