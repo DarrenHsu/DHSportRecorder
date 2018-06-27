@@ -50,6 +50,12 @@ class RecordAdding: ModelObject {
         return obj
     }
     
+    func getTotalMinutes() -> Int {
+        let sDate = Date.getDateFromString(self.startTime!, format: Date.JSONFormat)
+        let eDate = Date.getDateFromString(self.endTime!, format: Date.JSONFormat)
+        return eDate.minutes(from: sDate) ?? 0
+    }
+    
     func getDHLocationCoordinates() -> [DHLocationCoordinate] {
         var locationCoordinate: [DHLocationCoordinate] = []
         for location in locations! {

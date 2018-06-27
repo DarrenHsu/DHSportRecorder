@@ -7,23 +7,11 @@
 //
 
 import UIKit
-/*
- 2.7 km/h   : 2.3 METs
- 4 km/h     : 2.8 METs
- 4.8 km/h   : 3.3 METs
- 5.5 km/h   : 3.5 METs
- 6.6 km/h   : 6 METs
- 8 km/h     : 8.3 METs
- 10 km/h    : 9.8 METs
- 12.5 km/h  : 11.5 METs
- 15 km/h    : 12.8 METs
- 18.2 km/h  : 16 METs
- 23.2 km/h  : 23 METs
- */
+
 class CaloriesHelpers {
     
-    public static func getCalories(mets: Double, weight: Double) -> Double {
-        return mets * weight
+    public static func getCalories(speed: Double, weight: Double, minutes: Double) -> Double {
+        return (getGeneralMets(speed: speed) * weight / 60.0) * minutes
     }
     
     public static func getGeneralMets(speed: Double) -> Double {

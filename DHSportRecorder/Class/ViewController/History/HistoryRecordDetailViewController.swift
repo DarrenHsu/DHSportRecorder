@@ -21,6 +21,7 @@ class HistoryRecordDetailViewController: BaseViewController {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var maxSpeedLabel: UILabel!
     @IBOutlet weak var avgSpeedLabel: UILabel!
+    @IBOutlet weak var kcalLabel: UILabel!
     
     private var mapView: GMSMapView?
     private var marker: GMSMarker?
@@ -94,6 +95,7 @@ class HistoryRecordDetailViewController: BaseViewController {
         distanceLabel.text = String(format: "%.01f", (record?.distance)!.doubleValue)
         maxSpeedLabel.text = String(format: "%.01f", (record?.maxSpeed)!.doubleValue)
         avgSpeedLabel.text = String(format: "%.01f", (record?.avgSpeed)!.doubleValue)
+        kcalLabel.text = String(format: "%d",Int(CaloriesHelpers.getCalories(speed: (record?.avgSpeed?.doubleValue)!, weight: (self.app.user?.weight?.doubleValue)!, minutes: Double((record?.getTotalMinutes())!))))
         
         DHMap.draw(mapView, coordinates: record?.getDHLocationCoordinates())
         
