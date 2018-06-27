@@ -19,6 +19,7 @@ class RecordAdding: ModelObject {
     var avgSpeed: NSNumber?
     var maxSpeed: NSNumber?
     var altitude: NSNumber?
+    var step: NSNumber?
     var locations: [[NSNumber]]?
     var imglocations: [Int]?
     

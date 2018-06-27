@@ -18,6 +18,7 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable {
     let line = LineManager.sharedInstance()
     let app = AppManager.sharedInstance()
     let history = HistoryManager.sharedInstance()
+    let health = HealthManager.sharedInstance()
 
     var editingView: UIView!
     

@@ -62,6 +62,17 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         DHLocation.shard().registerDelegate(self)
         
         self.setDefaultValue()
+
+        health.requestHealthAvaliable { [weak self] (success) in
+            guard success else {
+                LogManager.DLog("request faild")
+                return
+            }
+            
+            self?.health.getTodaysSteps { (step) in
+                LogManager.DLog("\(Int(step))")
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

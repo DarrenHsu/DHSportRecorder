@@ -59,6 +59,8 @@
 		D09BB5421FD7D218002B9CE5 /* Chatroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09BB5411FD7D218002B9CE5 /* Chatroom.swift */; };
 		D09F31231FEE5DC30047DD4F /* HistoryPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09F31221FEE5DC30047DD4F /* HistoryPageViewController.swift */; };
 		D09F31251FEE60BC0047DD4F /* HistoryCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09F31241FEE60BC0047DD4F /* HistoryCalendarViewController.swift */; };
+		D0BA97B420E3574700D5BA98 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0BA97B320E3574700D5BA98 /* HealthKit.framework */; };
+		D0BA97B620E3590700D5BA98 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA97B520E3590700D5BA98 /* HealthManager.swift */; };
 		D0BD50861FF9D16900208260 /* HistoryRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD50851FF9D16900208260 /* HistoryRecordView.swift */; };
 		D0BD50881FF9D19000208260 /* HistoryRecordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0BD50871FF9D19000208260 /* HistoryRecordView.xib */; };
 		D0BD508A1FF9F2D800208260 /* HistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD50891FF9F2D800208260 /* HistoryDetailViewController.swift */; };
@@ -151,6 +153,9 @@
 		D09BB5411FD7D218002B9CE5 /* Chatroom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chatroom.swift; sourceTree = "<group>"; };
 		D09F31221FEE5DC30047DD4F /* HistoryPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPageViewController.swift; sourceTree = "<group>"; };
 		D09F31241FEE60BC0047DD4F /* HistoryCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCalendarViewController.swift; sourceTree = "<group>"; };
+		D0BA97B220E3574700D5BA98 /* DHSportRecorder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DHSportRecorder.entitlements; sourceTree = "<group>"; };
+		D0BA97B320E3574700D5BA98 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		D0BA97B520E3590700D5BA98 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		D0BD50851FF9D16900208260 /* HistoryRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRecordView.swift; sourceTree = "<group>"; };
 		D0BD50871FF9D19000208260 /* HistoryRecordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryRecordView.xib; sourceTree = "<group>"; };
 		D0BD50891FF9F2D800208260 /* HistoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E04A2AE9614AB0DE4EF1D57F /* Pods_DHSportRecorder.framework in Frameworks */,
+				D0BA97B420E3574700D5BA98 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +187,7 @@
 		8AA0F8F55FD2DC0C5FACF53A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D0BA97B320E3574700D5BA98 /* HealthKit.framework */,
 				672AA82D128CC621276F64DC /* Pods_DHSportRecorder.framework */,
 			);
 			name = Frameworks;
@@ -313,6 +320,7 @@
 		D09339AD1FB29AC200EC0700 /* DHSportRecorder */ = {
 			isa = PBXGroup;
 			children = (
+				D0BA97B220E3574700D5BA98 /* DHSportRecorder.entitlements */,
 				D09339C01FB29B7300EC0700 /* Library */,
 				D09339CE1FB29B7400EC0700 /* Class */,
 				D09339AE1FB29AC200EC0700 /* AppDelegate.swift */,
@@ -415,6 +423,7 @@
 				D0C8B5481FD66E3E0023E28D /* LineManager.swift */,
 				D09BB5361FD7CDD1002B9CE5 /* AppManager.swift */,
 				D04506791FEF47C100E45C35 /* HistoryManager.swift */,
+				D0BA97B520E3590700D5BA98 /* HealthManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -522,6 +531,14 @@
 					D09339AA1FB29AC200EC0700 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -720,6 +737,7 @@
 				D09339EB1FB29B7400EC0700 /* LiveStream.swift in Sources */,
 				D0E0FB5D1FD577B70012A16D /* LineLoginViewController.swift in Sources */,
 				D057F8B21FB2E15D001AE86C /* DHMap.m in Sources */,
+				D0BA97B620E3590700D5BA98 /* HealthManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -857,6 +875,7 @@
 			baseConfigurationReference = D91A6312F550DB68B784CBA0 /* Pods-DHSportRecorder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DHSportRecorder/DHSportRecorder.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -879,6 +898,7 @@
 			baseConfigurationReference = 98FD468F444B9EB9186DEAF2 /* Pods-DHSportRecorder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DHSportRecorder/DHSportRecorder.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
