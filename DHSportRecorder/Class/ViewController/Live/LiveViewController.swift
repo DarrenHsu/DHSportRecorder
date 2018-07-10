@@ -82,11 +82,6 @@ class LiveViewController: BaseViewController, GIDSignInUIDelegate {
         Analytics.logEvent(Analytics_Live, parameters: [Analytics_User : String(format: "%@", (app.user?._id)!) as Any])
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func reloadBroadcast() {
         guard !isLoading  else {
             return

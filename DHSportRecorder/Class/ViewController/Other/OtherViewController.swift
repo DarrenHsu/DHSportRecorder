@@ -36,9 +36,7 @@ class OtherViewController: BaseViewController {
     @IBAction func addPressed(_ sender: UIButton) {
         Analytics.logEvent(Analytics_Other_Friend_Add, parameters: [Analytics_User : String(format: "%@", (app.user?._id)!) as Any])
         
-        guard let url = URL(string: LineManager.LINE_BOT_URL) else {
-            return
-        }
+        guard let url = URL(string: LineManager.LINE_BOT_URL) else { return }
         
         if #available(iOS 10.0, *) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -71,10 +69,4 @@ class OtherViewController: BaseViewController {
         
         Analytics.logEvent(Analytics_Other, parameters: [Analytics_User : String(format: "%@", (app.user?._id)!) as Any])
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 }

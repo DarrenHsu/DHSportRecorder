@@ -27,11 +27,6 @@ class PlayViewController: BaseViewController {
         self.view.addSubview((controller?.view)!)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     @objc func moviePlayerPlaybackDidFinish(_ notification: Notification) {
         NotificationCenter.default.removeObserver(self)
         

@@ -10,7 +10,7 @@ import UIKit
 import GoogleMaps
 import Firebase
 
-class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDelegate {
+class MapViewController: BaseViewController {
 
     @IBOutlet weak var mapBaseView: UIView!
     @IBOutlet weak var lockBaseView: UIView!
@@ -76,11 +76,6 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
         Analytics.logEvent(Analytics_Map, parameters: [Analytics_User : String(format: "%@", (app.user?._id)!) as Any])
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -111,8 +106,9 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
             mapView?.moveCamera(GMSCameraUpdate.setCamera(camera))
         }
     }
-    
-    // MARK: - DHLocationDelegate Methods
+}
+
+extension MapViewController: DHLocationDelegate {
     func receiveStop(_ location: DHLocation!) {
         mapView?.clear()
         self.addMarker()
@@ -122,7 +118,7 @@ class MapViewController: BaseViewController, GMSMapViewDelegate, DHLocationDeleg
         guard location.currentLocation != nil else {
             return
         }
-
+        
         let coordinate = location.currentLocation.coordinate
         DHMap.add(mapView, path: path as! GMSMutablePath, latitude: coordinate.latitude, longtitude: coordinate.longitude)
         self.addMarker()

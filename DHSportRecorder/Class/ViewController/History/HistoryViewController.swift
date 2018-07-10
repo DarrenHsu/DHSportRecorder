@@ -39,15 +39,6 @@ class HistoryViewController: BaseViewController {
         Analytics.logEvent(Analytics_Recorder, parameters: [Analytics_User : String(format: "%@", (app.user?._id)!) as Any])
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "contentOffSet" {
             timeTable.contentOffset = ui.contentOffSet
@@ -70,7 +61,6 @@ class HistoryViewController: BaseViewController {
 }
 
 extension HistoryViewController: UITableViewDataSource {
-    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return history.endHour - history.startHour
     }

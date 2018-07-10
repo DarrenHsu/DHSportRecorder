@@ -82,8 +82,8 @@ class StreamViewController: BaseViewController {
         cameraButton.isExclusiveTouch = true
         closeButton.isExclusiveTouch = true
         
-        print("embedHtml: \((YTLive.shard().broadcast.contentDetails_?.monitorStream_?.embedHtml)!)")
-        print("streamUrl: \((YTLive.shard().stream.cdn_?.ingestionInfo_?.streamName)!)")
+        LogManager.DLog("embedHtml: \((YTLive.shard().broadcast.contentDetails_?.monitorStream_?.embedHtml)!)")
+        LogManager.DLog("streamUrl: \((YTLive.shard().stream.cdn_?.ingestionInfo_?.streamName)!)")
         
         self.broadcastLabel?.text = YTLive.shard().broadcast.status_?.lifeCycleStatus
         self.streamLabel?.text = YTLive.shard().stream.status_?.streamStatus

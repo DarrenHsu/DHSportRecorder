@@ -31,11 +31,6 @@ class LineLoginViewController: BaseViewController, LineSDKLoginDelegate {
         nextBarItem?.isEnabled = false
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: LineSDKLoginDelegate
     func didLogin(_ login: LineSDKLogin, credential: LineSDKCredential?, profile: LineSDKProfile?, error: Error?) {
         

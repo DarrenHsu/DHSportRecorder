@@ -111,11 +111,6 @@ class HistoryRecordDetailViewController: BaseViewController {
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func loadRecordImage() {
         if record?.locations?.first != nil {
             do {

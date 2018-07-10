@@ -9,18 +9,15 @@
 import UIKit
 import Firebase
 
-class RecordViewController: BaseViewController, DHLocationDelegate {
+class RecordViewController: BaseViewController {
     
     @IBOutlet weak var recordFrame: UIView!
-    
     @IBOutlet weak var baseImageView: UIImageView!
     @IBOutlet weak var profileFrame: UIView!
     @IBOutlet weak var pictureImg: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var startLocationImageView: UIImageView!
-
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var reocrdNameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
@@ -38,6 +35,7 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
     var saveInterval: Int = 5
     var imgTempDistance: Float = 0
     var pushTempDistance: Float = 0
+    var step: Double = 0
     
     @IBAction func startRecordPressed(sender: UIButton) {
         let object = DHLocation.shard()
@@ -62,17 +60,6 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         DHLocation.shard().registerDelegate(self)
         
         self.setDefaultValue()
-
-        health.requestHealthAvaliable { [weak self] (success) in
-            guard success else {
-                LogManager.DLog("request faild")
-                return
-            }
-            
-            self?.health.getTodaysSteps { (step) in
-                LogManager.DLog("\(Int(step))")
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,11 +68,6 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         Analytics.logEvent(Analytics_Recorder, parameters: [Analytics_User : String(format: "%@", (app.user?._id)!) as Any])
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func setDefaultValue() {
         do {
             var picture = try UIImage(data: Data(contentsOf: URL(fileURLWithPath: self.line.getLocalicturePath())))
@@ -131,65 +113,90 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         self.app.addRecord?.endTime = Date().toJSONformat()
     }
     
-    // MARK: - DHLocationDelegate Methods
+    func saveRecord() {
+        DispatchQueue.main.async {
+            self.startAnimating()
+            FeedManager.sharedInstance().addtRecord(self.app.addRecord!, success: { (r) in
+                self.stopAnimating()
+                self.app.addRecord?.save()
+                self.app.addRecord?.removeSource()
+                NotificationCenter.default.post(name: .needReloadRoute, object: nil)
+            }) { (msg) in
+                self.stopAnimating()
+                self.ui.showAlert(msg, controller: self)
+            }
+        }
+    }
+}
+
+extension RecordViewController: DHLocationDelegate {
     func receiveStart(_ location: DHLocation!) {
         self.syncData()
         
-        if let record = RecordAdding.getObject() {
-            self.app.addRecord = record
-            if record.recordId == nil {
-                LogManager.DLog("record not exist")
-                self.app.addRecord?.recordId = location.locationID
-                self.app.addRecord?.name = location.locationName
-                self.app.addRecord?.lineUserId = self.app.user?.lineUserId
-                
-                if self.app.addRecord?.imglocations == nil {
-                    self.app.addRecord?.locations = []
-                }
-                self.app.addRecord?.locations?.removeAll()
-                
-                if self.app.addRecord?.imglocations == nil {
-                    self.app.addRecord?.imglocations = []
-                }
-                self.app.addRecord?.imglocations?.removeAll()
-                
-                startDate = Date()
-                self.app.addRecord?.startTime = startDate.toJSONformat()
-            }else {
-                LogManager.DLog("record exist")
-                location.locationName = record.name
-                location.locationID = record.recordId
-                location.locality = record.locality
-                if let distance = record.distance {
-                    location.cumulativeKM = distance.floatValue
-                }
-                if let maxSpeed = record.maxSpeed {
-                    location.hightSpeed = maxSpeed.floatValue
-                }
-                if let avgSpeed = record.avgSpeed {
-                    location.averageSpeed = avgSpeed.floatValue
-                }
-                if let altitude = record.altitude {
-                    location.altitude = altitude.doubleValue
-                }
-                
-                let sdate = Date.getDateFromString(record.startTime!, format: Date.JSONFormat)
-                let edate = Date.getDateFromString(record.endTime!, format: Date.JSONFormat)
-                location.cumulativeMS = edate.timeIntervalSince(sdate)
-                location.cumulativeTimeInternal = UInt32(edate.timeIntervalSince(sdate))
-                
-                startDate = sdate
-                
-                for loa in record.locations! {
-                    let coordinate = DHLocationCoordinate()
-                    coordinate.latitude = CLLocationDegrees(truncating: loa[0])
-                    coordinate.longitude = CLLocationDegrees(truncating: loa[1])
-                    location.coordinates.add(coordinate)
-                }
+        guard let record = RecordAdding.getObject() else { return; }
+        
+        self.app.addRecord = record
+        
+        if record.recordId == nil {
+            LogManager.DLog("record not exist")
+            self.app.addRecord?.recordId = location.locationID
+            self.app.addRecord?.name = location.locationName
+            self.app.addRecord?.lineUserId = self.app.user?.lineUserId
+            
+            if self.app.addRecord?.imglocations == nil {
+                self.app.addRecord?.locations = []
+            }
+            self.app.addRecord?.locations?.removeAll()
+            
+            if self.app.addRecord?.imglocations == nil {
+                self.app.addRecord?.imglocations = []
+            }
+            self.app.addRecord?.imglocations?.removeAll()
+            
+            startDate = Date()
+            self.app.addRecord?.startTime = startDate.toJSONformat()
+        }else {
+            LogManager.DLog("record exist")
+            location.locationName = record.name
+            location.locationID = record.recordId
+            location.locality = record.locality
+            if let distance = record.distance {
+                location.cumulativeKM = distance.floatValue
+            }
+            if let maxSpeed = record.maxSpeed {
+                location.hightSpeed = maxSpeed.floatValue
+            }
+            if let avgSpeed = record.avgSpeed {
+                location.averageSpeed = avgSpeed.floatValue
+            }
+            if let altitude = record.altitude {
+                location.altitude = altitude.doubleValue
             }
             
-            feed.pushMessage((app.user?.lineUserId)!, message: String(format: LString("LINE:StarMoving"), (app.user?.name)!))
+            let sdate = Date.getDateFromString(record.startTime!, format: Date.JSONFormat)
+            let edate = Date.getDateFromString(record.endTime!, format: Date.JSONFormat)
+            location.cumulativeMS = edate.timeIntervalSince(sdate)
+            location.cumulativeTimeInternal = UInt32(edate.timeIntervalSince(sdate))
+            
+            startDate = sdate
+            
+            for loa in record.locations! {
+                let coordinate = DHLocationCoordinate()
+                coordinate.latitude = CLLocationDegrees(truncating: loa[0])
+                coordinate.longitude = CLLocationDegrees(truncating: loa[1])
+                location.coordinates.add(coordinate)
+            }
         }
+        
+        health.requestHealthAvaliable { [weak self] (success) in
+            guard success else { return }
+            
+            self?.health.getTodaysSteps { (step) in
+                self?.step = step
+            }
+        }
+        
+        feed.pushMessage((app.user?.lineUserId)!, message: String(format: LString("LINE:StarMoving"), (app.user?.name)!))
     }
     
     func receiveWillStop(_ location: DHLocation!) {
@@ -197,22 +204,23 @@ class RecordViewController: BaseViewController, DHLocationDelegate {
         
         feed.pushMessage((app.user?.lineUserId)!, message: String(format: LString("LINE:StopMoving"), (app.user?.name)!, (self.app.addRecord?.distance)!.doubleValue))
         
-        self.startAnimating()
-        FeedManager.sharedInstance().addtRecord(self.app.addRecord!, success: { (r) in
-            self.stopAnimating()
-            self.app.addRecord?.save()
-            self.app.addRecord?.removeSource()
-            NotificationCenter.default.post(name: .needReloadRoute, object: nil)
-        }) { (msg) in
-            self.stopAnimating()
-            self.ui.showAlert(msg, controller: self)
+        health.requestHealthAvaliable { [weak self] (success) in
+            guard success else {
+                self?.saveRecord()
+                return
+            }
+            
+            self?.health.getTodaysSteps { (step) in
+                self?.app.addRecord?.step = NSNumber(value: (step - (self?.step)!))
+                self?.saveRecord()
+            }
         }
     }
     
     func receiveChangeTime(_ location: DHLocation!) {
         self.syncData()
-
-        let interval: Int = Int(Date().timeIntervalSince(startDate))
+        
+        let interval = Int(Date().timeIntervalSince(startDate))
         
         if interval % saveInterval == 0 {
             self.app.addRecord?.save()

@@ -87,11 +87,6 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "contentOffSet" {
             for scrollView in dayScrollViews {
@@ -173,9 +168,9 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
         let e1 = (Int(e)! - self.history.startHour) * 60 + Int(em)!
         let height: Int = e1 - s1 < 10 ? 10 : e1 - s1
         return CGRect(x: 5,
-                          y: y * self.minuteHight,
-                          width: Int(width - 10),
-                          height: height * self.minuteHight)
+                      y: y * self.minuteHight,
+                      width: Int(width - 10),
+                      height: height * self.minuteHight)
     }
     
     // MARK: - UIScrollViewDelegate Methods
@@ -194,5 +189,4 @@ class HistoryCalendarViewController: BaseViewController, UIScrollViewDelegate {
             sview.contentOffset = scrollView.contentOffset
         }
     }
-
 }

@@ -118,11 +118,6 @@ class EditRouteViewController: BaseViewController, UITextFieldDelegate {
         editingView = baseView
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func setDefaultData() {
         nameLabel.text = app.user?.name
         dateField.text = date.stringDate(format1)

@@ -38,11 +38,6 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func setGeneralStyle(_ v: UIView) {
         v.layer.cornerRadius = 15
         v.layer.borderWidth = 1
@@ -52,18 +47,14 @@ class BaseViewController: UIViewController, NVActivityIndicatorViewable {
     
     // MARK: - KeyboardNotification
     @objc func keyboardWillShow(notification: Notification) {
-        guard editingView != nil else {
-            return
-        }
+        guard editingView != nil else { return }
         
         let frame: CGRect = self.view.convert(editingView.frame, from: editingView.superview)
         let eFrame: CGRect = (applicaiton.window?.convert(frame, from: self.view))!
         let sFrame: CGRect = (applicaiton.window?.convert(self.view.frame, from: self.view.superview))!
         let kbFrame = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
         
-        guard eFrame.origin.y + eFrame.size.height >= kbFrame.origin.y else {
-            return
-        }
+        guard eFrame.origin.y + eFrame.size.height >= kbFrame.origin.y else { return }
         
         let height: CGFloat = CGFloat(-(eFrame.origin.y + eFrame.size.height - kbFrame.origin.y - sFrame.origin.y + 20))
         

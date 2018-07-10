@@ -23,11 +23,6 @@ class HistoryPageViewController: UIPageViewController, UIPageViewControllerDataS
         self.setViewControllers([controller], direction: .forward, animated: false, completion: nil)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // MARK: - UIPageViewControllerDataSource Methods
     public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "HistoryCalendarViewController") as! HistoryCalendarViewController
@@ -46,5 +41,4 @@ class HistoryPageViewController: UIPageViewController, UIPageViewControllerDataS
         let controller = pageViewController.viewControllers?.first as! HistoryCalendarViewController
         history.dynamicDate = controller.today
     }
-    
 }

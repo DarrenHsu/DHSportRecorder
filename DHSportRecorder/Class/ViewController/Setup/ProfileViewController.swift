@@ -71,11 +71,6 @@ class ProfileViewController: BaseViewController {
         self.editingView = profileView
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func downloadProfilePhoto() {
         if self.line.profile != nil {
             if let pictureURL: URL = self.line.profile?.pictureURL {
