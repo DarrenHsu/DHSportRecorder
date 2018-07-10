@@ -9,4 +9,7 @@
 import UIKit
 
 class HistoryRecordView: HistoryView {
+    
+    override func awakeFromNib() {
+    }
 }
