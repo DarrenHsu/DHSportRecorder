@@ -113,12 +113,13 @@ class RecordViewController: BaseViewController {
         self.app.addRecord?.endTime = Date().toJSONformat()
     }
     
-    func saveRecord() {
+    func saveRecord(_ location: DHLocation!) {
         DispatchQueue.main.async {
             self.startAnimating()
             FeedManager.sharedInstance().addtRecord(self.app.addRecord!, success: { (r) in
+                location.clearData()
+                self.syncData()
                 self.stopAnimating()
-                self.app.addRecord?.save()
                 self.app.addRecord?.removeSource()
                 NotificationCenter.default.post(name: .needReloadRoute, object: nil)
             }) { (msg) in
@@ -206,13 +207,13 @@ extension RecordViewController: DHLocationDelegate {
         
         health.requestHealthAvaliable { [weak self] (success) in
             guard success else {
-                self?.saveRecord()
+                self?.saveRecord(location)
                 return
             }
             
             self?.health.getTodaysSteps { (step) in
                 self?.app.addRecord?.step = NSNumber(value: (step - (self?.step)!))
-                self?.saveRecord()
+                self?.saveRecord(location)
             }
         }
     }
@@ -225,10 +226,6 @@ extension RecordViewController: DHLocationDelegate {
         if interval % saveInterval == 0 {
             self.app.addRecord?.save()
         }
-    }
-    
-    func receiveStop(_ location: DHLocation!) {
-        self.syncData()
     }
     
     func receiveChange(_ location: DHLocation!) {

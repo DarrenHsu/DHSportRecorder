@@ -185,23 +185,22 @@ static DHLocation *locationObject = nil;
         }
     }
     
-	if (self.locationManager) {
-		[self.locationManager stopUpdatingLocation];
-		[self setLocationManager:nil];
-	}
-	
-	if (_cumulativeTimer) {
-		[_cumulativeTimer invalidate];
-		_cumulativeTimer = nil;
-	}
-	
+    if (self.locationManager) {
+        [self.locationManager stopUpdatingLocation];
+        [self setLocationManager:nil];
+    }
+    
+    if (_cumulativeTimer) {
+        [_cumulativeTimer invalidate];
+        _cumulativeTimer = nil;
+    }
+    
     [self setAppCurrentActionTag:KATStopRecoding];
-	[self setLocationID:nil];
-	[self setLocationName:nil];
-    [self setupDefaultValue];
+    [self setLocationID:nil];
+    [self setLocationName:nil];
     [self setLocationOn:NO];
     
-    for (id<DHLocationDelegate> delegate in _delegates) {
+	for (id<DHLocationDelegate> delegate in _delegates) {
         if ([delegate respondsToSelector:@selector(receiveStop:)]) {
             [delegate receiveStop:self];
         }
@@ -230,6 +229,9 @@ static DHLocation *locationObject = nil;
     }
 }
 
+- (void) clearData {
+    [self setupDefaultValue];
+}
 
 #pragma mark -
 #pragma mark CLLocationManagerDelegate Methods

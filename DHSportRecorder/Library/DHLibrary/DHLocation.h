@@ -48,6 +48,7 @@ typedef enum{
 - (void) startWithLocationName:(NSString *) name locationId:(NSString *) lid;
 - (void) stopLocation;
 - (void) suspendedLocation;
+- (void) clearData;
 
 @end
 
