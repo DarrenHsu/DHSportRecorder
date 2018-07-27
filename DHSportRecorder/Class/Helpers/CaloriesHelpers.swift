@@ -11,14 +11,14 @@ import UIKit
 class CaloriesHelpers {
     
     public static func getCalories(speed: Double, weight: Double, minutes: Double) -> Double {
-        return (getGeneralMets(speed: speed) * weight / 60.0) * minutes
+        return (getGeneralMets(speed) * weight / 60.0) * minutes
     }
     
-    public static func getGeneralMets(speed: Double) -> Double {
+    public static func getGeneralMets(_ speed: Double) -> Double {
         return speed
     }
     
-    public static func getMets(speed: Double) -> Double {
+    public static func getMets(_ speed: Double) -> Double {
         if speed > 0 && speed < 2.7 {
             return 1.0
         } else if speed >= 2.7 && speed  < 4 {
