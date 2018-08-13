@@ -377,7 +377,7 @@ extension FeedManager {
     }
     
     public func pushMessage(_ lineUserId: String, message: String, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
-        self.POST("\(FeedManager.PUSH_MESSAGE_API)", parameters: ["lineUserId": lineUserId, "msg": message]).responseJSON { (response) in
+        self.POST("\(FeedManager.PUSH_MESSAGE_API)", parameters: ["lineUserId": lineUserId, "text": message]).responseJSON { (response) in
             self.processResponse(response, success: { (message) in
                 success(message)
             }, failure: { (code, message) in
@@ -387,7 +387,7 @@ extension FeedManager {
     }
     
     public func pushRoute(_ lineUserId: String, title: String, success: @escaping (String)->Void, failure: @escaping (String)->Void) {
-        self.POST("\(FeedManager.PUSH_TEMPLETE_API)", parameters: ["lineUserId": lineUserId, "title": title]).responseJSON { (response) in
+        self.POST("\(FeedManager.PUSH_TEMPLETE_API)", parameters: ["lineUserId": lineUserId, "altText": title]).responseJSON { (response) in
             self.processResponse(response, success: { (message) in
                 success(message)
             }, failure: { (code, message) in
